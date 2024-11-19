@@ -18,7 +18,7 @@ public class HomeController {
     private final HttpSession httpSession;
 
     // 메인 화면 - 게시판 목록
-    @GetMapping("/")
+    @GetMapping("/login")
     public String postList(Pageable pageable, Model model) {
 
 

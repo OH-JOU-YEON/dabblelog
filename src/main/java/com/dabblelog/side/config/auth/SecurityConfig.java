@@ -1,5 +1,6 @@
 package com.dabblelog.side.config.auth;
 
+import com.dabblelog.side.domain.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +36,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .logout( // 로그아웃 성공 시 / 주소로 이동
-                        (logoutConfig) -> logoutConfig.logoutSuccessUrl("/")
+                        (logoutConfig) -> logoutConfig.logoutSuccessUrl("/login")
                 )
                 // OAuth2 로그인 기능에 대한 여러 설정
                 .oauth2Login(Customizer.withDefaults()); // 아래 코드와 동일한 결과
