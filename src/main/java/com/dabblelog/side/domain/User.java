@@ -31,12 +31,17 @@ public class User {
     @Column
     private String picture;
 
+    @Enumerated(EnumType.STRING) // Enum 타입은 문자열 형태로 저장해야 함
+    @NotNull
+    private Role role;
+
 
 
     @Builder
-    public User(String name, String email) {
+    public User(String name, String email, Role role) {
         this.name = name;
         this.email = email;
+        this.role = role;
 
 
     }
@@ -46,6 +51,10 @@ public class User {
 
 
         return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
     }
 
 

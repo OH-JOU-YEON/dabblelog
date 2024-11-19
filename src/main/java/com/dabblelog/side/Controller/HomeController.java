@@ -2,6 +2,7 @@ package com.dabblelog.side.Controller;
 
 
 
+import com.dabblelog.side.config.auth.dto.SessionUser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
