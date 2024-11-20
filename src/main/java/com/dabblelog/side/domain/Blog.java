@@ -16,4 +16,10 @@ public class Blog {
     @Column(name = "blog_id")
     private Long id;
 
+    @Column(name = "name")
+    private String blogName;
+
+    @Column(name = "user_id")
+    private Long userId;
+
 }

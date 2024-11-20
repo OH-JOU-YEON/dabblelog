@@ -17,4 +17,7 @@ public class Series {
     @Column(name = "series_id")
     private Long id;
 
+    @Column(name = "blog_id")
+    private Long blogId;
+
 }

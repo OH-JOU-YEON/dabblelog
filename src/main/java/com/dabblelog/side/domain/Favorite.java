@@ -16,4 +16,10 @@ public class Favorite {
     @Column(name = "liked_id")
     private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "blog_id")
+    private Long blogId;
+
 }

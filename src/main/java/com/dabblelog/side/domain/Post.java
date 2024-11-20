@@ -17,4 +17,17 @@ public class Post {
     @Column(name = "post_id")
     private Long id;
 
+    @Column(name = "blog_id")
+    private Long blogId;
+
+    @Column(name = "series_id")
+    private Long seriesId;
+
+    private String title;
+
+    private String content;
+
+    @Column(name = "temp_post")
+    private boolean temp;
+
 }
