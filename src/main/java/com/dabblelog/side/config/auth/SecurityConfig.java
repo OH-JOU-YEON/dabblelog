@@ -1,6 +1,5 @@
 package com.dabblelog.side.config.auth;
 
-import com.dabblelog.side.domain.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,11 +31,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeRequest) -> authorizeRequest
 
                         //홈이랑 로그인 페이지만 아무나 접근 가능 나머지는 인증된 사용자만 접근 가능
-                        .requestMatchers("/","/login").permitAll()
-                        .anyRequest().authenticated()
+                        //페이지 다 만들고 코드 추가
+
+                        .anyRequest().permitAll()
                 )
                 .logout( // 로그아웃 성공 시 / 주소로 이동
-                        (logoutConfig) -> logoutConfig.logoutSuccessUrl("/login")
+                        (logoutConfig) -> logoutConfig.logoutSuccessUrl("/")
                 )
                 // OAuth2 로그인 기능에 대한 여러 설정
                 .oauth2Login(Customizer.withDefaults()); // 아래 코드와 동일한 결과

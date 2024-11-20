@@ -2,6 +2,7 @@ package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,23 +21,23 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @NotNull
-    @Column(name = "user_name")
+
+
+    @Null
     private String name;
 
     @NotNull
-    @Column(name = "email")
+
     private String email;
 
-    @Column(name="readme")
+
     private String readme;
 
-    @Column(name="picture")
+
     private String picture;
 
     @Enumerated(EnumType.STRING) // Enum 타입은 문자열 형태로 저장해야 함
     @NotNull
-    @Column(name="role")
     private Role role;
 
 
