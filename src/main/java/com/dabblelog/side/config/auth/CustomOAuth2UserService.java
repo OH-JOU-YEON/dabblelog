@@ -1,7 +1,7 @@
 package com.dabblelog.side.config.auth;
 
 
-import com.dabblelog.side.Repository.UserRepository;
+import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.config.auth.dto.OAuthAttributes;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.User;

@@ -1,22 +1,20 @@
-package com.dabblelog.side.domain.impelements;
+package com.dabblelog.side.domain;
 
-import com.dabblelog.side.domain.DabbleLog;
+
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "blogs")
-public class DabbleLogImpl implements DabbleLog {
+@Table(name = "posts")
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "blog_id")
+    @Column(name = "post_id")
     private Long id;
-
 
 }

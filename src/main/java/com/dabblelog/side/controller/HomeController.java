@@ -1,14 +1,12 @@
-package com.dabblelog.side.Controller;
+package com.dabblelog.side.controller;
 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
 
-    @GetMapping("/")
 
 }

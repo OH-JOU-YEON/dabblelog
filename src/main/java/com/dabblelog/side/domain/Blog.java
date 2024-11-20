@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "months_dabbles")
-public class Dabble {
+@Table(name = "blogs")
+public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "dabble_id")
+    @Column(name = "blog_id")
     private Long id;
 
 }
