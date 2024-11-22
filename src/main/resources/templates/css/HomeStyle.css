@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "세종글꽃";
+  src: ;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+}
+
+loginAndProfile {
+  display: flex;
+  flex-direction: row;
+}
+article {
+  display: none;
+}
+
+#dabblelogImg {
+}
+
+#dabblelog {
+  border: none;
+  cursor: pointer;
+
+  height: 2rem;
+
+  padding-right: 1rem;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+}
+
+#login {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  height: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+#trendImg {
+  background-image: url("/../image/trendAndNew.png");
+  object-fit: cover;
+}
+
+.word {
+  font-weight: 700;
+  height: 2rem;
+  border: none;
+  font-size: 1rem;
+}
+
+#newPost {
+  display: none;
+}
+
+#calendar {
+  font-size: 0.5rem;
+  font-weight: 700;
+}
