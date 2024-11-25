@@ -3,6 +3,11 @@
   src: ;
 }
 
+#mainButton {
+  display: flex;
+  align-items: flex-start;
+}
+
 #searchAndProfile {
   display: flex;
   flex-direction: row-reverse;
@@ -96,4 +101,13 @@ article {
 
 .alarm {
   display: inline-block;
+}
+
+#calendar {
+  display: flex;
+  align-items: center;
+}
+
+#calWord {
+  margin-right: 0.3rem;
 }
