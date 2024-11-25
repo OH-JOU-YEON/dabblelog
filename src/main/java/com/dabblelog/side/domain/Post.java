@@ -25,7 +25,7 @@ public class Post {
 
     private String title;
 
-    private String content;
+    private int contentId;
 
     @Column(name = "temp_post")
     private boolean temp;

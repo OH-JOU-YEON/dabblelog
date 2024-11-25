@@ -35,6 +35,10 @@ article {
   border-radius: 1rem;
 }
 
+.word {
+  padding-left: 0;
+}
+
 #login {
   cursor: pointer;
   border: none;
