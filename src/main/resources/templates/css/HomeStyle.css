@@ -3,20 +3,29 @@
   src: ;
 }
 
-header {
+#searchAndProfile {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  width: 35rem;
+  align-items: baseline;
 }
 
+header {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile {
+  display: none;
+}
 nav {
   display: flex;
   flex-direction: row;
 }
 
-loginAndProfile {
-  display: flex;
-  flex-direction: row;
-}
 article {
   display: none;
 }
@@ -37,6 +46,12 @@ article {
 
 .word {
   padding-left: 0;
+  padding-right: 0;
+}
+
+#new {
+  padding-right: 0;
+  padding-left: 1rem;
 }
 
 #login {
@@ -47,6 +62,7 @@ article {
   color: white;
   font-weight: 700;
   height: 2rem;
+  width: 3rem;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1rem;
@@ -58,13 +74,13 @@ article {
 }
 
 #trendImg {
-  background-image: url("/../image/trendAndNew.png");
-  object-fit: cover;
+  padding-left: 1rem;
 }
 
 .word {
   font-weight: 700;
   height: 2rem;
+  padding-right: 0;
   border: none;
   font-size: 1rem;
 }
@@ -76,4 +92,8 @@ article {
 #calendar {
   font-size: 0.5rem;
   font-weight: 700;
+}
+
+.alarm {
+  display: inline-block;
 }
