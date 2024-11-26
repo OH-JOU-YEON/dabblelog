@@ -17,7 +17,8 @@ public class Series {
     @Column(name = "series_id", unique = true)
     private Long id;
 
-    @Column(name = "blog_id")
+    @JoinColumn(name = "blog_id")
+    @ManyToOne
     private Long blogId;
 
 }

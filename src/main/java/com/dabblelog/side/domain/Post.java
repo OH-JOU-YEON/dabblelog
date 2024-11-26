@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Calendar;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -37,6 +39,14 @@ public class Post {
     @OneToMany
     @JoinColumn(name = "post_tag_id")
     private Long tagId;
+
+    private int likeCount;
+
+    private int createdYear;
+
+    private int createdMonth;
+
+    private int createdDay;
 
 
 }

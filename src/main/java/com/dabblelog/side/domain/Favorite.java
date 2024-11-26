@@ -16,10 +16,12 @@ public class Favorite {
     @Column(name = "liked_id")
     private Long id;
 
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
+    @ManyToOne
     private Long userId;
 
-    @Column(name = "blog_id")
+    @JoinColumn(name = "blog_id")
+    @ManyToOne
     private Long blogId;
 
 }

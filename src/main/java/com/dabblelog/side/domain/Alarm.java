@@ -18,7 +18,8 @@ public class Alarm {
     @Column(name = "alarm_id")
     private Long id;
 
-
+    @JoinColumn(name = "user_id")
+    @ManyToOne
     private Long userId;
 
     private boolean readOrNot;

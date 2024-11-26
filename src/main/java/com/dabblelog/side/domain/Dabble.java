@@ -16,4 +16,9 @@ public class Dabble {
     @Column(name = "dabble_id")
     private Long id;
 
+    private int Year;
+
+    private int Month;
+
+
 }

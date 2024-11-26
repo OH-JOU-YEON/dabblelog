@@ -9,7 +9,8 @@ public class PostText {
     @Column(name = "post_id")
     private Long id;
 
-    @Column(name = "content_id")
+    @ManyToOne
+    @JoinColumn(name = "post_content_id")
     private Long contentId;
 
     @Column(name = "text_detail")

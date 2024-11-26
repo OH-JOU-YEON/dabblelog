@@ -11,6 +11,7 @@ public class PostImg {
     private Long id;
 
     @JoinColumn(name = "PostContent_id")
+    @ManyToOne
     private Long contentId;
 
     @Column(name = "img_route")

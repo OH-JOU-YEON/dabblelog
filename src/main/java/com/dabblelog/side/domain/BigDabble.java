@@ -16,4 +16,6 @@ public class BigDabble {
     @Column(name = "year_dabble_id")
     private Long id;
 
+    private Long Year;
+
 }
