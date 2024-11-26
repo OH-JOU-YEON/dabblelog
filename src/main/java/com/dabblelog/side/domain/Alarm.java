@@ -2,14 +2,16 @@ package com.dabblelog.side.domain;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Alarm {
 
     @Id
@@ -18,7 +20,6 @@ public class Alarm {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private Long userId;
 
     private boolean readOrNot;
