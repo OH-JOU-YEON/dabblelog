@@ -18,13 +18,12 @@ public class Alarm {
     @Column(name = "alarm_id")
     private Long id;
 
-    @Column(name = "user_id")
-    @NotNull
+
     private Long userId;
 
     private boolean readOrNot;
 
-    @NotNull
+
     private String content;
 
 }

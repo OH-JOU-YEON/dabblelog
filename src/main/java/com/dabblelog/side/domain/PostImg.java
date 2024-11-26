@@ -1,10 +1,8 @@
 package com.dabblelog.side.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
 public class PostImg {
 
     @Id
@@ -12,7 +10,7 @@ public class PostImg {
     @Column(name = "img_id")
     private Long id;
 
-    @Column(name = "content_id")
+    @JoinColumn(name = "PostContent_id")
     private Long contentId;
 
     @Column(name = "img_route")

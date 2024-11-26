@@ -1,5 +1,6 @@
 package com.dabblelog.side.config.auth;
 
+import com.dabblelog.side.domain.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,9 @@ public class SecurityConfig {
                         //홈이랑 로그인 페이지만 아무나 접근 가능 나머지는 인증된 사용자만 접근 가능
                         //페이지 다 만들고 코드 추가
 
-                        .anyRequest().permitAll()
+                        .requestMatchers("/posts/new", "/comments/save").hasRole(Role.USER.name())
+                        .requestMatchers("/", "/css/**", "images/**", "/login", "/login/*", "/logout/*", "/posts/**", "/comments/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .logout( // 로그아웃 성공 시 / 주소로 이동
                         (logoutConfig) -> logoutConfig.logoutSuccessUrl("/")

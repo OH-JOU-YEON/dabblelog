@@ -14,7 +14,7 @@ public class Series {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "series_id")
+    @Column(name = "series_id", unique = true)
     private Long id;
 
     @Column(name = "blog_id")

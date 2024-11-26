@@ -1,10 +1,8 @@
 package com.dabblelog.side.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
 public class PostContent {
 
     @Id
@@ -12,7 +10,7 @@ public class PostContent {
     @Column(name = "content_id")
     private Long id;
 
-
-    @Column(name = "post_id")
+    @OneToOne
+    @JoinColumn(name = "post_id")
     private Long postId;
 }

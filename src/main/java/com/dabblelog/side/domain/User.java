@@ -18,16 +18,17 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id" ,unique = true)
     private Long id;
 
 
 
-    @Null
+
     private String name;
 
-    @NotNull
 
+    @NotNull
+    @Column(unique = true)
     private String email;
 
 
@@ -37,7 +38,6 @@ public class User {
     private String picture;
 
     @Enumerated(EnumType.STRING) // Enum 타입은 문자열 형태로 저장해야 함
-    @NotNull
     private Role role;
 
 

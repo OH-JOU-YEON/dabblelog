@@ -17,17 +17,26 @@ public class Post {
     @Column(name = "post_id")
     private Long id;
 
-    @Column(name = "blog_id")
+    @ManyToOne
+   @JoinColumn(name = "blog_id")
     private Long blogId;
 
-    @Column(name = "series_id")
+    @OneToMany
+    @JoinColumn(name = "series_id")
     private Long seriesId;
 
     private String title;
 
-    private int contentId;
+    @OneToOne
+    @JoinColumn(name = "post_content_id")
+    private Long contentId;
 
     @Column(name = "temp_post")
     private boolean temp;
+
+    @OneToMany
+    @JoinColumn(name = "post_tag_id")
+    private Long tagId;
+
 
 }
