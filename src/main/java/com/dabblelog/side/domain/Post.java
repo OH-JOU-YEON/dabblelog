@@ -11,19 +11,17 @@ import java.util.Calendar;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "posts")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "post_id")
     private Long id;
 
     @ManyToOne
    @JoinColumn(name = "blog_id")
     private Long blogId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "series_id")
     private Long seriesId;
 
@@ -36,9 +34,7 @@ public class Post {
     @Column(name = "temp_post")
     private boolean temp;
 
-    @OneToMany
-    @JoinColumn(name = "post_tag_id")
-    private Long tagId;
+
 
     private int likeCount;
 

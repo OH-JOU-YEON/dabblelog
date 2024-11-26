@@ -14,7 +14,6 @@ public class Series {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "series_id", unique = true)
     private Long id;
 
     @JoinColumn(name = "blog_id")

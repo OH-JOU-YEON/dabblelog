@@ -2,16 +2,17 @@ package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
 
-@Entity
-public class PostText {
+public class TagMapping {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "post_content_id")
-    private Long contentId;
+    @JoinColumn(name = "post_tag_id")
+    private Long tagId;
 
-    @Column(name = "text_detail")
-    private String textDetail;
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Long postId;
 }

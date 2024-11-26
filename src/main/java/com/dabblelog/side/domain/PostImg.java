@@ -1,13 +1,14 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Entity
 public class PostImg {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "img_id")
     private Long id;
 
     @JoinColumn(name = "PostContent_id")

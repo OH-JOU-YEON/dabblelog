@@ -10,16 +10,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "alarms")
 public class Alarm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "alarm_id")
     private Long id;
 
-    @JoinColumn(name = "user_id")
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private Long userId;
 
     private boolean readOrNot;

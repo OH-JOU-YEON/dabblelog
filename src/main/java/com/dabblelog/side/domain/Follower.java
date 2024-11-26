@@ -8,12 +8,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "alarms")
 public class Follower {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "follow_id")
     private Long id;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    private Long following_id;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    private Long followed_id;
 
 }
