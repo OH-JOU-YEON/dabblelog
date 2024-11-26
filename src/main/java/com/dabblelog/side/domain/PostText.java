@@ -8,7 +8,7 @@ public class PostText {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_content_id")
     private Long contentId;
 

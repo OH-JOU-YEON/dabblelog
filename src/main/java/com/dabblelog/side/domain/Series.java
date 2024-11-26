@@ -17,7 +17,7 @@ public class Series {
     private Long id;
 
     @JoinColumn(name = "blog_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Long blogId;
 
 }

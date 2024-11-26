@@ -15,11 +15,11 @@ public class Follower {
     private Long id;
 
     @JoinColumn(name = "user_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Long following_id;
 
     @JoinColumn(name = "user_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Long followed_id;
 
 }

@@ -15,11 +15,11 @@ public class Favorite {
     private Long id;
 
     @JoinColumn(name = "user_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Long userId;
 
     @JoinColumn(name = "blog_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Long blogId;
 
 }

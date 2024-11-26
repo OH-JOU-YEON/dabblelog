@@ -12,7 +12,7 @@ public class PostImg {
     private Long id;
 
     @JoinColumn(name = "PostContent_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Long contentId;
 
     @Column(name = "img_route")
