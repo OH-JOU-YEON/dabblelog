@@ -1,9 +1,10 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@RequiredArgsConstructor
+
+@NoArgsConstructor
 @Entity
 public class PostTag {
 

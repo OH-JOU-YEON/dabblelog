@@ -1,7 +1,11 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Getter
 @Entity
 public class PostText {
     @Id
@@ -10,7 +14,7 @@ public class PostText {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_content_id")
-    private Long contentId;
+    private PostContent contentId;
 
     @Column(name = "text_detail")
     private String textDetail;

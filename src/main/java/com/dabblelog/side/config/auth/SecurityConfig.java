@@ -34,8 +34,8 @@ public class SecurityConfig {
                         //홈이랑 로그인 페이지만 아무나 접근 가능 나머지는 인증된 사용자만 접근 가능
                         //페이지 다 만들고 코드 추가
 
-                        .requestMatchers("/posts/new", "/comments/save").hasRole(Role.USER.name())
-                        .requestMatchers("/", "/css/**", "images/**", "/login", "/login/*", "/logout/*", "/posts/**", "/comments/**").permitAll()
+                        .requestMatchers("/posts/new").hasRole(Role.USER.name())
+                        .requestMatchers("/", "images/**", "/login", "/login/*", "/logout/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .logout( // 로그아웃 성공 시 / 주소로 이동

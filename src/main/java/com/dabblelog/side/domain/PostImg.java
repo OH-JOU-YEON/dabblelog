@@ -1,9 +1,10 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 public class PostImg {
 
@@ -13,7 +14,7 @@ public class PostImg {
 
     @JoinColumn(name = "PostContent_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Long contentId;
+    private PostContent contentId;
 
     @Column(name = "img_route")
     private String route;

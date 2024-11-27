@@ -19,6 +19,6 @@ public class Blog {
 
     @OneToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "user_id")
-    private Long userId;
+    private User userId;
 
 }

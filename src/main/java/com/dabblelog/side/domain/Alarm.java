@@ -20,7 +20,8 @@ public class Alarm {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Long userId;
+    @JoinColumn(name = "user_id")
+    private User userId;
 
     private boolean readOrNot;
 

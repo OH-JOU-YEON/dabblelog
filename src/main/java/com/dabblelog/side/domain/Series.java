@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "series")
 public class Series {
 
     @Id
@@ -18,6 +17,6 @@ public class Series {
 
     @JoinColumn(name = "blog_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Long blogId;
+    private Blog blogId;
 
 }

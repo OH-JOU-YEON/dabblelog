@@ -19,17 +19,17 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "blog_id")
-    private Long blogId;
+    private Blog blogId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
-    private Long seriesId;
+    private Series seriesId;
 
     private String title;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_content_id")
-    private Long contentId;
+    private PostContent contentId;
 
     @Column(name = "temp_post")
     private boolean temp;
