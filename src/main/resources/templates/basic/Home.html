@@ -15,11 +15,15 @@
   </head>
   <body class="is-preload">
     <div id="wrapper">
-      <header>
-        <div id="mainButton">
-          <h3>Example heading <span class="badge bg-secondary">New</span></h3>
+      <header style="display: flex">
+        <div id="mainButton" style="display: flex; align-items: flex-end">
+          <h1 style="display: flex; align-items: flex-end">
+            <span style="display: inline-block" class="badge bg-secondary"
+              >dabblelog</span
+            >
+          </h1>
         </div>
-        <div id="searchAndProfile">
+        <div id="searchAndProfile" style="display: flex">
           <button id="newPost">새 글 작성하기</button>
           <button
             id="login"
@@ -27,7 +31,7 @@
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             type="button"
-            onclick="location.href='/login'"
+            onclick="location.href='/login/oauth2/code/google'"
           >
             로그인
           </button>
@@ -55,20 +59,20 @@
       </header>
       <div id="main">
         <nav id="nav">
-          <div id="trending">
-            <button class="word">트렌딩</button>
-          </div>
-          <div id="new">
-            <button class="word">최신</button>
-          </div>
-          <div id="feed">
-            <button class="word">피드</button>
-          </div>
-          <div id="calendar">
-            <button id="calWord">이번 주</button>
-          </div>
+          <ul>
+            <li>트렌딩</li>
+            <li>최신</li>
+            <li>피드</li>
+          </ul>
         </nav>
       </div>
     </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
