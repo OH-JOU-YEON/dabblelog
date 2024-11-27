@@ -2,70 +2,73 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Stellar by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
     <link rel="stylesheet" href="../assets/css/main.css" />
     <noscript
       ><link rel="stylesheet" href="../assets/css/noscript.css"
     /></noscript>
   </head>
-  <body>
-    <header>
-      <div id="mainButton">
-        <img id="dabblelogImg" src="../image/logo.png" width="15%" />
-        <button id="dabblelog">dabblelog</button>
-      </div>
-      <div id="searchAndProfile">
-        <button id="newPost">새 글 작성하기</button>
-        <button
-          id="login"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          type="button"
-          onclick="location.href='/login'"
-        >
-          로그인
-        </button>
-
-        <div id="profile">
-          <button class="profile"></button>
-          <button class="profile" id="modal"></button>
+  <body class="is-preload">
+    <div id="wrapper">
+      <header>
+        <div id="mainButton">
+          <h3>Example heading <span class="badge bg-secondary">New</span></h3>
         </div>
+        <div id="searchAndProfile">
+          <button id="newPost">새 글 작성하기</button>
+          <button
+            id="login"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            type="button"
+            onclick="location.href='/login'"
+          >
+            로그인
+          </button>
 
-        <img id="alarm" class="alarm" src="../image/alarm.png" height="20.91" />
-        <img
-          id="search"
-          class="alarm"
-          src="../image/serarch.png"
-          height="20.91"
-        />
+          <div id="profile">
+            <img id="profileImg" />
+            <svg
+              id="profileTriangle"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-caret-down-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              />
+            </svg>
+          </div>
+
+          <button>알림</button>
+          <button>찾아보기</button>
+        </div>
+      </header>
+      <div id="main">
+        <nav id="nav">
+          <div id="trending">
+            <button class="word">트렌딩</button>
+          </div>
+          <div id="new">
+            <button class="word">최신</button>
+          </div>
+          <div id="feed">
+            <button class="word">피드</button>
+          </div>
+          <div id="calendar">
+            <button id="calWord">이번 주</button>
+          </div>
+        </nav>
       </div>
-    </header>
-    <br />
-    <nav>
-      <div id="trending">
-        <img id="trendImg" src="../image/trendAndNew.png" width="15%" />
-        <button class="word">트렌딩</button>
-      </div>
-      <div id="new">
-        <img id="newImg" src="../image/new.png" width="18%" />
-        <button class="word">최신</button>
-      </div>
-      <div id="feed">
-        <img id="feedImg" src="../image/feed.png" width="15%" />
-        <button class="word">피드</button>
-      </div>
-      <div id="calendar">
-        <button id="calWord">이번 주</button>
-        <img id="calImg" src="../image/model.png" width="10%" />
-      </div>
-    </nav>
-    <article>
-      <section id="loginForm">
-        <h2>구글 계정으로 로그인</h2>
-      </section>
-    </article>
+    </div>
   </body>
 </html>
