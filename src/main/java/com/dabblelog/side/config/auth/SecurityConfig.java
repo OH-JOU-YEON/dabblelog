@@ -36,7 +36,7 @@ public class SecurityConfig {
 
                         .requestMatchers("/posts/new").hasRole(Role.USER.name())
                         .requestMatchers("/", "images/**", "/login", "/login/*", "/logout/*",
-                                "/","/css/**","/scripts/**","/plugin/**","/fonts/**").permitAll()
+                                "/static/css/**","/static/js/**","/static/img/**","/fonts/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .logout( // 로그아웃 성공 시 / 주소로 이동
