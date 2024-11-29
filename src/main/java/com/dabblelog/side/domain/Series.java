@@ -19,4 +19,6 @@ public class Series {
     @ManyToOne(fetch = FetchType.LAZY)
     private Blog blogId;
 
+    private String Color;
+
 }
