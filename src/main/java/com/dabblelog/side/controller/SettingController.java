@@ -8,16 +8,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SettingController {
 
+    //설정 호출 메서드
     @GetMapping("/setting")
     public String mappingSetting(Model model) {
         return "/basic/Setting";
     }
 
-    //프로필 이미지 수정하는 서비스 호출 메서드
+    //좋아요 호출 메서드
+    @GetMapping("/liked")
+    public String mappingLiked(Model model) {
 
-    //블로그 제목 수정 메서드
+        return "/basic/Liked";
+    }
 
-    //이메일 주소 보여주는 메서드
+    //임시 저장 글 호출 메서드
+    @GetMapping("/saved")
+    public String mappingSaved(Model model) {
+
+        return "/basic/Saves";
+    }
+
+
+    //최근에 읽은 포스트 호출 메서드
+    @GetMapping("/recentRead")
+    public String mappingRecentRead(Model model) {
+
+        return "/basic/RecentRead";
+    }
+
 
 
 }
