@@ -111,13 +111,10 @@
             <div class="col-lg-6 col-md-7 col-12">
               <!-- Top Contact -->
               <ul class="top-contact">
-                <li><i class="fa fa-phone"></i>010-4948-5707</li>
-                <li>
-                  <i class="fa fa-envelope"></i
-                  ><a href="mailto:support@yourmail.com"
-                    >hyperclutter@gmail.com</a
-                  >
-                </li>
+                <i class="fa fa-envelope"></i
+                ><a href="mailto:support@yourmail.com"
+                  >hyperclutter@gmail.com</a
+                >
               </ul>
               <!-- End Top Contact -->
             </div>
@@ -148,6 +145,7 @@
                       <li><a href="#"> 좋아요를 누른 포스트 </a></li>
                       <li><a href="#"> 최근 읽은 포스트 </a></li>
                       <li><a href="#"> 임시 저장 글 </a></li>
+                      <li><a href="#"> 알림 </a></li>
                       <li><a href="#"> 설정 </a></li>
                     </ul>
                   </nav>
@@ -167,7 +165,55 @@
     </header>
     <!-- End Header Area -->
 
-    <!--/ End Footer Area -->
+    <section
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+      "
+    >
+      <div
+        id="setting"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 2rem;
+        "
+      >
+        <div>
+          <div id="profile" style="display: flex; flex-direction: row">
+            <div id="profileImg" style="display: flex; flex-direction: column">
+              <img
+                class="img-concert"
+                src="../../static/img/realLogo.png"
+                width="25%"
+              />
+              <button class="btn">이미지 업로드</button>
+              <button class="btn">이미지 제거</button>
+            </div>
+            <div id="profileText">
+              <h6>별명</h6>
+              <p>한 줄 소개</p>
+              <button class="btn">수정</button>
+            </div>
+          </div>
+
+          <div
+            id="titleModify"
+            style="display: flex; flex-direction: row; margin-top: 1.5rem"
+          >
+            <h3 id="blogTitle">블로그 제목</h3>
+            <p id="titleNow">내 블로그 제목</p>
+            <button id="titleModi" class="btn">수정</button>
+          </div>
+          <div id="deleteMember">
+            <button id="deleteMem" class="btn">회원 탈퇴</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- jquery Min JS -->
     <script src="../../static/js/jquery.min.js"></script>

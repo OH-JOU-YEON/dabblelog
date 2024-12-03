@@ -21,4 +21,13 @@ public class Blog {
    @JoinColumn(name = "user_id")
     private User userId;
 
+
+    Blog(User user, String userEmail) {
+        this.userId = user;
+
+        String[] parseEmail = userEmail.split("@");
+
+        this.blogName = parseEmail[0] + ".log";
+
+    }
 }
