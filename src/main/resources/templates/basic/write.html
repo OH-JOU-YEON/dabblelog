@@ -7,15 +7,39 @@
     <!-- TUI 에디터 CSS CDN -->
     <link
       rel="stylesheet"
-      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>
+      href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"
+    />
+    <style>
+      .title::placeholder {
+        font-size: 2.2em;
+      }
+      .tag::placeholder {
+        font-size: 1.3em;
+      }
+    </style>
   </head>
   <body>
     <form method="post">
-      <h1><input type="text" placeholder="제목을 입력하세요"></h1>
+      <h1>
+        <input
+          class="title"
+          type="text"
+          placeholder="제목을 입력하세요"
+          style="outline: none; border: none; height: 66px; width: 433px"
+          ;
+        />
+      </h1>
     </form>
 
     <form method="post">
-      <h2><input type="text" placeholder="태그를 입력하세요"></h2>
+      <h2>
+        <input
+          class="tag"
+          type="text"
+          placeholder="태그를 입력하세요"
+          style="outline: none; border: none; width: 433px; height: 58px"
+        />
+      </h2>
     </form>
 
     <!-- 에디터를 적용할 요소 (컨테이너) -->
@@ -26,7 +50,7 @@
     <script>
       const editor = new toastui.Editor({
         el: document.querySelector("#content"), // 에디터를 적용할 요소 (컨테이너)
-        height: "500px", // 에디터 영역의 높이 값 (OOOpx || auto)
+        height: "1000px", // 에디터 영역의 높이 값 (OOOpx || auto)
         initialEditType: "markdown", // 최초로 보여줄 에디터 타입 (markdown || wysiwyg)
         initialValue: "내용을 입력해 주세요.", // 내용의 초기 값으로, 반드시 마크다운 문자열 형태여야 함
         previewStyle: "vertical", // 마크다운 프리뷰 스타일 (tab || vertical)
