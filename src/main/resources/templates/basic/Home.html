@@ -113,9 +113,7 @@
               <ul class="top-contact">
                 <li>
                   <i class="fa fa-envelope"></i
-                  ><a href="#" th:text="${email}"
-                    >dabblelog.com</a
-                  >
+                  ><a href="#" th:text="${email}">dabblelog.com</a>
                 </li>
               </ul>
               <!-- End Top Contact -->
@@ -144,24 +142,24 @@
                 <div class="main-menu">
                   <nav class="navigation">
                     <ul class="nav menu">
-                      <li><a href="/oauth2/authorization/google" > 내 블로그 </a></li>
+                      <li>
+                        <a href="/oauth2/authorization/google"> 내 블로그 </a>
+                      </li>
                       <li><a href="/new"> 최신 </a></li>
                       <li><a href="/trend"> 트렌드 </a></li>
                       <li><a href="/feed"> 피드 </a></li>
-                      <li><a href="/search"> 둘러보기 </a> </li>
+                      <li><a href="/search"> 둘러보기 </a></li>
                     </ul>
                   </nav>
                 </div>
                 <!--/ End Main Menu -->
               </div>
               <div class="col-lg-2 col-12" style="display: flex">
-
                 <div class="get-quote">
                   <a th:href="${path}" th:text="${loginOrNot}" class="btn"
                     >로그인</a
                   >
                 </div>
-
               </div>
             </div>
           </div>
