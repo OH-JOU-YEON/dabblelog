@@ -178,20 +178,30 @@
         style="
           display: flex;
           justify-content: center;
-          align-items: center;
+          align-content: center;
           margin-top: 2rem;
         "
       >
         <div>
           <div id="profile" style="display: flex; flex-direction: row">
-            <div id="profileImg" style="display: flex; flex-direction: column">
+            <div
+              id="profileImg"
+              style="display: flex; flex-direction: column"
+              ;
+              flex-basis:
+              auto;
+            >
               <img
                 class="img-concert"
                 src="../../static/img/realLogo.png"
                 width="25%"
               />
-              <button class="btn">이미지 업로드</button>
-              <button class="btn">이미지 제거</button>
+              <button style="display: inline-block; padding: auto" class="btn">
+                이미지 업로드
+              </button>
+              <button style="display: inline-block; padding: auto" class="btn">
+                이미지 제거
+              </button>
             </div>
             <div id="profileText">
               <h6>별명</h6>
