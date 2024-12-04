@@ -22,10 +22,10 @@ public class Blog {
     private User userId;
 
 
-    Blog(User user, String userEmail) {
+    public Blog(User user) {
         this.userId = user;
 
-        String[] parseEmail = userEmail.split("@");
+        String[] parseEmail = user.getEmail().split("@");
 
         this.blogName = parseEmail[0] + ".log";
 
