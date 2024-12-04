@@ -183,43 +183,162 @@
         "
       >
         <div>
-          <div id="profile" style="display: flex; flex-direction: row">
-            <div
-              id="profileImg"
-              style="display: flex; flex-direction: column"
-              ;
-              flex-basis:
-              auto;
-            >
-              <img
-                class="img-concert"
-                src="../../static/img/realLogo.png"
-                width="25%"
-              />
-              <button style="display: inline-block; padding: auto" class="btn">
-                이미지 업로드
-              </button>
-              <button style="display: inline-block; padding: auto" class="btn">
-                이미지 제거
-              </button>
+          <section
+            id="profile"
+            style="
+              display: flex;
+              justify-content: flex-start;
+              margin-bottom: 3rem;
+            "
+          >
+            <div id="profileImg">
+              <div style="display: flex; flex-basis: auto">
+                <img
+                  class="img-concert"
+                  src="../../static/img/realLogo.png"
+                  width="128"
+                  style="border-radius: 50%"
+                />
+              </div>
+
+              <div
+                style="
+                  width: fit content;
+                  display: flex;
+                  flex-basis: auto;
+                  margin-top: 1rem;
+                "
+              >
+                <button
+                  style="
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+                    width: 128px;
+                    height: 30px;
+                    margin-bottom: 0.2rem;
+                    background-color: rgb(39, 118, 192);
+                  "
+                  class="btn"
+                >
+                  이미지 업로드
+                </button>
+              </div>
+              <div style="display: flex; flex-basis: auto">
+                <button
+                  style="
+                    width: 128px;
+                    height: 30px;
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: rgb(140, 175, 164);
+                  "
+                  class="btn"
+                  ;
+                >
+                  이미지 제거
+                </button>
+              </div>
             </div>
-            <div id="profileText">
+            <div id="profileText" style="margin-left: 2rem">
               <h6>별명</h6>
               <p>한 줄 소개</p>
-              <button class="btn">수정</button>
+              <button
+                class="btn"
+                style="
+                  display: flex;
+                  text-align: center;
+                  align-items: center;
+                  justify-content: center;
+                  width: 45px;
+                  height: 30px;
+                  background-color: rgb(39, 118, 192);
+                "
+              >
+                수정
+              </button>
             </div>
-          </div>
+          </section>
 
           <div
             id="titleModify"
-            style="display: flex; flex-direction: row; margin-top: 1.5rem"
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              margin-top: 1.5rem;
+              margin-bottom: 1rem;
+            "
           >
-            <h3 id="blogTitle">블로그 제목</h3>
-            <p id="titleNow">내 블로그 제목</p>
-            <button id="titleModi" class="btn">수정</button>
+            <h4
+              id="blogTitle"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin-right: 7rem;
+              "
+            >
+              블로그 제목
+            </h4>
+            <p
+              id="titleNow"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+              "
+            >
+              내 블로그 제목
+            </p>
+            <button
+              id="titleModi"
+              class="btn"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                width: 45px;
+                height: 30px;
+                background-color: rgb(39, 118, 192);
+              "
+            >
+              수정
+            </button>
           </div>
-          <div id="deleteMember">
-            <button id="deleteMem" class="btn">회원 탈퇴</button>
+          <div id="deleteMember" style="display: flex; flex-direction: row">
+            <h4
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10rem;
+              "
+            >
+              회원 탈퇴
+            </h4>
+            <button
+              id="deleteMem"
+              class="btn"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                height: 35px;
+                background-color: rgb(140, 175, 164);
+              "
+            >
+              회원 탈퇴
+            </button>
           </div>
         </div>
       </div>
