@@ -1,18 +1,30 @@
 package com.dabblelog.side.controller;
 
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BlogController {
+
+    static String getEmail(String toString) {
+        String[] toStrings = toString.split(",");
+        String[] emails = toStrings[7].split("=");
+        return emails[1];
+    }
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
     @GetMapping("/blog")
     public String mappingBlog(Model model) {
 
-        //로그인 되어 있는지 검사 후에 로그인 돼 있으면 프로필 창 가져오는 메서드
+        //유저의 아이디로 검색한 블로그가 없으면 새로 만들어
 
-        //일단 트렌딩에 맞춰서 좋아요 개수가 많은 이번 주 게시물들을 불러오는 메서드
+
+
 
 
         return "basic/Posts";
