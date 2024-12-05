@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog,Long> {
 
-    @Query("SELECT u FROM Blog u WHERE u.user_id = id")
+    @Query("SELECT * FROM Blog WHERE Blog.user_id = id")
     Optional<Blog> findByUserId(@Param("id") Long id);
 }
