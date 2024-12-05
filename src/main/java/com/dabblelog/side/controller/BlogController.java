@@ -3,7 +3,7 @@ package com.dabblelog.side.controller;
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.User;
-import com.dabblelog.side.domain.dto.UserDto;
+import com.dabblelog.side.domain.dto.UserLoginStayDto;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.BlogService;
 import jakarta.servlet.http.HttpSession;
@@ -42,7 +42,7 @@ public class BlogController {
             SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
             String email = sessionUser.getEmail();
             User user = userRepository.findByEmail(email).get();
-            UserDto userDto = new UserDto(user);
+            UserLoginStayDto userDto = new UserLoginStayDto(user);
 
             model.addAttribute("userDto", userDto);
         }

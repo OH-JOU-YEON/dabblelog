@@ -5,7 +5,7 @@ import com.dabblelog.side.domain.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDto {
+public class UserLoginStayDto {
 
     private String name;
 
@@ -18,7 +18,7 @@ public class UserDto {
 
     private String picture;
 
-    public UserDto(User user) {
+    public UserLoginStayDto(User user) {
         this.name = user.getName();
 
         this.email= user.getEmail();
