@@ -3,6 +3,7 @@ package com.dabblelog.side.service;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.repository.BlogRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +11,16 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BlogService {
 
     @Autowired
-    BlogRepository blogRepository;
+   final BlogRepository blogRepository;
 
     public void createBlog(User user) {
 
         //이미 블로그가 존재하면 그냥 있음
-        if(blogRepository.findByUserId(user.getId()).isEmpty()) {
+        if(blogRepository.findByUserId(user).isEmpty()) {
         blogRepository.save(new Blog(user));
         log.info("새 블로그가 생성되었습니다");
         }
@@ -32,8 +34,8 @@ public class BlogService {
     }
 
     //유저 아이디로 블로그 찾기
-    public Optional<Blog> getBlogByUserId(Long id) {
-        return blogRepository.findByUserId(id);
+    public Optional<Blog> getBlogByUserId(User user) {
+        return blogRepository.findByUserId(user);
     }
 
     //블로그 삭제하기

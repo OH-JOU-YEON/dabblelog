@@ -1,10 +1,10 @@
 package com.dabblelog.side.config.auth;
 
 
-import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.config.auth.dto.OAuthAttributes;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.User;
+import com.dabblelog.side.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +23,7 @@ import java.util.Collections;
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     private final UserRepository userRepository;
-    private final HttpSession httpSession;
+    private HttpSession httpSession;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
