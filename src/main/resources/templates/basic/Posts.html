@@ -133,7 +133,7 @@
               <div class="col-lg-3 col-md-3 col-12">
                 <!-- Start Logo -->
                 <div class="logo">
-                  <a href="index.html"><h2>dabblelog</h2></a>
+                  <a href="Home.html"><h2>dabblelog</h2></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Mobile Nav -->
@@ -145,9 +145,9 @@
                 <div class="main-menu">
                   <nav class="navigation">
                     <ul class="nav menu">
-                      <li><a href="#"> 글 </a></li>
-                      <li><a href="#"> 시리즈 </a></li>
-                      <li><a href="contact.html"> 소개 </a></li>
+                      <li><a href="Posts.html"> 글 </a></li>
+                      <li><a href="Series.html"> 시리즈 </a></li>
+                      <li><a href="About.html"> 소개 </a></li>
                     </ul>
                   </nav>
                 </div>
@@ -223,12 +223,16 @@
           padding-top: 2rem;
         "
       >
-      <div class="single-main">
-        <div style="margin-bottom: 2rem">
-          <h4 style="font-weight: 550">제목</h4>
+      <div class="single-main" style="display: flex; flex-direction: row;">
+        <div class="wrapper" style="width: 20rem; height: 13rem; margin-right: 2rem;">
+          <a href="Post.html"><img src="../../static/img/rose-2101475_1280.jpg"/></a>
         </div>
-        <div class="saves_content" style="margin-bottom: 1rem">
-          <h6>미리보기</h6>
+        <div class = "texts">
+        <div style="margin-bottom: 2rem">
+          <a href="Post.html"><h4 style="font-weight: 550">작성한 글 제목</h4></a>
+        </div>
+        <div class="saves_content" style="margin-bottom: 1rem;">
+          <h6>한 줄 미리보기 </h6>
         </div>
         <div
           style="
@@ -244,13 +248,23 @@
               border: none;
               color: rgb(22, 21, 21);
               text-decoration: underline;
+              background-color: transparent;
             "
           >
             삭제
           </button>
         </div>
+        </div>
       </div>
       </div>
+      
+
+      
+
+
+      
+
+      
     </section>
 
     <!-- End Breadcrumbs -->
