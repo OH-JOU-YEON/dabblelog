@@ -14,7 +14,7 @@ public class Follower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id_fk", insertable = false, updatable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private User following_id;
 

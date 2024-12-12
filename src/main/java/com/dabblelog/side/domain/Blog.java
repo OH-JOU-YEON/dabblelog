@@ -1,14 +1,13 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Blog {
+public class Blog implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +16,7 @@ public class Blog {
     @Column(name = "name")
     private String blogName;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "user_id")
     private User userId;
 
@@ -30,4 +29,6 @@ public class Blog {
         this.blogName = parseEmail[0] + ".log";
 
     }
+
+
 }

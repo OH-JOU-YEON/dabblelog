@@ -8,6 +8,7 @@ import lombok.Getter;
 
 import java.util.Map;
 
+
 @Getter
 public class OAuthAttributes {
 
@@ -15,6 +16,8 @@ public class OAuthAttributes {
     private String nameAttributeKey;
     private String name;
     private String email;
+
+
 
 
     @Builder
@@ -50,6 +53,10 @@ public class OAuthAttributes {
 
     // User 엔티티 생성
     public User toEntity() {
+
+
+        //새로 가입 시 블로그 생성해줌
+
         return User.builder()
                 .name(name)
                 .email(email)
