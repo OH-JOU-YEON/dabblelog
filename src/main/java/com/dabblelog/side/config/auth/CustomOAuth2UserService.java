@@ -3,6 +3,7 @@ package com.dabblelog.side.config.auth;
 
 import com.dabblelog.side.config.auth.dto.OAuthAttributes;
 import com.dabblelog.side.config.auth.dto.SessionUser;
+import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -61,8 +62,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 
 
+
         // 세션에 사용자 정보 저장
         httpSession.setAttribute("user", new SessionUser(user));
+
+        blogRepository.save(new Blog(user));
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),

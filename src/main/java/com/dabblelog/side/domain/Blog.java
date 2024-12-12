@@ -10,25 +10,27 @@ import java.io.Serializable;
 public class Blog implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "member_id", nullable = false)
+    private Long user_id;
 
     @Column(name = "name")
     private String blogName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-   @JoinColumn(name = "user_id")
-    private User userId;
+    @MapsId
+   @JoinColumn(name = "user_id", unique = true)
+    private User user;
 
 
     public Blog(User user) {
-        this.userId = user;
+        this.user = user;
 
         String[] parseEmail = user.getEmail().split("@");
 
         this.blogName = parseEmail[0] + ".log";
 
     }
+
 
 
 }
