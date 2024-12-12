@@ -43,7 +43,7 @@ public class SecurityConfig {
                         //페이지 다 만들고 코드 추가
 
                         .requestMatchers("/posts/new").hasRole(Role.USER.name())
-                        .requestMatchers("/", "images/**", "/login", "/login/*", "/logout/*",
+                        .requestMatchers("/", "images/**", "/login", "/login/**", "/logout/*",
                                 "/static/css/**","/static/js/**","/static/img/**","/fonts/**").permitAll()
                         .anyRequest().authenticated()
                 )
