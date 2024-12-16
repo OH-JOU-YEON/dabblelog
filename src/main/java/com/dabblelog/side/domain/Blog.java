@@ -1,28 +1,31 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 
+@NoArgsConstructor
 @Entity
 @Getter
-public class Blog implements Serializable {
+public class Blog {
 
     @Id
-    @Column(name = "member_id", nullable = false)
-    private Long user_id;
+    @Column(name = "user_id", nullable = false)
+    private Long id;
 
     @Column(name = "name")
     private String blogName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
    @JoinColumn(name = "user_id", unique = true)
     private User user;
 
-
+    @Builder
     public Blog(User user) {
+
         this.user = user;
 
         String[] parseEmail = user.getEmail().split("@");
@@ -31,6 +34,14 @@ public class Blog implements Serializable {
 
     }
 
+    public Blog update(User user) {
+
+        String[] parseEmail = user.getEmail().split("@");
+
+        this.blogName = parseEmail[0] + ".log";
+
+        return this;
+    }
 
 
 }

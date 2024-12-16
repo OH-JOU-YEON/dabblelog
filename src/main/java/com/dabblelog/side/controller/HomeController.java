@@ -64,9 +64,9 @@ public class HomeController {
             String principal = auth.getPrincipal().toString();
 
             //파싱
-            String[] principals = principal.split(",");
-            String[] emails = principals[7].split("=");
-            String email = emails[1];
+
+            String email = getEmail(principal);
+
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
@@ -138,6 +138,15 @@ public class HomeController {
 
         }
         return "basic/Home";
+    }
+
+    static String getEmail(String principal) {
+
+        String[] principals = principal.split(",");
+        String[] emails = principals[7].split("=");
+
+        return emails[1];
+
     }
 
 
