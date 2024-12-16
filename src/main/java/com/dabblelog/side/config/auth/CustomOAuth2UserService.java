@@ -66,7 +66,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // 세션에 사용자 정보 저장
         httpSession.setAttribute("user", new SessionUser(user));
 
-        blogRepository.save(new Blog(user));
 
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority(user.getRoleKey())),

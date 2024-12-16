@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
   <head>
@@ -147,7 +148,7 @@
                           내 블로그 <i class="icofont-rounded-down"></i>
                         </a>
                         <ul class="dropdown">
-                          <li><a href="/blog"> 내 블로그 </a></li>
+                          <li><a th:href="@{/(user_name = ${user_name})/posts}"> 내 블로그 </a></li>
                           <li><a href="/saves"> 임시 글 </a></li>
                           <li><a href="/liked"> 좋아요 누른 포스트 </a></li>
                           <li><a href="/recent"> 최근 읽은 포스트 </a></li>

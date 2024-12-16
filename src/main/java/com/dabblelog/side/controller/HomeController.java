@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
 
-    @GetMapping String mappingHome(Model model) {
+    @GetMapping("/") String mappingHome(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("email", "dabblelog.com");
 
@@ -33,6 +33,7 @@ public class HomeController {
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
+            model.addAttribute("user_name",getUserName(email));
         }else {
 
             //로그인 아닐 때
@@ -141,5 +142,9 @@ public class HomeController {
 
 
 
+    static String getUserName(String email) {
+        String[] emails = email.split("@");
+        return emails[0];
+    }
 
 }
