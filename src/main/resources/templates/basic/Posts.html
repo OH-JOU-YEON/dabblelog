@@ -115,7 +115,7 @@
                 <li>
                   <i class="fa fa-envelope"></i
                   ><a th:href="@{/(user_name = ${user_name})/posts}" th:text="${email}"
-                    >hyperclutter@gmail.com</a
+                    >dabblelog.com</a
                   >
                 </li>
               </ul>
@@ -196,14 +196,15 @@
                   class="img-concert"
                   src="../../static/img/person-circle.svg"
                   width="128"
+                  th:href="@{${profileImg}}"
                   ;
                   style="border-radius: 50%"
                 />
               </div>
             </div>
             <div id="profileText" style="margin-left: 2rem; margin-top: 3rem">
-              <h5 style="font-weight: bold">이름</h5>
-              <p>한 줄 소개</p>
+              <h5 style="font-weight: bold" th:text="${name}">이름</h5>
+              <p th:text="${readme}">한 줄 소개</p>
 
               <div style="margin-left: 15rem">
                 <a style="margin-right: 0.5rem; font-weight: bold">0 팔로잉</a>

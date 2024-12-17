@@ -41,15 +41,26 @@ public class BlogController {
             return "basic/home";
         }
 
-        SessionUser user = (SessionUser) session.getAttribute("user");
+        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
 
-        String email = user.getEmail();
+        String email = sessionuser.getEmail();
+
+        model.addAttribute("email", email);
 
 
         Blog blog = updateBlog(email);
 
         model.addAttribute("blog",blog);
+
+        User user = userRepository.findByEmail(email).get();
+
+        model.addAttribute("profileImg",user.getPicture());
+
+        model.addAttribute("name", user.getName());
+
+        model.addAttribute("readme", user.getReadme());
+
 
 
         return "basic/Posts";
