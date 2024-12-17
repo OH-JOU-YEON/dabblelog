@@ -1,15 +1,16 @@
 package com.dabblelog.side.controller;
 
 
+import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +30,22 @@ public class BlogController {
     BlogRepository blogRepository;
 
     @GetMapping("/{user_name}/posts")
-    public String blogMapping(Model model, @PathVariable("user_name") String user_name) {
+    public String blogMapping(Model model, @PathVariable("user_name") String user_name, HttpServletRequest
+            request) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        HttpSession session = request.getSession(false);
 
-        String principal = auth.getPrincipal().toString();
+        //세션이 만약 없으면 홈으로 돌려보냄
 
-        String email = HomeController.getEmail(principal);
+        if(session == null ) {
+            return "basic/home";
+        }
+
+        SessionUser user = (SessionUser) session.getAttribute("user");
+
+
+        String email = user.getEmail();
+
 
         Blog blog = updateBlog(email);
 
@@ -50,13 +60,10 @@ public class BlogController {
     Blog updateBlog(String email) {
         User user = userRepository.findByEmail(email).get();
 
-        Optional<Blog> blogWrapper = blogRepository.findByUser(user);
 
-        if(blogWrapper.isPresent()) {
-            return new Blog(user);
-        } else {
-            return blogWrapper.get();
-        }
+        Optional<Blog> blogWrapper = blogRepository.findById(user.getId());
+
+        return blogWrapper.orElseGet(() -> blogRepository.save(new Blog(user)));
     }
 
 }

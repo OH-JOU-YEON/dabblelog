@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface BlogRepository extends JpaRepository<Blog,Long> {
 
-   Optional<Blog> findByUser(User user);
+
 
 
 }
