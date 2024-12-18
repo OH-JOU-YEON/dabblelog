@@ -14,5 +14,7 @@ public class PostTag {
 
     private String title;
 
+    private String seriesColor;
+
 
 }

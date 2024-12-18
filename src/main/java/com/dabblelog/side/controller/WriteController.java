@@ -18,8 +18,5 @@ public class WriteController {
         return "basic/write";
     }
 
-    @PostMapping("/write")
-    public Post createPost(Model model) {
 
-    }
 }
