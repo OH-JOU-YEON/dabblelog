@@ -4445,4 +4445,30 @@ body {
   font-size: 2rem;
 }
 
+.writeMenu {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
 
+#tempSave {
+  color: white;
+  background-color: rgb(140, 175, 164);
+}
+
+#Save {
+  color: rgb(140, 175, 164);
+}
+
+.writeMenu input {
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 5rem;
+
+  border-radius: 10%;
+}
+
+.writeBack button {
+  border: none;
+  background-color: transparent;
+}
