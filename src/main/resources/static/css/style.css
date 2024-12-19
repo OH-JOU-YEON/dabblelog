@@ -4472,3 +4472,9 @@ body {
   border: none;
   background-color: transparent;
 }
+
+#addSeries {
+  background-color: transparent;
+  color: #000;
+  border: none;
+}

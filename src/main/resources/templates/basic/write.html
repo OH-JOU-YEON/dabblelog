@@ -57,7 +57,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">시리즈 설정</h5>
             <button
               type="button"
               class="btn-close"
@@ -65,22 +65,30 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <button
+              class="btn btn-primary"
+              id="addSeries"
+              onclick="createSeriesCreater()"
+            >
+              + 시리즈에 추가하기
+            </button>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
-              Close
+              취소
             </button>
-            <button type="button" class="btn btn-primary">Understood</button>
+            <button type="button" class="btn btn-primary">출간하기</button>
           </div>
         </div>
       </div>
     </div>
 
-    <form th:action="/post" method="post" class="writeForm">
+    <form th:action="/post" method="post" class="writeForm" id="postContent">
       <div class="tagAndTitle">
         <div>
           <label>
