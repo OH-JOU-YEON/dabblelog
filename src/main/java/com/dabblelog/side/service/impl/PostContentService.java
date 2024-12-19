@@ -1,15 +1,12 @@
-package com.dabblelog.side.service;
+package com.dabblelog.side.service.impl;
+
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-@Slf4j
+
 @Service
 @RequiredArgsConstructor
-public class BlogService {
+public class PostContentService {
 
-
-
-
-
+    //파싱해서 저장하는 서비스
 }

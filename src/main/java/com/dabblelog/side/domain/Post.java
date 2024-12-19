@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @Entity
@@ -27,10 +29,6 @@ public class Post {
 
     private String title;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_content_id")
-    private PostContent contentId;
-
     @Column(name = "temp_post")
     private boolean temp;
 
@@ -44,5 +42,47 @@ public class Post {
 
     private int createdDay;
 
+
+    //시리즈 없는 게시물 작성
+
+    public Post(Blog blog, String title, boolean temp) {
+        this.blogId = blog;
+
+        this.title = title;
+
+        LocalDate now = LocalDate.now();
+
+        this.createdYear = now.getYear();
+
+        this.createdMonth = Integer.parseInt(now.getMonth().toString());
+
+        this.createdDay = now.getDayOfMonth();
+
+        this.likeCount = 0;
+
+        this.temp = temp;
+    }
+
+    //시리즈 있는 게시물 작성
+
+    public Post(Blog blog, String title,Series series, boolean temp) {
+        this.blogId = blog;
+
+        this.seriesId = series;
+
+        this.title = title;
+
+        LocalDate now = LocalDate.now();
+
+        this.createdYear = now.getYear();
+
+        this.createdMonth = Integer.parseInt(now.getMonth().toString());
+
+        this.createdDay = now.getDayOfMonth();
+
+        this.likeCount = 0;
+
+        this.temp = temp;
+    }
 
 }

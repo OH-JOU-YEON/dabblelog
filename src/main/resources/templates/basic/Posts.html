@@ -114,7 +114,9 @@
                 <li></li>
                 <li>
                   <i class="fa fa-envelope"></i
-                  ><a th:href="@{/(user_name = ${user_name})/posts}" th:text="${email}"
+                  ><a
+                    th:href="@{/(user_name = ${user_name})/posts}"
+                    th:text="${email}"
                     >dabblelog.com</a
                   >
                 </li>
@@ -133,7 +135,7 @@
               <div class="col-lg-3 col-md-3 col-12">
                 <!-- Start Logo -->
                 <div class="logo">
-                  <a href="Home.html"><h2>dabblelog</h2></a>
+                  <a href="/"><h2>dabblelog</h2></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Mobile Nav -->
@@ -180,7 +182,7 @@
           margin-left: 5rem;
         "
       >
-        <div >
+        <div>
           <section
             id="profile"
             style="
@@ -217,61 +219,54 @@
     </section>
 
     <section class="container" style="margin-top: 3rem">
-      <div class="news-single" 
-        style="
-        
-    
-          padding-top: 2rem;
-        "
-      >
-      <div class="single-main" style="display: flex; flex-direction: row;">
-        <div class="wrapper" style="width: 20rem; height: 13rem; margin-right: 2rem;">
-          <a href="Post.html"><img src="../../static/img/rose-2101475_1280.jpg"/></a>
-        </div>
-        <div class = "texts">
-        <div style="margin-bottom: 2rem">
-          <a href="Post.html"><h4 style="font-weight: 550">작성한 글 제목</h4></a>
-        </div>
-        <div class="saves_content" style="margin-bottom: 1rem;">
-          <h6>한 줄 미리보기 </h6>
-        </div>
-        <div
-          style="
-            margin-bottom: 1rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-          "
-        >
-          <p>작성한 날</p>
-          <button
-            style="
-              border: none;
-              color: rgb(22, 21, 21);
-              text-decoration: underline;
-              background-color: transparent;
-            "
+      <div class="news-single" style="padding-top: 2rem">
+        <div class="single-main" style="display: flex; flex-direction: row">
+          <div
+            class="wrapper"
+            style="width: 20rem; height: 13rem; margin-right: 2rem"
           >
-            삭제
-          </button>
-        </div>
+            <a href="Post.html"
+              ><img src="../../static/img/rose-2101475_1280.jpg"
+            /></a>
+          </div>
+          <div class="texts">
+            <div style="margin-bottom: 2rem">
+              <a href="Post.html"
+                ><h4 style="font-weight: 550">작성한 글 제목</h4></a
+              >
+            </div>
+            <div class="saves_content" style="margin-bottom: 1rem">
+              <h6>한 줄 미리보기</h6>
+            </div>
+            <div
+              style="
+                margin-bottom: 1rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+              "
+            >
+              <p>작성한 날</p>
+              <button
+                style="
+                  border: none;
+                  color: rgb(22, 21, 21);
+                  text-decoration: underline;
+                  background-color: transparent;
+                "
+              >
+                삭제
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      
-
-      
-
-
-      
-
-      
     </section>
 
     <!-- End Breadcrumbs -->
 
     <!-- Single News -->
-    
+
     <!--/ End Single News -->
 
     <!-- jquery Min JS -->

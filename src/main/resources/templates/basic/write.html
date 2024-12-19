@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" />
     <title>dabblelog.write</title>
 
     <!-- TUI 에디터 CSS CDN -->
@@ -48,9 +48,11 @@
           <label>
             <input
               class="tag"
+              id="tag"
               name="tag"
               type="text"
-              placeholder="태그를 입력하세요"
+              placeholder="태그를 입력하세요(공백으로 구분됩니다)"
+              onkeyup="blue()"
               style="outline: none; border: none; width: 433px; height: 58px"
             />
           </label>
