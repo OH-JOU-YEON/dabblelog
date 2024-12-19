@@ -4462,10 +4462,10 @@ body {
 .writeMenu input {
   border: none;
   background-color: transparent;
-  height: 2rem;
-  width: 5rem;
+  height: 38px;
+  width: 90px;
 
-  border-radius: 10%;
+  border-radius: 5%;
 }
 
 .writeBack button {

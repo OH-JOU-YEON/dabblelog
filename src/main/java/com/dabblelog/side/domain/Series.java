@@ -19,6 +19,25 @@ public class Series {
     @ManyToOne(fetch = FetchType.LAZY)
     private Blog blogId;
 
-    private String Color;
+    private String color;
+
+    @Column(unique = true)
+    private String title;
+
+
+    public Series(Blog blog,String color,String title) {
+        this.blogId = blog;
+
+        this.title = title;
+        this.color = color;
+    }
+
+    public Series update(String color, String title) {
+        this.color = color;
+        this.title = title;
+
+
+        return this;
+    }
 
 }

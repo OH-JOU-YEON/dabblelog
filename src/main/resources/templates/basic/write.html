@@ -11,9 +11,23 @@
     />
 
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link
       rel="stylesheet"
       th:href="@{/css/style.css}"
       href="../../static/css/style.css"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+      href="../../static/css/bootstrap.min.css"
     />
     <style>
       .title::placeholder {
@@ -30,7 +44,43 @@
     </style>
   </head>
   <body>
-    <form action="/write" method="post" class="writeForm">
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form th:action="/post" method="post" class="writeForm">
       <div class="tagAndTitle">
         <div>
           <label>
@@ -63,8 +113,21 @@
       <div id="content"></div>
 
       <div class="writeMenu">
-        <input type="submit" value="임시저장" id="tempSave" name="tempSave" />
-        <input type="submit" value="출간하기" id="Save" name="Save" />
+        <input
+          type="submit"
+          value="임시저장"
+          id="tempSave"
+          name="tempSave"
+          class="btn btn-primary"
+        />
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          출간하기
+        </button>
       </div>
     </form>
 
@@ -89,6 +152,8 @@
       </a>
     </div>
 
+    <!-- Button trigger modal -->
+
     <!-- TUI 에디터 JS CDN -->
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <script>
@@ -100,6 +165,21 @@
         previewStyle: "vertical", // 마크다운 프리뷰 스타일 (tab || vertical)
       });
     </script>
+    <!-- jquery Min JS -->
+    <script src="../../static/js/jquery.min.js"></script>
+    <!-- jquery Migrate JS -->
+    <script src="../../static/js/jquery-migrate-3.0.0.js"></script>
+    <!-- jquery Ui JS -->
+    <script src="../../static/js/jquery-ui.min.js"></script>
     <script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="../../static/js/bootstrap.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

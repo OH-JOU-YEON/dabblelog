@@ -1,0 +1,47 @@
+package com.dabblelog.side.service.impl;
+
+import com.dabblelog.side.domain.Blog;
+import com.dabblelog.side.domain.Series;
+import com.dabblelog.side.repository.SeriesRepository;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@RequiredArgsConstructor
+@Service
+public class SeriesService {
+
+    @Autowired
+    SeriesRepository seriesRepository;
+
+    //새 시리즈 생성 로직
+
+    @Transactional
+    public Series createSeries(Blog blog, String color,String title) {
+        return seriesRepository.save(new Series(blog,color,title));
+    }
+
+    //시리즈 수정 로직
+    //그 전에 수정하려고 하는 값이 null이면 그거 검사해줘야함.
+
+    @Transactional
+    public Series updateSeries(String color, String title) {
+
+        Series series = seriesRepository.findByTitle(title).get();
+
+        series.update(color,title);
+
+      return seriesRepository.save(series);
+
+    }
+
+    //시리즈 삭제 메서드
+
+    @Transactional
+    public void deleteSeries(Series series) {
+        seriesRepository.delete(series);
+    }
+
+
+}
