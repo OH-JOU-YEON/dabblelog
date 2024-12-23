@@ -350,7 +350,3 @@ function blue() {
 /*====================
 		시리즈 추가하기 누르면 시리즈 색 선택하고 제목 입력창 생성되는 함수 
 	======================*/
-
-function createSeriesCreater() {
-  document.getElementById("addSeries").style.display = "none";
-}

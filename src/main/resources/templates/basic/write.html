@@ -54,6 +54,10 @@
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
+     
+
+    <form th:action="/post" method="post" class="writeForm" id="postContent">
+
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -66,33 +70,15 @@
             ></button>
           </div>
           <div class="modal-body">
-            <button
-              class="btn btn-primary"
-              id="addSeries"
-              onclick="createSeriesCreater()"
-            >
-              + 시리즈에 추가하기
-            </button>
-
-            <div class="seriesCreater">
-              <div class="colorChart">
-                <label for="colorCheck" style="display: block"
-                  >시리즈 색상:</label
-                >
-                <input type="color" id="colorCheck" />
-              </div>
-              <input type="text" placeholder="시리즈 제목을 입력하세요요" />
-            </div>
-
-            <div>
-              <ul>
-                <li th:each="series : ${seriesList}"></li>
-                <li>일단</li>
-                <li>스타일 보려고</li>
-                <li>아무값이나 넣어둠</li>
-              </ul>
-            </div>
+              <select th:name="series">
+                <option
+                  th:each="let : ${seriesList}"
+                  th:value="${let}값"
+                  th:utext="${let}"
+                ></option>
+              </select>
           </div>
+
           <div class="modal-footer">
             <button
               type="button"
@@ -101,13 +87,13 @@
             >
               취소
             </button>
-            <button type="button" class="btn btn-primary">출간하기</button>
+            <button type="submit" form="postContent" class="btn btn-primary">출간하기</button>
           </div>
         </div>
       </div>
     </div>
 
-    <form th:action="/post" method="post" class="writeForm" id="postContent">
+
       <div class="tagAndTitle">
         <div>
           <label>

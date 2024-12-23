@@ -4488,7 +4488,25 @@ body {
 }
 
 .colorChart label {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+}
+
+.colorChart {
+  margin-bottom: 0.5rem;
+}
+
+.seriesList {
+  list-style: none;
+  padding-left: 0;
+}
+
+.seriesCreater {
+  margin-left: 1rem;
+}
+
+#series-title {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin-bottom: 0.1rem;
 }
