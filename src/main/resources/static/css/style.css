@@ -4478,3 +4478,17 @@ body {
   color: #000;
   border: none;
 }
+
+.colorChart {
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+}
+
+.colorChart label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
