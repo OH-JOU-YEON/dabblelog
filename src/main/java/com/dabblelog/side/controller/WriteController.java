@@ -3,7 +3,6 @@ package com.dabblelog.side.controller;
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
-import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Series;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.SeriesRepository;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -51,12 +49,24 @@ public class WriteController {
 
         //레포지토리에서 블로그 시리즈 전부 찾아다 모델에 집어넣는 메서드
 
-        List<Series> seriesList = seriesRepository.findAllByBlog(blog);
+        List<Series> seriesList = seriesRepository.findAllByBlogId(blog);
+
+        //시리즈 검사하는 로직
+
+        seriesListCheck(seriesList,model);
+
 
         model.addAttribute("seriesList", seriesList);
 
 
         return "basic/write";
+    }
+
+    public void seriesListCheck(List<Series> seriesList,Model model) {
+
+        if(seriesList.isEmpty()) {
+            model.addAttribute("seriesList","만든 시리즈가 없습니다");
+        }
     }
 
 

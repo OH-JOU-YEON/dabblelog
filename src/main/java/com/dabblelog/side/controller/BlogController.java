@@ -29,8 +29,8 @@ public class BlogController {
     @Autowired
     BlogRepository blogRepository;
 
-    @GetMapping("/{user_name}/posts")
-    public String blogMapping(Model model, @PathVariable("user_name") String user_name, HttpServletRequest
+    @GetMapping("/blog")
+    public String blogMapping(Model model, HttpServletRequest
             request) {
 
         HttpSession session = request.getSession(false);
@@ -66,6 +66,13 @@ public class BlogController {
         return "basic/Posts";
     }
 
+    @GetMapping("/series")
+            public String mappingSeries(Model model, HttpServletRequest request) {
+
+
+        return "basic/Series";
+    }
+
     //레포지토리에 유저를 가진 블로그가 있는지 검색 없으면 생성
 
     Blog updateBlog(String email) {
@@ -76,5 +83,7 @@ public class BlogController {
 
         return blogWrapper.orElseGet(() -> blogRepository.save(new Blog(user)));
     }
+
+
 
 }

@@ -122,28 +122,27 @@
             ></button>
           </div>
           <div class="modal-body">
-            <button class="btn btn-primary" id="addSeries">
-              + 시리즈 추가하기
-            </button>
-
-            <div class="seriesCreater" id="creater">
-              <div class="colorChart">
-                <label for="colorCheck" style="display: block"
-                  >시리즈 색상:</label
-                >
-                <input type="color" id="colorCheck" />
+            <form id="seriesCreater" method="post">
+              <div class="seriesCreater" id="creater">
+                <div class="colorChart">
+                  <label for="colorCheck" style="display: block"
+                    >시리즈 색상:</label
+                  >
+                  <input type="color" id="colorCheck" name="color" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="시리즈 제목을 입력하세요"
+                  id="series-title"
+                  name="title"
+                />
               </div>
-              <input
-                type="text"
-                placeholder="시리즈 제목을 입력하세요"
-                id="series-title"
-              />
+            </form>
 
-              <div>
-                <ul class="seriesList">
-                  <li th:each="series : ${seriesList}"></li>
-                </ul>
-              </div>
+            <div>
+              <ul class="seriesList">
+                <li th:each="series : ${seriesList}"></li>
+              </ul>
             </div>
           </div>
 
@@ -155,7 +154,9 @@
             >
               취소
             </button>
-            <button type="button" class="btn btn-primary">출간하기</button>
+            <button type="submit" form="seriesCreater" class="btn btn-primary">
+              시리즈 만들기
+            </button>
           </div>
         </div>
       </div>
@@ -204,9 +205,9 @@
                 <div class="main-menu">
                   <nav class="navigation">
                     <ul class="nav menu">
-                      <li><a href="Post.html"> 글 </a></li>
-                      <li><a href="Series.html"> 시리즈 </a></li>
-                      <li><a href="About.html"> 소개 </a></li>
+                      <li><a href="/blog"> 글 </a></li>
+                      <li><a href="/series"> 시리즈 </a></li>
+                      <li><a href="/about"> 소개 </a></li>
                     </ul>
                   </nav>
                 </div>
