@@ -3,15 +3,11 @@ package com.dabblelog.side.config.auth;
 
 import com.dabblelog.side.config.auth.dto.OAuthAttributes;
 import com.dabblelog.side.config.auth.dto.SessionUser;
-import com.dabblelog.side.domain.Blog;
-import com.dabblelog.side.domain.Role;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -24,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
@@ -57,15 +52,18 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // OAuth2UserService를 통해 가져온 OAuth2User의 attribute 등을 담을 클래스
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-
         // 사용자 저장 또는 업데이트
         User user = saveOrUpdate(attributes);
 
 
 
+
+
+
+
+
         // 세션에 사용자 정보 저장
         httpSession.setAttribute("user", new SessionUser(user));
-
 
 
         return new DefaultOAuth2User(
@@ -84,11 +82,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
 
 
-
-
         return userRepository.save(user);
     }
-
 
 
 }
