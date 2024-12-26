@@ -68,7 +68,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <select th:name="series">
+              <select th:name="series" id="series">
                 <option
                   th:each="let : ${seriesList}"
                   th:value="${let}값"
@@ -87,7 +87,6 @@
               </button>
               <button
                 type="submit"
-                form="postContent"
                 class="btn btn-primary"
                 onclick="savePost();"
               >
@@ -107,6 +106,7 @@
               type="text"
               placeholder="제목을 입력하세요"
               style="outline: none; border: none; height: 66px; width: 433px"
+              id="title"
             />
           </label>
         </div>
@@ -149,7 +149,7 @@
     </form>
 
     <div class="writeBack">
-      <a href="/">
+      <a href="/blog">
         <button class="sc-evcjhq gJEhHm">
           <svg
             stroke="currentColor"
@@ -221,10 +221,12 @@
         }
 
         // 2. url, parameter 세팅
-        const url = "/api/posts";
+        const url = "/posts";
         const params = {
-          title: "1번 게시글 제목",
+          title: document.getElementById("title"),
+          tag: document.getElementById("tag"),
           content: editor.getHTML(),
+          series: document.getElementById("series"),
         };
 
         // 3. API 호출
@@ -239,8 +241,10 @@
 
           const postId = await response.json();
           alert(postId + "번 게시글이 저장되었습니다.");
-          location.href = "/post/list.html";
+          location.href = "/posts";
         } catch (error) {
+          //저장 실패하면 메인 화면으로 나가짐
+          location.href = "/";
           console.error("저장 실패 : ", error);
         }
       }

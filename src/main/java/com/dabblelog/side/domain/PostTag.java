@@ -1,10 +1,13 @@
 package com.dabblelog.side.domain;
 
-import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
 
 
-@NoArgsConstructor
+@Getter
 @Entity
 public class PostTag {
 
@@ -12,9 +15,10 @@ public class PostTag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private final String title;
 
-    private String seriesColor;
-
+    public PostTag(String title) {
+        this.title = title;
+    }
 
 }

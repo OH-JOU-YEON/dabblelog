@@ -65,14 +65,13 @@ public class FileApiController {
 
         // 파일이 없는 경우 예외 throw
         File uploadedFile = new File(fileFullPath);
-        if (uploadedFile.exists() == false) {
+        if (!uploadedFile.exists()) {
             throw new RuntimeException();
         }
 
         try {
             // 이미지 파일을 byte[]로 변환 후 반환
-            byte[] imageBytes = Files.readAllBytes(uploadedFile.toPath());
-            return imageBytes;
+            return Files.readAllBytes(uploadedFile.toPath());
 
         } catch (IOException e) {
             // 예외 처리는 따로 해주는 게 좋습니다.

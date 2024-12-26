@@ -1,11 +1,10 @@
 package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class TagMapping {
 
     @Id
@@ -19,4 +18,10 @@ public class TagMapping {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post postId;
+
+    public TagMapping(PostTag tagId, Post postId) {
+        this.tagId = tagId;
+
+        this.postId = postId;
+    }
 }

@@ -5,10 +5,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
 @Entity
 @Getter
@@ -32,6 +30,8 @@ public class Post {
     @Column(name = "temp_post")
     private boolean temp;
 
+    private String content;
+
 
 
     private int likeCount;
@@ -45,10 +45,12 @@ public class Post {
 
     //시리즈 없는 게시물 작성
 
-    public Post(Blog blog, String title, boolean temp) {
+    public Post(Blog blog, String title, boolean temp, String content) {
         this.blogId = blog;
 
         this.title = title;
+
+        this.content = content;
 
         LocalDate now = LocalDate.now();
 
@@ -65,8 +67,10 @@ public class Post {
 
     //시리즈 있는 게시물 작성
 
-    public Post(Blog blog, String title,Series series, boolean temp) {
+    public Post(Blog blog, String title,Series series, boolean temp, String content) {
         this.blogId = blog;
+
+        this.content = content;
 
         this.seriesId = series;
 

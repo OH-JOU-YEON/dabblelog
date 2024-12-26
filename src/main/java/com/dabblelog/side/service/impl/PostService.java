@@ -22,16 +22,16 @@ public class PostService {
     //시리즈를 갖고 있는 경우
 
     @Transactional
-    public Post createNonSeriesPost(Blog blog, String title, boolean temp) {
+    public Post createNonSeriesPost(Blog blog, String title, boolean temp, String content) {
 
-        return postRepository.save(new Post(blog,title,temp ));
+        return postRepository.save(new Post(blog,title,temp, content ));
     }
 
     //시리즈가 없는 경우
     @Transactional
-    public Post createHasSeriesPost(Blog blog, String title, Series series, boolean temp) {
+    public Post createHasSeriesPost(Blog blog, String title, Series series, boolean temp, String content) {
 
-        return postRepository.save(new Post(blog,title,series,temp));
+        return postRepository.save(new Post(blog,title,series,temp, content));
     }
 
     //포스트 수정
