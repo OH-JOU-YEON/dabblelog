@@ -17,6 +17,7 @@ public class PostService {
     @Autowired
     private final PostRepository postRepository;
 
+
     //포스트 디비 생성
 
     //시리즈를 갖고 있는 경우
