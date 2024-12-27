@@ -35,7 +35,7 @@ public class PostController {
     }
 
 
-    @PostMapping("/post")
+    @PostMapping("/post/create")
     public String createPost(Model model, HttpServletRequest request) {
 
 
@@ -55,6 +55,8 @@ public class PostController {
 
         Blog blog = blogRepository.findById(user.getId()).get();
 
+
+
         String title = request.getParameter("title");
 
         String content = request.getParameter("content");
@@ -67,5 +69,9 @@ public class PostController {
     }
 
 
-    //댓글처리
+    //태그 처리하고 매핑 시키는 메서드
+
+
+
+
 }
