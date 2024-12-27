@@ -4,6 +4,10 @@ import com.dabblelog.side.domain.PostTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface PostTagRepository extends JpaRepository<PostTag, Long> {
+
+    Optional<PostTag> findByTitle(String title);
 }

@@ -7,13 +7,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TagMappingRepository extends JpaRepository<TagMapping, Long> {
 
     List<TagMapping> findAllByPostId(Post postId);
 
-    List<TagMapping> findByPostIdAndTagId(Post postId, PostTag tagId);
+    Optional<TagMapping> findByPostIdAndTagId(Post postId, PostTag tagId);
 
 
 }

@@ -18,8 +18,13 @@ public class SeriesService {
     //새 시리즈 생성 로직
 
     @Transactional
-    public Series createSeries(Blog blog, String color,String title) {
-        return seriesRepository.save(new Series(blog,color,title));
+    public Series createSeries(Blog blog, String color, String title) {
+
+        if(seriesRepository.findByBlogIdAndTitle(blog,title).isPresent()) {
+           return seriesRepository.findByBlogIdAndTitle(blog,title).get();
+        }
+
+        return seriesRepository.save(new Series(blog, color, title));
     }
 
     //시리즈 수정 로직

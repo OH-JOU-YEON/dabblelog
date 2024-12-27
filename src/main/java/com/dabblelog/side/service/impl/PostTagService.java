@@ -20,9 +20,16 @@ public class PostTagService {
 
     //태그 생성하는 로직
 
+    //생성 전에 같은 태그가 있는지 검사
+
     @Transactional
     public PostTag createPostTag(String tagTitle) {
-        return postTagRepository.save(new PostTag(tagTitle));
+
+       if(postTagRepository.findByTitle(tagTitle).isPresent()) {
+           return postTagRepository.findByTitle(tagTitle).get();
+       } else {
+           return postTagRepository.save(new PostTag(tagTitle));
+       }
     }
 
 

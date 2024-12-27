@@ -14,4 +14,6 @@ public interface SeriesRepository extends JpaRepository<Series, Long> {
     Optional<Series> findByTitle(String title);
 
     List<Series> findAllByBlogId(Blog blogId);
+
+    Optional<Series> findByBlogIdAndTitle(Blog blogId, String title);
 }

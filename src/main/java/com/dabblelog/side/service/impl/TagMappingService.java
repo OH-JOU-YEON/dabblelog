@@ -9,8 +9,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TagMappingService {
 
@@ -31,10 +29,11 @@ public class TagMappingService {
 
     @Transactional
     public void deleteTagMapping(Post postId, PostTag tagId) {
-        List<TagMapping> list = tagMappingRepository.findByPostIdAndTagId(postId, tagId);
+        TagMapping tagMapping = tagMappingRepository.findByPostIdAndTagId(postId, tagId).get();
 
-        for(TagMapping tagMapping : list) {
-            tagMappingRepository.delete(tagMapping);
-        }
+        tagMappingRepository.delete(tagMapping);
+
+
+
     }
 }
