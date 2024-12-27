@@ -56,7 +56,7 @@ public class Post {
 
         this.createdYear = now.getYear();
 
-        this.createdMonth = Integer.parseInt(now.getMonth().toString());
+        this.createdMonth = now.getMonthValue();
 
         this.createdDay = now.getDayOfMonth();
 
@@ -80,7 +80,7 @@ public class Post {
 
         this.createdYear = now.getYear();
 
-        this.createdMonth = Integer.parseInt(now.getMonth().toString());
+        this.createdMonth = now.getMonthValue();
 
         this.createdDay = now.getDayOfMonth();
 
