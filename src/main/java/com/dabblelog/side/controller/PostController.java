@@ -109,19 +109,37 @@ public class PostController {
 
         String tags = request.getParameter("tag");
 
-        Series series = seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).get();
-
         boolean temp = Boolean.parseBoolean(request.getParameter("temp"));
 
-        //포스트 만들기
+        if(seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).isPresent()) {
+            Series series = seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).get();
 
-        Post post = postService.createHasSeriesPost(blog, title, series, temp, content);
 
-        //파쇄해서 태그 만들고 태그 매핑 시킴
+            //포스트 만들기
 
-        tagMapper(tags,post);
+            Post post = postService.createHasSeriesPost(blog, title, series, temp, content);
 
+            //파쇄해서 태그 만들고 태그 매핑 시킴
+
+            tagMapper(tags,post);
+
+        }
+        else {
+
+
+
+            //포스트 만들기
+
+            Post post = postService.createNonSeriesPost(blog,title,temp,content);
+
+            //파쇄해서 태그 만들고 태그 매핑 시킴
+
+            tagMapper(tags,post);
+
+        }
         return "redirect:/post";
+
+
     }
 
 
