@@ -46,7 +46,12 @@
   <body>
     <!-- Modal -->
 
-    <form action="#" method="post" class="writeForm" id="postContent">
+    <form
+      action="/post/tempCreate"
+      method="post"
+      class="writeForm"
+      id="postContent"
+    >
       <div
         class="modal fade"
         id="staticBackdrop"
@@ -131,11 +136,12 @@
 
       <div class="writeMenu">
         <input
-          type="submit"
+          type="button"
           value="임시저장"
           id="tempSave"
           name="tempSave"
           class="btn btn-primary"
+          onclick="saveTemp();"
         />
         <button
           type="button"
@@ -239,8 +245,39 @@
             body: JSON.stringify(params),
           });
 
-          const postId = await response.json();
-          alert(postId + "번 게시글이 저장되었습니다.");
+          location.href = "/posts";
+        } catch (error) {
+          //저장 실패하면 메인 화면으로 나가짐
+          location.href = "/";
+          console.error("저장 실패 : ", error);
+        }
+      }
+
+      async function saveTemp() {
+        // 1. 콘텐츠 입력 유효성 검사
+        if (editor.getMarkdown().length < 1) {
+          alert("에디터 내용을 입력해 주세요.");
+          throw new Error("editor content is required!");
+        }
+
+        // 2. url, parameter 세팅
+        const url = "/post/tempCreate";
+        const params = {
+          title: document.getElementById("title"),
+          tag: document.getElementById("tag"),
+          content: editor.getHTML(),
+        };
+
+        // 3. API 호출
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(params),
+          });
+
           location.href = "/posts";
         } catch (error) {
           //저장 실패하면 메인 화면으로 나가짐

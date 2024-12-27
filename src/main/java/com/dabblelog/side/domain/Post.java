@@ -28,7 +28,7 @@ public class Post {
     private String title;
 
     @Column(name = "temp_post")
-    private boolean temp;
+    private boolean temp = false;
 
     private String content;
 
@@ -87,6 +87,16 @@ public class Post {
         this.likeCount = 0;
 
         this.temp = temp;
+    }
+
+    //임시 저장 포스트 ㄹㅇ 저장으로 돌릴 때 사용. 시리즈 업데이트 하고 임시저장에서 저장으로 돌림
+
+    public Post saveUpdate(Series series) {
+        this.temp = false;
+
+        this.seriesId = series;
+
+        return this;
     }
 
 }

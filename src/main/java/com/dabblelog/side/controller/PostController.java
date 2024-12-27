@@ -26,6 +26,7 @@ public class PostController {
 
     @Autowired
     PostService postService;
+
     //개별 페이지 관련 로직들
     @GetMapping("/post")
     public String getPost(Model model, HttpServletRequest request) {
@@ -33,6 +34,35 @@ public class PostController {
 
         return "/basic/Post";
     }
+
+    @PostMapping("post/tempCreate")
+    public String createTemp(Model model, HttpServletRequest request) {
+
+        //세션 얻어서 검사
+
+        HttpSession session = request.getSession(false);
+
+        if(session == null ) {
+            return "basic/home";
+        }
+
+
+        // 블로그 얻어옴
+        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
+
+        User user = userRepository.findByEmail(sessionuser.getEmail()).get();
+
+        Blog blog = blogRepository.findById(user.getId()).get();
+
+        String title = request.getParameter("title");
+
+        String content = request.getParameter("content");
+
+        String tags = request.getParameter("tag");
+
+        return "redirect:/post";
+    }
+
 
 
     @PostMapping("/post/create")
@@ -65,11 +95,13 @@ public class PostController {
 
         String series = request.getParameter("series");
 
-        return "/basic/Post";
+        return "redirect:/post";
     }
 
 
     //태그 처리하고 매핑 시키는 메서드
+
+
 
 
 
