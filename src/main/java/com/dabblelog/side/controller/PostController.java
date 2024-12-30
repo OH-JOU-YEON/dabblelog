@@ -74,6 +74,8 @@ public class PostController {
 
         String content = request.getParameter("content");
 
+        log.info("콘텐츠 내용:" + content);
+
         String tags = request.getParameter("tag");
 
         Post post = postService.createNonSeriesPost(blog,title,true,content);
