@@ -131,7 +131,7 @@
       </div>
 
       <!-- 에디터를 적용할 요소 (컨테이너) -->
-      <div id="content"></div>
+      <div id="content" onkeyup="printContent()"></div>
 
       <div class="writeMenu">
         <input
@@ -245,7 +245,7 @@
             body: JSON.stringify(params),
           });
 
-          location.href = "/posts";
+          location.href = "/post";
         } catch (error) {
           //저장 실패하면 메인 화면으로 나가짐
           location.href = "/";
@@ -280,7 +280,7 @@
             body: JSON.stringify(params),
           });
 
-          location.href = "/posts";
+          location.href = "/post";
         } catch (error) {
           //저장 실패하면 메인 화면으로 나가짐
           location.href = "/";
@@ -295,17 +295,16 @@
       function printTitle() {
         const title = document.getElementById("title").value;
       }
+
+      function printContent() {
+        const title = document.getElementById("content").value;
+      }
     </script>
-    <!-- jquery Min JS -->
-    <script src="../../static/js/jquery.min.js"></script>
-    <!-- jquery Migrate JS -->
-    <script src="../../static/js/jquery-migrate-3.0.0.js"></script>
-    <!-- jquery Ui JS -->
-    <script src="../../static/js/jquery-ui.min.js"></script>
-    <script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/main.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

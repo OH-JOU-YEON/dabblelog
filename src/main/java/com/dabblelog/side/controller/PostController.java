@@ -49,6 +49,8 @@ public class PostController {
         return "/basic/Post";
     }
 
+
+    @Transactional
     @PostMapping("post/tempCreate")
     public String createTemp(Model model, HttpServletRequest request) {
 
@@ -74,6 +76,12 @@ public class PostController {
 
         String tags = request.getParameter("tag");
 
+        Post post = postService.createNonSeriesPost(blog,title,true,content);
+
+        //파쇄해서 태그 만들고 태그 매핑 시킴
+
+        tagMapper(tags,post);
+
 
 
         return "redirect:/post";
@@ -81,7 +89,8 @@ public class PostController {
 
 
 
-    @PostMapping("/post/create")
+    @Transactional
+    @PostMapping("post/create")
     public String createPost(Model model, HttpServletRequest request) {
 
 
@@ -122,6 +131,7 @@ public class PostController {
             //파쇄해서 태그 만들고 태그 매핑 시킴
 
             tagMapper(tags,post);
+
 
         }
         else {
