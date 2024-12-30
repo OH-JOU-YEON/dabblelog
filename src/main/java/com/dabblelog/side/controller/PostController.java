@@ -118,7 +118,7 @@ public class PostController {
 
         String tags = request.getParameter("tag");
 
-        boolean temp = Boolean.parseBoolean(request.getParameter("temp"));
+        boolean temp = false;
 
         if(seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).isPresent()) {
             Series series = seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).get();

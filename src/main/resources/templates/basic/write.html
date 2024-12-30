@@ -222,6 +222,7 @@
         // 1. 콘텐츠 입력 유효성 검사
         if (editor.getMarkdown().length < 1) {
           alert("에디터 내용을 입력해 주세요.");
+          history.back;
           throw new Error("editor content is required!");
         }
 
@@ -231,7 +232,7 @@
           title: title,
           tag: tags,
           content: editor.getHTML(),
-          temp: false,
+          temp: "false",
           series: document.getElementById("series"),
         };
 
@@ -244,8 +245,6 @@
             },
             body: JSON.stringify(params),
           });
-
-          location.href = "/post";
         } catch (error) {
           //저장 실패하면 메인 화면으로 나가짐
           location.href = "/";
@@ -267,7 +266,7 @@
           title: title,
           tag: tags,
           content: editor.getHTML(),
-          temp: true,
+          temp: "true",
         };
 
         // 3. API 호출
@@ -279,8 +278,6 @@
             },
             body: JSON.stringify(params),
           });
-
-          location.href = "/post";
         } catch (error) {
           //저장 실패하면 메인 화면으로 나가짐
           location.href = "/";
