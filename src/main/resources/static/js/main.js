@@ -343,8 +343,8 @@ Version:	1.1
 		tag JS
 	======================*/
 
-function blue() {
-  document.getElementById("tag").style.color = "blue";
+function printTag() {
+  const tags = document.getElementById("tag").value;
 }
 
 /*====================

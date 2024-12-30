@@ -112,6 +112,7 @@
               placeholder="제목을 입력하세요"
               style="outline: none; border: none; height: 66px; width: 433px"
               id="title"
+              onkeyup="printTitle()"
             />
           </label>
         </div>
@@ -123,7 +124,7 @@
             name="tag"
             type="text"
             placeholder="태그를 입력하세요(공백으로 구분됩니다)"
-            onkeyup="blue()"
+            onkeyup="printTag()"
             style="outline: none; border: none; width: 433px; height: 58px"
           />
         </div>
@@ -227,8 +228,8 @@
         // 2. url, parameter 세팅
         const url = "/post/create";
         const params = {
-          title: document.getElementById("title"),
-          tag: document.getElementById("tag"),
+          title: title,
+          tag: tags,
           content: editor.getHTML(),
           temp: false,
           series: document.getElementById("series"),
@@ -263,8 +264,8 @@
         // 2. url, parameter 세팅
         const url = "/post/tempCreate";
         const params = {
-          title: document.getElementById("title"),
-          tag: document.getElementById("tag"),
+          title: title,
+          tag: tags,
           content: editor.getHTML(),
           temp: true,
         };
@@ -285,6 +286,14 @@
           location.href = "/";
           console.error("저장 실패 : ", error);
         }
+      }
+
+      function printName() {
+        const name = document.getElementById("name").value;
+      }
+
+      function printTitle() {
+        const title = document.getElementById("title").value;
       }
     </script>
     <!-- jquery Min JS -->
