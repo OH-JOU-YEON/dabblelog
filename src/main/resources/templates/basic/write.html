@@ -230,8 +230,6 @@
           throw new Error("editor content is required!");
         }
 
-        document.console(editor.getHTML());
-
         // 2. url, parameter 세팅
         const url = "/post/create";
         const params = {
@@ -301,6 +299,7 @@
 
       function printContent() {
         const title = document.getElementById("content").value;
+        document.console(editor.getHTML());
       }
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
