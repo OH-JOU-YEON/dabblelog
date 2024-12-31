@@ -30,6 +30,7 @@ public class Post {
     @Column(name = "temp_post")
     private boolean temp = false;
 
+
     private String content;
 
 

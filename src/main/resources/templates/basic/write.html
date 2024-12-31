@@ -17,17 +17,13 @@
       crossorigin="anonymous"
     />
 
-    <link
-      rel="stylesheet"
-      th:href="@{/css/style.css}"
-      href="../../static/css/style.css"
-    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css" />
 
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       th:href="@{/css/bootstrap.min.css}"
-      href="../../static/css/bootstrap.min.css"
+      href="/css/bootstrap.min.css"
     />
     <style>
       .title::placeholder {
@@ -46,116 +42,102 @@
   <body>
     <!-- Modal -->
 
-    <form
-      action="/post/tempCreate"
-      method="post"
-      class="writeForm"
-      id="postContent"
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
     >
-      <div
-        class="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">시리즈 설정</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <select th:name="series" id="series">
-                <option
-                  value="시리즈 설정 안 함"
-                  text="시리즈 설정 안 함"
-                ></option>
-                <option
-                  th:each="series : ${seriesList}"
-                  th:value="${series.title}"
-                  th:text="${series.title}"
-                ></option>
-              </select>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">시리즈 설정</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <select th:name="series" id="series">
+              <option
+                value="시리즈 설정 안 함"
+                text="시리즈 설정 안 함"
+              ></option>
+              <option
+                th:each="series : ${seriesList}"
+                th:value="${series.title}"
+                th:text="${series.title}"
+              ></option>
+            </select>
+          </div>
 
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                취소
-              </button>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                onclick="savePost();"
-              >
-                출간하기
-              </button>
-            </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              취소
+            </button>
+            <button type="submit" class="btn btn-primary" onclick="savePost();">
+              출간하기
+            </button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="tagAndTitle">
-        <div>
-          <label>
-            <input
-              class="title"
-              name="title"
-              type="text"
-              placeholder="제목을 입력하세요"
-              style="outline: none; border: none; height: 66px; width: 433px"
-              id="title"
-              onkeyup="printTitle()"
-            />
-          </label>
-        </div>
-
-        <div>
+    <div class="tagAndTitle">
+      <div>
+        <label>
           <input
-            class="tag"
-            id="tag"
-            name="tag"
+            class="title"
+            name="title"
             type="text"
-            placeholder="태그를 입력하세요(공백으로 구분됩니다)"
-            onkeyup="printTag()"
-            style="outline: none; border: none; width: 433px; height: 58px"
+            placeholder="제목을 입력하세요"
+            style="outline: none; border: none; height: 66px; width: 433px"
+            id="title"
           />
-        </div>
+        </label>
       </div>
 
-      <!-- 에디터를 적용할 요소 (컨테이너) -->
-      <div id="content" onkeyup="printContent()"></div>
-
-      <div class="writeMenu">
+      <div>
         <input
-          type="button"
-          value="임시저장"
-          id="tempSave"
-          name="tempSave"
-          class="btn btn-primary"
-          onclick="saveTemp();"
+          class="tag"
+          id="tag"
+          name="tag"
+          type="text"
+          placeholder="태그를 입력하세요(공백으로 구분됩니다)"
+          style="outline: none; border: none; width: 433px; height: 58px"
         />
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
-        >
-          출간하기
-        </button>
       </div>
-    </form>
+    </div>
+
+    <!-- 에디터를 적용할 요소 (컨테이너) -->
+    <div id="content"></div>
+
+    <div class="writeMenu">
+      <input
+        type="button"
+        value="임시저장"
+        id="tempSave"
+        name="tempSave"
+        class="btn btn-primary"
+      />
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        출간하기
+      </button>
+    </div>
 
     <div class="writeBack">
       <a href="javascript:window.history.back();">
@@ -181,14 +163,23 @@
     <!-- Button trigger modal -->
 
     <!-- TUI 에디터 JS CDN -->
+
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
     <script>
       const editor = new toastui.Editor({
         el: document.querySelector("#content"), // 에디터를 적용할 요소 (컨테이너)
-        height: "600px", // 에디터 영역의 높이 값 (OOOpx || auto)
+        height: "500px", // 에디터 영역의 높이 값 (OOOpx || auto)
         initialEditType: "markdown", // 최초로 보여줄 에디터 타입 (markdown || wysiwyg)
         initialValue: "", // 내용의 초기 값으로, 반드시 마크다운 문자열 형태여야 함
-        previewStyle: "vertical",
+        previewStyle: "vertical", // 마크다운 프리뷰 스타일 (tab || vertical)
+        placeholder: "내용을 입력해 주세요.",
         /* start of hooks */
         hooks: {
           async addImageBlobHook(blob, callback) {
@@ -219,99 +210,44 @@
             }
           },
         },
+        /* end of hooks */
       });
 
       // 게시글 저장
-      async function savePost() {
+      function savePost() {
         // 1. 콘텐츠 입력 유효성 검사
         if (editor.getMarkdown().length < 1) {
           alert("에디터 내용을 입력해 주세요.");
-          history.back;
           throw new Error("editor content is required!");
         }
 
         // 2. url, parameter 세팅
         const url = "/post/create";
         const params = {
-          title: title,
-          tag: tags,
+          title: document.getElementById("id").value,
+          tag: document.getElementById("tag").value,
           content: editor.getHTML(),
-          temp: "false",
-          series: document.getElementById("series"),
         };
 
         // 3. API 호출
         try {
-          const response = await fetch(url, {
+          const response = fetch(url, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(params),
           });
+          console.log(params);
         } catch (error) {
-          //저장 실패하면 메인 화면으로 나가짐
-          location.href = "/";
           console.error("저장 실패 : ", error);
+          console.log(params);
         }
-      }
-
-      async function saveTemp() {
-        // 1. 콘텐츠 입력 유효성 검사
-        if (editor.getMarkdown().length < 1) {
-          alert("에디터 내용을 입력해 주세요.");
-          history.back;
-          throw new Error("editor content is required!");
-        }
-
-        // 2. url, parameter 세팅
-        const url = "/post/tempCreate";
-        const params = {
-          title: title,
-          tag: tags,
-          content: editor.getHTML(),
-          temp: "true",
-        };
-
-        // 3. API 호출
-        try {
-          const response = await fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(params),
-          });
-        } catch (error) {
-          //저장 실패하면 메인 화면으로 나가짐
-          location.href = "/";
-          console.error("저장 실패 : ", error);
-        }
-      }
-
-      function printName() {
-        const name = document.getElementById("name").value;
       }
 
       function printTitle() {
         const title = document.getElementById("title").value;
       }
-
-      function printContent() {
-        const title = document.getElementById("content").value;
-        document.console(editor.getHTML());
-      }
     </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/js/main.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="/js/bootstrap.min.js"></script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

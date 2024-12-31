@@ -50,44 +50,6 @@ public class PostController {
     }
 
 
-    @Transactional
-    @PostMapping("post/tempCreate")
-    public String createTemp(Model model, HttpServletRequest request) {
-
-        //세션 얻어서 검사
-
-        HttpSession session = request.getSession(false);
-
-        if(session == null ) {
-            return "basic/home";
-        }
-
-
-        // 블로그 얻어옴
-        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
-
-        User user = userRepository.findByEmail(sessionuser.getEmail()).get();
-
-        Blog blog = blogRepository.findById(user.getId()).get();
-
-        String title = request.getParameter("title");
-
-        String content = request.getParameter("content");
-
-        log.info("콘텐츠 내용:" + content);
-
-        String tags = request.getParameter("tag");
-
-        Post post = postService.createNonSeriesPost(blog,title,true,content);
-
-        //파쇄해서 태그 만들고 태그 매핑 시킴
-
-        tagMapper(tags,post);
-
-
-
-        return "redirect:/post";
-    }
 
 
 
@@ -149,10 +111,50 @@ public class PostController {
             tagMapper(tags,post);
 
         }
-        return "redirect:/post";
+        return "basic/post";
 
 
     }
+
+    @Transactional
+    @PostMapping("post/tempCreate")
+    public String createTemp(Model model, HttpServletRequest request) {
+
+        //세션 얻어서 검사
+
+        HttpSession session = request.getSession(false);
+
+        if(session == null ) {
+            return "basic/home";
+        }
+
+
+        // 블로그 얻어옴
+        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
+
+        User user = userRepository.findByEmail(sessionuser.getEmail()).get();
+
+        Blog blog = blogRepository.findById(user.getId()).get();
+
+        String title = request.getParameter("title");
+
+        String content = request.getParameter("content");
+
+        log.info("콘텐츠 내용:{}", content);
+
+        String tags = request.getParameter("tag");
+
+        Post post = postService.createNonSeriesPost(blog,title,true,content);
+
+        //파쇄해서 태그 만들고 태그 매핑 시킴
+
+        tagMapper(tags,post);
+
+
+
+        return "basic/post";
+    }
+
 
 
     //태그 처리하고 매핑 시키는 메서드
