@@ -25,6 +25,8 @@ public class Post {
     @JoinColumn(name = "series_id")
     private Series seriesId;
 
+    //블로그 아이디마다 제목은 한 번만 쓸 수 있게 검사 추가
+
     private String title;
 
     @Column(name = "temp_post")

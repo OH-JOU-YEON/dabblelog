@@ -20,6 +20,6 @@ public class Favorite {
 
     @JoinColumn(name = "blog_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Blog blogId;
+    private Post postId;
 
 }
