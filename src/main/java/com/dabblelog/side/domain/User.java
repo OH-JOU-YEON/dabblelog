@@ -29,7 +29,7 @@ public class User {
     private String readme;
 
 
-    private String picture;
+    private String picture = "/img/person-circle.svg";
 
     @Enumerated(EnumType.STRING) // Enum 타입은 문자열 형태로 저장해야 함
     private Role role;
@@ -48,6 +48,18 @@ public class User {
     public User update(String name) {
         this.name = name;
 
+
+        return this;
+    }
+
+    public User updateReadme(String readme) {
+        this.readme = readme;
+
+        return this;
+    }
+
+    public User updatePicture(String picture) {
+        this.picture = picture;
 
         return this;
     }
