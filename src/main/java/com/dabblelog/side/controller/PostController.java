@@ -93,6 +93,8 @@ public class PostController {
 
         String seriesTitle = postDTO.getSeriesTitle();
 
+        log.info(seriesTitle);
+
         boolean temp = false;
 
         if(seriesRepository.findByBlogIdAndTitle(blog,seriesTitle).isPresent()) {

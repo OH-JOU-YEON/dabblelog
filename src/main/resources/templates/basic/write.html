@@ -65,8 +65,8 @@
           <div class="modal-body">
             <select th:name="series" id="series">
               <option
-                th:value="시리즈 설정 안 함"
-                th:text="시리즈 설정 안 함"
+                th:value="|시리즈 설정 안 함|"
+                th:text="|시리즈 설정 안 함|"
               ></option>
               <option
                 th:each="series : ${seriesList}"
@@ -230,7 +230,6 @@
           series: document.getElementById("series").value,
           content: editor.getHTML(),
         };
-        location.href("/posts");
 
         // 3. API 호출
         try {

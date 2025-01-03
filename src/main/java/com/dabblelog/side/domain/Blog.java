@@ -43,5 +43,11 @@ public class Blog {
         return this;
     }
 
+    public Blog updateBlogName(String blogName) {
+        this.blogName = blogName;
+
+        return this;
+    }
+
 
 }
