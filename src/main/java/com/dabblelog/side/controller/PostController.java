@@ -3,6 +3,7 @@ package com.dabblelog.side.controller;
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.*;
+import com.dabblelog.side.domain.dto.PostDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Slf4j
 @Controller
@@ -55,7 +57,7 @@ public class PostController {
 
     @Transactional
     @PostMapping("post/create")
-    public String createPost(Model model, HttpServletRequest request) {
+    public String createPost(Model model, HttpServletRequest request, @RequestBody PostDTO postDTO) {
 
 
         //세션 얻어서 검사
@@ -67,6 +69,7 @@ public class PostController {
         }
 
 
+
         // 블로그 얻어옴
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
@@ -76,22 +79,24 @@ public class PostController {
 
 
 
-        String title = request.getParameter("title");
+        String title = postDTO.getTitle();
 
-        log.info(title);
+        PostController.log.info(title);
 
-        String content = request.getParameter("content");
+        String content = postDTO.getContent();
 
-        log.info(content);
+        PostController.log.info(content);
 
-        String tags = request.getParameter("tag");
+        String tags = postDTO.getTag();
 
-        log.info(tags);
+        PostController.log.info(tags);
+
+        String seriesTitle = postDTO.getSeriesTitle();
 
         boolean temp = false;
 
-        if(seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).isPresent()) {
-            Series series = seriesRepository.findByBlogIdAndTitle(blog,request.getParameter("series")).get();
+        if(seriesRepository.findByBlogIdAndTitle(blog,seriesTitle).isPresent()) {
+            Series series = seriesRepository.findByBlogIdAndTitle(blog,seriesTitle).get();
 
 
             //포스트 만들기
@@ -124,7 +129,7 @@ public class PostController {
 
     @Transactional
     @PostMapping("post/tempCreate")
-    public String createTemp(Model model, HttpServletRequest request) {
+    public String createTemp(Model model, HttpServletRequest request, @RequestBody PostDTO postDTO) {
 
         //세션 얻어서 검사
 
@@ -135,22 +140,27 @@ public class PostController {
         }
 
 
-        // 블로그 얻어옴
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
         User user = userRepository.findByEmail(sessionuser.getEmail()).get();
 
         Blog blog = blogRepository.findById(user.getId()).get();
 
-        String title = request.getParameter("title");
 
-        String content = request.getParameter("content");
 
-        log.info("콘텐츠 내용:{}", content);
+        String title = postDTO.getTitle();
 
-        String tags = request.getParameter("tag");
+        PostController.log.info(title);
 
-        Post post = postService.createNonSeriesPost(blog,title,true,content);
+        String content = postDTO.getContent();
+
+        PostController.log.info(content);
+
+        String tags = postDTO.getTag();
+
+        PostController.log.info(tags);
+
+        Post post = postService.createNonSeriesPost(blog,title,false,content);
 
         //파쇄해서 태그 만들고 태그 매핑 시킴
 
@@ -176,7 +186,7 @@ public class PostController {
             tagMappingService.createTagMapping(postId, postTag);
         }
 
-        log.info("태그 매핑 완료");
+        PostController.log.info("태그 매핑 완료");
 
     }
 
