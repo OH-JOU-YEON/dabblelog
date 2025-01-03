@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -39,11 +40,8 @@ public class Post {
 
     private int likeCount;
 
-    private int createdYear;
 
-    private int createdMonth;
-
-    private int createdDay;
+    private LocalDateTime createdDay;
 
 
     //시리즈 없는 게시물 작성
@@ -55,13 +53,11 @@ public class Post {
 
         this.content = content;
 
-        LocalDate now = LocalDate.now();
 
-        this.createdYear = now.getYear();
+        this.createdDay = LocalDateTime.now();
 
-        this.createdMonth = now.getMonthValue();
 
-        this.createdDay = now.getDayOfMonth();
+
 
         this.likeCount = 0;
 
@@ -81,11 +77,7 @@ public class Post {
 
         LocalDate now = LocalDate.now();
 
-        this.createdYear = now.getYear();
-
-        this.createdMonth = now.getMonthValue();
-
-        this.createdDay = now.getDayOfMonth();
+        this.createdDay = LocalDateTime.now();
 
         this.likeCount = 0;
 
