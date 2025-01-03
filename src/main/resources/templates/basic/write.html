@@ -102,6 +102,7 @@
             placeholder="제목을 입력하세요"
             style="outline: none; border: none; height: 66px; width: 433px"
             id="title"
+            onkeyup="printTitle()"
           />
         </label>
       </div>
@@ -114,12 +115,13 @@
           type="text"
           placeholder="태그를 입력하세요(공백으로 구분됩니다)"
           style="outline: none; border: none; width: 433px; height: 58px"
+          onkeyup="printTag()"
         />
       </div>
     </div>
 
     <!-- 에디터를 적용할 요소 (컨테이너) -->
-    <div id="content"></div>
+    <div id="content" onkeyup="printContent()"></div>
 
     <div class="writeMenu">
       <input
@@ -224,7 +226,7 @@
         // 2. url, parameter 세팅
         const url = "/post/create";
         const params = {
-          title: document.getElementById("id").value,
+          title: document.getElementById("title").value,
           tag: document.getElementById("tag").value,
           content: editor.getHTML(),
         };
@@ -247,6 +249,14 @@
 
       function printTitle() {
         const title = document.getElementById("title").value;
+      }
+
+      function printTag() {
+        const tag = document.getElementById("tag").value;
+      }
+
+      function printContent() {
+        const content = editor.getHTML();
       }
     </script>
   </body>

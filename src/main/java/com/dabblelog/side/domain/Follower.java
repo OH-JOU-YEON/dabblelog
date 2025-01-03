@@ -15,16 +15,16 @@ public class Follower {
 
     @JoinColumn(name = "user_id_fk", insertable = false, updatable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private User following_id;
+    private User followingId;
 
     @JoinColumn(name = "user_id" , insertable = false, updatable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private User followed_id;
+    private User followedId;
 
 
     public Follower(User followingUser,User followedUser) {
-        this.following_id = followingUser;
-        this.followed_id = followedUser;
+        this.followingId = followingUser;
+        this.followedId = followedUser;
     }
 
 }

@@ -56,7 +56,7 @@ public class FollowerService {
 
         User followedUser = blogRepository.findByBlogName(blogName).get().getUser();
 
-        followerRepository.delete(followerRepository.findByFollowing_IdAndFollowed_Id(followingUser,followedUser).get());
+        followerRepository.delete(followerRepository.findByFollowingIdAndFollowedId(followingUser,followedUser).get());
 
     }
 

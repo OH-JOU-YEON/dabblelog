@@ -78,9 +78,15 @@ public class PostController {
 
         String title = request.getParameter("title");
 
+        log.info(title);
+
         String content = request.getParameter("content");
 
+        log.info(content);
+
         String tags = request.getParameter("tag");
+
+        log.info(tags);
 
         boolean temp = false;
 
