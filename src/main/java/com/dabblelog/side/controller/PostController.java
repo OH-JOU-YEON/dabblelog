@@ -48,6 +48,8 @@ public class PostController {
     public String getPost(Model model, HttpServletRequest request) {
 
 
+
+
         return "/basic/Post";
     }
 
