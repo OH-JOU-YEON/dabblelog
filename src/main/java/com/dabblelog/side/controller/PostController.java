@@ -162,6 +162,10 @@ public class PostController {
 
         PostController.log.info(tags);
 
+        //검사해서 블로그아이디랑 타이틀 같은 거 있으면 업데이트 하기
+
+
+
         Post post = postService.createNonSeriesPost(blog,title,false,content);
 
         //파쇄해서 태그 만들고 태그 매핑 시킴
