@@ -128,6 +128,7 @@
         id="tempSave"
         name="tempSave"
         class="btn btn-primary"
+        onclick="saveTemp()"
       />
       <button
         type="button"
@@ -230,6 +231,38 @@
           content: editor.getHTML(),
         };
         location.href("/posts");
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+
+      function saveTemp() {
+        // 1. 콘텐츠 입력 유효성 검사
+        if (editor.getMarkdown().length < 1) {
+          alert("에디터 내용을 입력해 주세요.");
+          throw new Error("editor content is required!");
+        }
+
+        // 2. url, parameter 세팅
+        const url = "/post/tempCreate";
+        const params = {
+          title: document.getElementById("title").value,
+          tag: document.getElementById("tag").value,
+          content: editor.getHTML(),
+        };
+        alert("글 임시저장됨");
 
         // 3. API 호출
         try {

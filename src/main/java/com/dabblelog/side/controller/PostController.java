@@ -101,6 +101,8 @@ public class PostController {
 
             //포스트 만들기
 
+            //임시저장된 다른 포스트가 있나 검사 후에 있으면 그거 false로 바꾸고 재저장.
+
             Post post = postService.createHasSeriesPost(blog, title, series, temp, content);
 
             //파쇄해서 태그 만들고 태그 매핑 시킴
