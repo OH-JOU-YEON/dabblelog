@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class PostService {
@@ -36,6 +38,15 @@ public class PostService {
     }
 
     //포스트 수정
+
+
+
+    //시리즈 상세 페이지 띄우는 메서드
+    @Transactional
+    public List<Post> getSeriesDetails(Blog blog, Series series) {
+
+        return postRepository.findAllByBlogIdAndSeriesId(blog,series);
+    }
 
 
 }
