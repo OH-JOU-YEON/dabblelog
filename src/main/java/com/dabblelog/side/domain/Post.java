@@ -84,7 +84,7 @@ public class Post {
         this.temp = temp;
     }
 
-    //임시 저장 포스트 ㄹㅇ 저장으로 돌릴 때 사용. 시리즈 업데이트 하고 임시저장에서 저장으로 돌림
+    //임시 저장 포스트 저장으로 돌릴 때 사용. 시리즈 업데이트 하고 임시저장에서 저장으로 돌림
 
     public Post saveUpdate(Series series) {
         this.temp = false;
