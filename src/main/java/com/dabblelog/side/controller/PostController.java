@@ -115,19 +115,7 @@ public class PostController {
 
 
         }
-        else {
 
-
-
-            //포스트 만들기
-
-            Post post = postService.createNonSeriesPost(blog,title,temp,content);
-
-            //파쇄해서 태그 만들고 태그 매핑 시킴
-
-            tagMapper(tags,post);
-
-        }
         return "basic/post";
 
 

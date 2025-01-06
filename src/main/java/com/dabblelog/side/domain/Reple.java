@@ -18,5 +18,7 @@ public class Reple {
     @JoinColumn(name = "reple_mapping_id")
     private RepleMapping repleMapping;
 
+    String content;
+
     private boolean replyOrNot;
 }
