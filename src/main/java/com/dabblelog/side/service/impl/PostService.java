@@ -8,6 +8,8 @@ import com.dabblelog.side.repository.PostRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +48,12 @@ public class PostService {
     public List<Post> getSeriesDetails(Blog blog, Series series) {
 
         return postRepository.findAllByBlogIdAndSeriesId(blog,series);
+
+
+    }
+
+    public Page<Post> getPostPageable(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 
 
