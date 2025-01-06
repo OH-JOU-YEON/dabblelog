@@ -6,6 +6,7 @@ import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
+import com.dabblelog.side.service.impl.BlogService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
@@ -28,6 +28,9 @@ public class BlogController {
 
     @Autowired
     BlogRepository blogRepository;
+
+    @Autowired
+    BlogService blogService;
 
     @GetMapping("/blog")
     public String blogMapping(Model model, HttpServletRequest
@@ -49,7 +52,7 @@ public class BlogController {
         model.addAttribute("email", email);
 
 
-        Blog blog = updateBlog(email);
+        Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
 
         model.addAttribute("blog",blog);
 
