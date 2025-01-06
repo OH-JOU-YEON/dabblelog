@@ -4,9 +4,8 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Series;
-import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.SeriesRepository;
-import com.dabblelog.side.repository.UserRepository;
+import com.dabblelog.side.service.impl.BlogService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +23,10 @@ public class WriteController {
     @Autowired
     private final SeriesRepository seriesRepository;
 
-    @Autowired
-    private final BlogRepository blogRepository;
+
 
     @Autowired
-    private final UserRepository userRepository;
+    BlogService blogService;
 
     @GetMapping("/write")
     public String writeMapping(Model model, HttpServletRequest request) {
@@ -43,9 +41,11 @@ public class WriteController {
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
-        Long blogId = userRepository.findByEmail(sessionuser.getEmail()).get().getId();
 
-        Blog blog = blogRepository.findById(blogId).get();
+
+
+
+        Blog blog = blogService.ifBlogIsNotExistCreateBlog(sessionuser.getEmail());
 
         //레포지토리에서 블로그 시리즈 전부 찾아다 모델에 집어넣는 메서드
 
