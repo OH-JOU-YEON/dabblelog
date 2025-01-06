@@ -20,5 +20,4 @@ public class Reple {
 
     String content;
 
-    private boolean replyOrNot;
 }
