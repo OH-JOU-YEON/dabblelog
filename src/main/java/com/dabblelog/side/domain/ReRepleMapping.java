@@ -1,20 +1,19 @@
 package com.dabblelog.side.domain;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@Getter
 @Entity
-public class Reple {
+@Getter
+public class ReRepleMapping {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private Reple reple;
 
-    String content;
-
+    @ManyToOne
+    private ReReple reReple;
 }

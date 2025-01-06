@@ -17,5 +17,8 @@ public class RepleMapping {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @ManyToOne
+    private Reple reple;
+
 
 }
