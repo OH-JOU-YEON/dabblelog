@@ -4,7 +4,9 @@ package com.dabblelog.side.service.impl;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Series;
+import com.dabblelog.side.repository.FollowerRepository;
 import com.dabblelog.side.repository.PostRepository;
+import com.dabblelog.side.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,12 @@ public class PostService {
 
     @Autowired
     private final PostRepository postRepository;
+
+    @Autowired
+    private final UserRepository userRepository;
+
+    @Autowired
+    private final FollowerRepository followerRepository;
 
 
     //포스트 디비 생성
@@ -55,6 +63,8 @@ public class PostService {
     public Page<Post> getPostPageable(Pageable pageable) {
         return postRepository.findAll(pageable);
     }
+
+
 
 
 }
