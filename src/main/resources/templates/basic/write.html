@@ -241,9 +241,11 @@
             body: JSON.stringify(params),
           });
           console.log(params);
+          location.href = "/post";
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
+          location.href = "/post";
         }
       }
 
