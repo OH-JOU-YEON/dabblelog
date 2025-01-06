@@ -227,7 +227,7 @@
         const params = {
           title: document.getElementById("title").value,
           tag: document.getElementById("tag").value,
-          seriesTitle: document.getElementById("series").value,
+          series: document.getElementById("series").value,
           content: editor.getHTML(),
         };
 
@@ -241,11 +241,9 @@
             body: JSON.stringify(params),
           });
           console.log(params);
-          location.href = "/post";
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
-          location.href = "/post";
         }
       }
 
