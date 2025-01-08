@@ -3,10 +3,11 @@ package com.dabblelog.side.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-@RestController
+@Controller
 @Slf4j
 public class FileApiController {
 
@@ -26,7 +27,9 @@ public class FileApiController {
      * 에디터 이미지 업로드
      * @param image 파일 객체
      * @return 업로드된 파일명
+     *
      */
+    @ResponseBody
     @PostMapping("tui-editor/image-upload")
     public String uploadEditorImage(@RequestParam final MultipartFile image) {
         if (image.isEmpty()) {
@@ -34,15 +37,15 @@ public class FileApiController {
         }
 
         String orgFilename = image.getOriginalFilename();
-        log.info(orgFilename);
+        log.info("orgFilename : " + orgFilename);
         // 원본 파일명
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        log.info(uuid);// 32자리 랜덤 문자열
+        log.info("uuid : " + uuid);// 32자리 랜덤 문자열
         String extension = orgFilename.substring(orgFilename.lastIndexOf(".") + 1);// 확장자
-        log.info(extension);
+        log.info("extension : " + extension);
         String saveFilename = uuid + "." + extension;                                             // 디스크에 저장할 파일명
         String fileFullPath = Paths.get(uploadDir, saveFilename).toString();
-        log.info(fileFullPath);// 디스크에 저장할 파일의 전체 경로
+        log.info("fileFullPath : " + fileFullPath);// 디스크에 저장할 파일의 전체 경로
 
         // uploadDir에 해당되는 디렉터리가 없으면, uploadDir에 포함되는 전체 디렉터리 생성
         File dir = new File(uploadDir);

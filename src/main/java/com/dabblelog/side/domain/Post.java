@@ -34,6 +34,7 @@ public class Post {
     private boolean temp = false;
 
 
+    @Column(length = 50000)
     private String content;
 
 
@@ -50,6 +51,8 @@ public class Post {
         this.blogId = blog;
 
         this.title = title;
+
+
 
         this.content = content;
 
