@@ -114,6 +114,11 @@ public class PostController {
             tagMapper(tags,post);
 
 
+        } else {
+
+            Post post = postService.createNonSeriesPost(blog, title,temp,content);
+
+            tagMapper(tags,post);
         }
 
         return "basic/post";
