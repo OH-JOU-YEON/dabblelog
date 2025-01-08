@@ -204,7 +204,7 @@
               console.log("서버에 저장된 파일명 : ", filename);
 
               // 4. addImageBlobHook의 callback 함수를 통해, 디스크에 저장된 이미지를 에디터에 렌더링
-              const imageUrl = `/tui-editor/image-print?filename=${filename}`;
+              const imageUrl = `C:/tui-editor/image-print?filename=${filename}`;
               callback(imageUrl, "image alt attribute");
             } catch (error) {
               console.error("업로드 실패 : ", error);
@@ -241,6 +241,7 @@
             body: JSON.stringify(params),
           });
           console.log(params);
+          location.href = "/post";
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
@@ -273,6 +274,7 @@
             body: JSON.stringify(params),
           });
           console.log(params);
+          location.href = "/post";
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
