@@ -1,10 +1,7 @@
 package com.dabblelog.side.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ReReple {
@@ -14,6 +11,11 @@ public class ReReple {
     private Long id;
 
     private String content;
+
+    @ManyToOne
+    private Reple parentReple;
+
+    private Post postId;
 
 
 }

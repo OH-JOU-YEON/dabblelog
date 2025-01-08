@@ -14,6 +14,8 @@ public class Reple {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private Post postId;
 
     String content;
 
