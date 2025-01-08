@@ -121,7 +121,7 @@ public class HomeController {
 
     //피드 처리
     @GetMapping("/feed")
-    String mappingFeed(Model model) {
+    String mappingFeed(Model model, @PageableDefault(page=0, size=9, sort="createdDay" , direction= Sort.Direction.DESC) Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("email", "dabblelog.com");
@@ -139,6 +139,8 @@ public class HomeController {
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
+            model.addAttribute("feed",postService.getFeed(pageable,email));
+
         }else {
 
             //로그인 아닐 때

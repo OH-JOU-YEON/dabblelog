@@ -15,6 +15,7 @@ public class ReReple {
     @ManyToOne
     private Reple parentReple;
 
+    @ManyToOne
     private Post postId;
 
 

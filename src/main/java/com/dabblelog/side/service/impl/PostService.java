@@ -1,9 +1,8 @@
 package com.dabblelog.side.service.impl;
 
 
-import com.dabblelog.side.domain.Blog;
-import com.dabblelog.side.domain.Post;
-import com.dabblelog.side.domain.Series;
+import com.dabblelog.side.domain.*;
+import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.FollowerRepository;
 import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -28,6 +27,9 @@ public class PostService {
 
     @Autowired
     private final FollowerRepository followerRepository;
+
+    @Autowired
+    private final BlogRepository blogRepository;
 
 
     //포스트 디비 생성
@@ -60,11 +62,33 @@ public class PostService {
 
     }
 
+
     public Page<Post> getPostPageable(Pageable pageable) {
         return postRepository.findAll(pageable);
     }
 
 
+    public Page<Post> getFeed(Pageable pageable, String email) {
+
+        //일단 내가 팔로잉한 목록을 얻자
+
+        User user = userRepository.findByEmail(email).get();
+
+        List<Follower> myFollowing = followerRepository.findAllByFollowingId(user);
+
+        //레포지토리에 검색하기 위해 유저만 뽑는다.
+
+        List<User> myFollowingUser = myFollowing.stream().map(Follower::getFollowedId).toList();
+
+        List<Blog> myFollowingUserBlog = blogRepository.findAllByUser_IdIn(myFollowingUser);
+
+        //시간순서로 나열한다
+
+
+        return postRepository.findAllByBlogIdIn(myFollowingUserBlog, pageable);
+
+
+    }
 
 
 }

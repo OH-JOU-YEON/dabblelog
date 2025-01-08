@@ -18,7 +18,7 @@ public class Favorite {
     @ManyToOne(fetch = FetchType.LAZY)
     private User userId;
 
-    @JoinColumn(name = "blog_id")
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Post postId;
 
