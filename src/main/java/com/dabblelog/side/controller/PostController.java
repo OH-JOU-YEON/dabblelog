@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -44,8 +45,8 @@ public class PostController {
     TagMappingService tagMappingService;
 
     //개별 페이지 관련 로직들
-    @GetMapping("/post")
-    public String getPost(Model model, HttpServletRequest request) {
+    @GetMapping("/{blogName}/{title}")
+    public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String title) {
 
 
 

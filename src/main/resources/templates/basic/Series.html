@@ -287,32 +287,10 @@
         class="news-single"
         style="display: flex; flex-direction: row; flex-wrap: wrap"
       >
-        <li class="single-main" style="margin-right: 3rem">
-          <a href="SeriesDetails.html">
-            <img
-              src="../../static/img/rose-2101475_1280.jpg"
-              style="width: 300px; height: 166.98px"
-          /></a>
-
-          <div
-            class="textCard"
-            style="width: 319.95; height: 165; margin-top: 1rem"
-          >
-            <a href="SeriesDetails.html"
-              ><h5 style="font-weight: 600">시리즈 제목</h5>
-            </a>
-            <button style="background-color: transparent; border: none">
-              색상 수정
-            </button>
-            <div class="postCard"></div>
-            <p>게시물 개수 | 마지막 글 작성 날짜</p>
-          </div>
-        </li>
-
         <li class="single-main">
           <a href="SeriesDetails.html">
             <img
-              src="../../static/img/library-7720589_1280.jpg"
+              src="../../static/img/pencil-square.svg"
               style="width: 300px; height: 166.98px"
           /></a>
 
@@ -330,6 +308,20 @@
         </li>
       </ul>
     </section>
+
+    <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+      <a
+        style="color: inherit"
+        th:if="${page != nowPage}"
+        th:href="@{/board/list(page=${page-1})}"
+        th:text="${page}"
+      ></a>
+      <strong
+        th:if="${page==nowPage}"
+        th:text="${page}"
+        style="color: blue"
+      ></strong>
+    </th:block>
     <!-- End Breadcrumbs -->
 
     <!-- Single News -->

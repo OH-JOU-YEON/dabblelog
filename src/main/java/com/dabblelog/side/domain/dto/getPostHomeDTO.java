@@ -16,6 +16,8 @@ public class getPostHomeDTO {
 
     private final String nickname;
 
+    private final String blogName;
+
 
     //미리보기
     private final String preview;
@@ -44,6 +46,8 @@ public class getPostHomeDTO {
         this.totalRepleCount = totalRepleCount;
 
         this.nickname = post.getBlogId().getUser().getName();
+
+        this.blogName = post.getBlogId().getBlogName();
 
 
     }
