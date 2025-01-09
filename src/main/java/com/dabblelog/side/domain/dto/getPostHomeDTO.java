@@ -2,9 +2,13 @@ package com.dabblelog.side.domain.dto;
 
 import com.dabblelog.side.domain.Post;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 
+@Slf4j
 @Getter
 public class getPostHomeDTO {
 
@@ -45,7 +49,8 @@ public class getPostHomeDTO {
     }
 
     static String getPreview(String postContent) {
-       String[] splitPostContentWithTagStart = postContent.split("<");
+       List<String> splitPostContentWithTagStart = Arrays.stream(postContent.split("<")).filter(s -> !s.isEmpty()).toList();
+
 
 
 
@@ -55,7 +60,7 @@ public class getPostHomeDTO {
            }
            else {
                String[] splitPostContentWithTagEnd = splitContent.split(">");
-               return splitPostContentWithTagEnd[0];
+               return splitPostContentWithTagEnd[1];
            }
        }
 
