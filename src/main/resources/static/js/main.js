@@ -343,10 +343,6 @@ Version:	1.1
 		tag JS
 	======================*/
 
-function printTag() {
-  const tags = document.getElementById("tag").value;
-}
-
 /*====================
 		시리즈 추가하기 누르면 시리즈 색 선택하고 제목 입력창 생성되는 함수 
 	======================*/
