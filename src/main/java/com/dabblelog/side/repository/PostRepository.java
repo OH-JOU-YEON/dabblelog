@@ -20,5 +20,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Page<Post> findAllByBlogIdIn(List<Blog> blogs, Pageable pageable);
 
+    Long countByBlogIdAndSeriesId(Blog blogId,Series series);
+
+    Post findTop1ByBlogIdAndSeriesIdOrderByCreatedDayDesc(Blog blogId, Series seriesId);
+
+
+
 
 }
