@@ -191,9 +191,12 @@
           justify-content: space-around;
         "
       >
-        <li class="single-main">
+        <li class="single-main" th:each="post:${list}">
           <a href="#">
-            <img src="/img/test.jpg" style="width: 300px; height: 166.98px"
+            <img
+              th:src="${post.thumbnail}"
+              th:if="${post.preview} != ''"
+              style="width: 300px; height: 166.98px"
           /></a>
 
           <div
@@ -205,143 +208,35 @@
               margin-bottom: 1.5rem;
             "
           >
-            <h5 style="font-weight: 600">제목</h5>
-            <p style="margin-top: 0.3rem">미리보기</p>
+            <h5 style="font-weight: 600" th:text="${post.title}">제목</h5>
+            <p style="margin-top: 0.3rem" th:text="${post.preview}">미리보기</p>
             <div class="postCard"></div>
-            <p>만든 날짜 | 0개의 댓글 | 좋아요 0개</p>
+            <p
+              th:text="|${post.createdDay}  ${post.totalRepleCount}개 좋아요  ${post.likeCount}개|"
+            >
+              만든 날짜 | 0개의 댓글 | 좋아요 0개
+            </p>
           </div>
           <div class="by">
             <p>by</p>
-            <p>쓴 사람 이름</p>
-          </div>
-        </li>
-
-        <li class="single-main">
-          <a href="#">
-            <img src="/img/test.jpg" style="width: 300px; height: 166.98px"
-          /></a>
-
-          <div
-            class="textCard"
-            style="
-              width: 319.95;
-              height: 165;
-              margin-top: 1rem;
-              margin-bottom: 1.5rem;
-            "
-          >
-            <h5 style="font-weight: 600">제목</h5>
-            <p style="margin-top: 0.3rem">미리보기</p>
-            <div class="postCard"></div>
-            <p>만든 날짜 | 0개의 댓글 | 좋아요 0개</p>
-          </div>
-          <div class="by">
-            <p>by</p>
-            <p>쓴 사람 이름</p>
-          </div>
-        </li>
-
-        <li class="single-main">
-          <a href="#">
-            <img src="/img/test.jpg" style="width: 300px; height: 166.98px"
-          /></a>
-
-          <div
-            class="textCard"
-            style="
-              width: 319.95;
-              height: 165;
-              margin-top: 1rem;
-              margin-bottom: 1.5rem;
-            "
-          >
-            <h5 style="font-weight: 600">제목</h5>
-            <p style="margin-top: 0.3rem">미리보기</p>
-            <div class="postCard"></div>
-            <p>만든 날짜 | 0개의 댓글 | 좋아요 0개</p>
-          </div>
-          <div class="by">
-            <p>by</p>
-            <p>쓴 사람 이름</p>
-          </div>
-        </li>
-
-        <li class="single-main">
-          <a href="#">
-            <img src="/img/test.jpg" style="width: 300px; height: 166.98px"
-          /></a>
-
-          <div
-            class="textCard"
-            style="
-              width: 319.95;
-              height: 165;
-              margin-top: 1rem;
-              margin-bottom: 1.5rem;
-            "
-          >
-            <h5 style="font-weight: 600">제목</h5>
-            <p style="margin-top: 0.3rem">미리보기</p>
-            <div class="postCard"></div>
-            <p>만든 날짜 | 0개의 댓글 | 좋아요 0개</p>
-          </div>
-          <div class="by">
-            <p>by</p>
-            <p>쓴 사람 이름</p>
-          </div>
-        </li>
-
-        <li class="single-main">
-          <a href="#">
-            <img src="/img/test.jpg" style="width: 300px; height: 166.98px"
-          /></a>
-
-          <div
-            class="textCard"
-            style="
-              width: 319.95;
-              height: 165;
-              margin-top: 1rem;
-              margin-bottom: 1.5rem;
-            "
-          >
-            <h5 style="font-weight: 600">제목</h5>
-            <p style="margin-top: 0.3rem">미리보기</p>
-            <div class="postCard"></div>
-            <p>만든 날짜 | 0개의 댓글 | 좋아요 0개</p>
-          </div>
-          <div class="by">
-            <p>by</p>
-            <p>쓴 사람 이름</p>
-          </div>
-        </li>
-
-        <li class="single-main">
-          <a href="#">
-            <img src="/img/test.jpg" style="width: 300px; height: 166.98px"
-          /></a>
-
-          <div
-            class="textCard"
-            style="
-              width: 319.95;
-              height: 165;
-              margin-top: 1rem;
-              margin-bottom: 1.5rem;
-            "
-          >
-            <h5 style="font-weight: 600">제목</h5>
-            <p style="margin-top: 0.3rem">미리보기</p>
-            <div class="postCard"></div>
-            <p>만든 날짜 | 0개의 댓글 | 좋아요 0개</p>
-          </div>
-          <div class="by">
-            <p>by</p>
-            <p>쓴 사람 이름</p>
+            <p th:text="${post.nickname}">쓴 사람 이름</p>
           </div>
         </li>
       </ul>
     </section>
+
+    <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+      <a
+        th:if="${page != nowPage}"
+        th:href="@{/board/list(page=${page-1})}"
+        th:text="${page}"
+      ></a>
+      <strong
+        th:if="${page==nowPage}"
+        th:text="${page}"
+        style="color: blue"
+      ></strong>
+    </th:block>
     <!-- jquery Min JS -->
     <script src="/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 

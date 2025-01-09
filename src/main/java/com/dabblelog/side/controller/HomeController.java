@@ -1,10 +1,12 @@
 package com.dabblelog.side.controller;
 
 
+import com.dabblelog.side.domain.dto.getPostHomeDTO;
 import com.dabblelog.side.service.impl.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -22,9 +24,24 @@ public class HomeController {
     @Autowired
     PostService postService;
 
-    @GetMapping("/") String mappingHome(Model model) {
+    @GetMapping("/") String mappingHome(Model model, @PageableDefault(page=0, size=9, sort="likeCount") Pageable pageable) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("email", "dabblelog.com");
+
+        Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
+
+        //페이지블럭 처리
+        //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
+        int nowPage = postList.getPageable().getPageNumber() + 1;
+        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
+        int startPage =  Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage+9, postList.getTotalPages());
+
+
+        model.addAttribute("list", postList);
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         if( !auth.getPrincipal().toString().equals("anonymousUser") ) {
 
@@ -61,7 +78,18 @@ public class HomeController {
     String mappingTrend(Model model, @PageableDefault(page=0, size=9, sort="likeCount") Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
         model.addAttribute("email", "dabblelog.com");
+        model.addAttribute("list",postList);
+        //페이지블럭 처리
+        //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
+        int nowPage = postList.getPageable().getPageNumber() + 1;
+        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
+        int startPage =  Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage+9, postList.getTotalPages());
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         if( !auth.getPrincipal().toString().equals("anonymousUser") ) {
 
@@ -76,13 +104,13 @@ public class HomeController {
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
-            model.addAttribute("pageList",postService.getPostPageable(pageable));
+
         }else {
 
             //로그인 아닐 때
             model.addAttribute("path", "/oauth2/authorization/google");
             model.addAttribute("loginOrNot", "구글 로그인");
-            model.addAttribute("pageList",postService.getPostPageable(pageable));
+
         }
         return "basic/Home";
     }
@@ -93,6 +121,17 @@ public class HomeController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("email", "dabblelog.com");
+        Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
+        model.addAttribute("list",postList);
+        //페이지블럭 처리
+        //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
+        int nowPage = postList.getPageable().getPageNumber() + 1;
+        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
+        int startPage =  Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage+9, postList.getTotalPages());
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         if( !auth.getPrincipal().toString().equals("anonymousUser") ) {
 
@@ -107,13 +146,13 @@ public class HomeController {
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
-            model.addAttribute("pageList",postService.getPostPageable(pageable));
+
         }else {
 
             //로그인 아닐 때
             model.addAttribute("path", "/oauth2/authorization/google");
             model.addAttribute("loginOrNot", "구글 로그인");
-            model.addAttribute("pageList",postService.getPostPageable(pageable));
+
 
         }
         return "basic/Home";
@@ -139,7 +178,19 @@ public class HomeController {
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
-            model.addAttribute("feed",postService.getFeed(pageable,email));
+            Page<getPostHomeDTO> postList = postService.getFeed(pageable, email);
+            model.addAttribute("pageList",postList);
+            //페이지블럭 처리
+            //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
+            int nowPage = postList.getPageable().getPageNumber() + 1;
+            //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
+            int startPage =  Math.max(nowPage - 4, 1);
+            int endPage = Math.min(nowPage+9, postList.getTotalPages());
+            model.addAttribute("nowPage",nowPage);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+
 
         }else {
 

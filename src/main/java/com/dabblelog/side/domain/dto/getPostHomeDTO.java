@@ -10,6 +10,8 @@ public class getPostHomeDTO {
 
     private final String title;
 
+    private final String nickname;
+
 
     //미리보기
     private final String preview;
@@ -37,7 +39,7 @@ public class getPostHomeDTO {
 
         this.totalRepleCount = totalRepleCount;
 
-
+        this.nickname = post.getBlogId().getUser().getName();
 
 
     }
@@ -53,7 +55,7 @@ public class getPostHomeDTO {
            }
            else {
                String[] splitPostContentWithTagEnd = splitContent.split(">");
-               return splitPostContentWithTagEnd[1];
+               return splitPostContentWithTagEnd[0];
            }
        }
 
