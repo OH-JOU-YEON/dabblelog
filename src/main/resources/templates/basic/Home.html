@@ -227,6 +227,7 @@
 
     <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
       <a
+        style="color: inherit"
         th:if="${page != nowPage}"
         th:href="@{/board/list(page=${page-1})}"
         th:text="${page}"
