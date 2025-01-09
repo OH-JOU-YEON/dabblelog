@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class SeriesController {
     BlogRepository blogRepository;
 
 @PostMapping("/series")
-    public String seriesCreate(Model model, HttpServletRequest request) {
+    public String seriesCreate(Model model, HttpServletRequest request, @PathVariable String blogName) {
 
     //세션 유저에서 유저 가져와서 유저 아이디 알아내기
 
