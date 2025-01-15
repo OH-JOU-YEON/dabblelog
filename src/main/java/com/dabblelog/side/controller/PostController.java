@@ -45,7 +45,7 @@ public class PostController {
     TagMappingService tagMappingService;
 
     //개별 페이지 관련 로직들
-    @GetMapping("/{blogName}/{title}")
+    @GetMapping("/dabblelog/{blogName}/{title}")
     public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String title) {
 
 
