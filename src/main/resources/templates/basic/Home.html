@@ -132,7 +132,7 @@
                         </a>
                         <ul class="dropdown">
                           <li>
-                            <a href="/blog"> 내 블로그 </a>
+                            <a th:href="${myBlogURL}"> 내 블로그 </a>
                           </li>
                           <li><a href="/saves"> 임시 글 </a></li>
                           <li><a href="/liked"> 좋아요 누른 포스트 </a></li>
@@ -179,7 +179,7 @@
           <a th:href="|${post.blogName}/${post.title}|">
             <img
               th:src="${post.thumbnail}"
-              th:if="${post.preview} != ''"
+              th:if="${post.thumbnail} != ''"
               style="width: 300px; height: 166.98px"
             />
 

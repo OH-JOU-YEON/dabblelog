@@ -1,7 +1,9 @@
 package com.dabblelog.side.controller;
 
 
+import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.dto.getPostHomeDTO;
+import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +26,13 @@ public class HomeController {
     @Autowired
     PostService postService;
 
+    @Autowired
+    BlogService blogService;
+
     @GetMapping("/") String mappingHome(Model model, @PageableDefault(page=0, size=9, sort="likeCount") Pageable pageable) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("email", "dabblelog.com");
+        model.addAttribute("myBlogURL", "/oauth2/authorization/google");
 
         Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
 
@@ -57,10 +63,15 @@ public class HomeController {
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
             model.addAttribute("user_name",getUserName(email));
+            Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
+
+            model.addAttribute("myBlogName",blog.getBlogName());
+            model.addAttribute("myBlogURL", "/dabblelog/" + blog.getBlogName());
         }else {
 
             //로그인 아닐 때
             model.addAttribute("path", "/oauth2/authorization/google");
+
             model.addAttribute("loginOrNot", "구글 로그인");
 
         }
@@ -78,6 +89,7 @@ public class HomeController {
     String mappingTrend(Model model, @PageableDefault(page=0, size=9, sort="likeCount") Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("myBlogURL", "/oauth2/authorization/google");
         Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
         model.addAttribute("email", "dabblelog.com");
         model.addAttribute("list",postList);
@@ -97,13 +109,16 @@ public class HomeController {
 
             String principal = auth.getPrincipal().toString();
 
+
             //파싱
 
             String email = getEmail(principal);
+            Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
 
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
+            model.addAttribute("myBlogURL", "/dabblelog/" + blog.getBlogName());
 
         }else {
 
@@ -120,6 +135,7 @@ public class HomeController {
     String mappingNew(Model model, @PageableDefault(page=0, size=9, sort="createdDay", direction= Sort.Direction.DESC) Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("myBlogURL", "/oauth2/authorization/google");
         model.addAttribute("email", "dabblelog.com");
         Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
         model.addAttribute("list",postList);
@@ -143,9 +159,11 @@ public class HomeController {
             String[] principals = principal.split(",");
             String[] emails = principals[7].split("=");
             String email = emails[1];
+            Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
+            model.addAttribute("myBlogURL", "/dabblelog/" + blog.getBlogName());
 
         }else {
 
@@ -163,6 +181,7 @@ public class HomeController {
     String mappingFeed(Model model, @PageableDefault(page=0, size=9, sort="createdDay" , direction= Sort.Direction.DESC) Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("myBlogURL", "/oauth2/authorization/google");
         model.addAttribute("email", "dabblelog.com");
 
         if( !auth.getPrincipal().toString().equals("anonymousUser") ) {
@@ -189,6 +208,8 @@ public class HomeController {
             model.addAttribute("nowPage",nowPage);
             model.addAttribute("startPage", startPage);
             model.addAttribute("endPage", endPage);
+            Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
+            model.addAttribute("myBlogURL", "/dabblelog/" + blog.getBlogName());
 
 
 

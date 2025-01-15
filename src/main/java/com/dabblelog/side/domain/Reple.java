@@ -21,7 +21,7 @@ public class Reple {
     private Reple parentReple;
 
     @ManyToOne
-            private Reple rootReple;
+    private Reple rootReple;
 
 
     String content;
