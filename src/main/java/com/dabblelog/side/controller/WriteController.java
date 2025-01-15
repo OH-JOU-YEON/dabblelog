@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -61,6 +62,13 @@ public class WriteController {
 
         return "basic/write";
     }
+
+    @GetMapping("/write/{saveTitle}")
+    public void writeTempMapping(Model model, HttpServletRequest request, @PathVariable String saveTitle) {
+
+
+    }
+
 
     public void seriesListCheck(List<Series> seriesList,Model model) {
 
