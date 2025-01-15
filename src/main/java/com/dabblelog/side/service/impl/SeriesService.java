@@ -75,6 +75,8 @@ public class SeriesService {
     }
 
 
+
+
     static String getThumbnails(String postContent) {
         String[] splitPostContentWithTagStart = postContent.split("<");
 

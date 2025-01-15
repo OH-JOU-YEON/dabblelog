@@ -70,12 +70,7 @@ public class BlogController {
         return "basic/Posts";
     }
 
-    @GetMapping("/series")
-    public String mappingSeries(Model model, HttpServletRequest request) {
 
-
-        return "basic/Series";
-    }
 
     @GetMapping("/about")
 

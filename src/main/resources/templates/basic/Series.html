@@ -287,10 +287,10 @@
         class="news-single"
         style="display: flex; flex-direction: row; flex-wrap: wrap"
       >
-        <li class="single-main">
+        <li class="single-main" th:each="series : ${seriesList}">
           <a href="SeriesDetails.html">
             <img
-              src="../../static/img/pencil-square.svg"
+              th:src="${series.seriesRecentThumbnails}"
               style="width: 300px; height: 166.98px"
           /></a>
 
@@ -298,10 +298,20 @@
             class="textCard"
             style="width: 319.95; height: 165; margin-top: 1rem"
           >
-            <h5 style="font-weight: 600">시리즈 제목</h5>
+            <h5
+              style="font-weight: 600"
+              th:text="series.title"
+              th:style="${color : series.color}"
+            >
+              시리즈 제목
+            </h5>
 
             <div class="postCard"></div>
-            <p>게시물 개수 | 마지막 글 작성 날짜 | 색상</p>
+            <p
+              th:text="|${series.seriesPostCount}  ${series.seriesLastUpdateDay}|"
+            >
+              게시물 개수 | 마지막 글 작성 날짜
+            </p>
           </div>
         </li>
       </ul>
