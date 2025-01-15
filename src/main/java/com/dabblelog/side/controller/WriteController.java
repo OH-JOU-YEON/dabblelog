@@ -4,8 +4,10 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Series;
+import com.dabblelog.side.domain.dto.SavesDetailsDTO;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.service.impl.BlogService;
+import com.dabblelog.side.service.impl.SaveService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,9 @@ public class WriteController {
 
     @Autowired
     private final SeriesRepository seriesRepository;
+
+    @Autowired
+    SaveService saveService;
 
 
 
@@ -64,9 +69,15 @@ public class WriteController {
     }
 
     @GetMapping("/write/{saveTitle}")
-    public void writeTempMapping(Model model, HttpServletRequest request, @PathVariable String saveTitle) {
+    public String writeTempMapping(Model model, HttpServletRequest request, @PathVariable String saveTitle) {
 
 
+        SavesDetailsDTO savesDetailsDTO = saveService.getSavesDetails(saveTitle);
+
+        model.addAttribute("saveDetails",savesDetailsDTO);
+
+
+        return "basic/WriteTemp";
     }
 
 

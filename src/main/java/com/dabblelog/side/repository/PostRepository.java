@@ -27,4 +27,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findAllByTempTrueAndBlogId(Blog blog);
 
+    Post findByTitle(String title);
+
 }

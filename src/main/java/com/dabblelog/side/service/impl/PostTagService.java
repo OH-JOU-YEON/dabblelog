@@ -1,12 +1,17 @@
 package com.dabblelog.side.service.impl;
 
 
+import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.PostTag;
+import com.dabblelog.side.domain.TagMapping;
 import com.dabblelog.side.repository.PostTagRepository;
+import com.dabblelog.side.repository.TagMappingRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -15,6 +20,9 @@ public class PostTagService {
 
     @Autowired
     PostTagRepository postTagRepository;
+
+    @Autowired
+    TagMappingRepository tagMappingRepository;
 
 
 
@@ -33,6 +41,17 @@ public class PostTagService {
     }
 
 
+    public String getTags(Post post) {
+        List<TagMapping> tagMappings = tagMappingRepository.findAllByPostId(post);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int i = 0; i<tagMappings.size(); i++) {
+            stringBuilder.append(" ").append(tagMappings.indexOf(i));
+        }
+
+        return stringBuilder.toString();
+    }
 
 
 

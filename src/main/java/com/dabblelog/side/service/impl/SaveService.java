@@ -3,6 +3,7 @@ package com.dabblelog.side.service.impl;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.SavesDTO;
+import com.dabblelog.side.domain.dto.SavesDetailsDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -27,6 +28,9 @@ public class SaveService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PostTagService postTagService;
+
     public List<SavesDTO> getSaves(String email) {
 
         User user = userRepository.findByEmail(email).get();
@@ -36,5 +40,10 @@ public class SaveService {
         return postRepository.findAllByTempTrueAndBlogId(blog).stream().map(SavesDTO::new).toList();
 
 
+    }
+
+    public SavesDetailsDTO getSavesDetails(String saveTitle) {
+
+      return new SavesDetailsDTO(postRepository.findByTitle(saveTitle), postTagService.getTags(postRepository.findByTitle(saveTitle)));
     }
 }
