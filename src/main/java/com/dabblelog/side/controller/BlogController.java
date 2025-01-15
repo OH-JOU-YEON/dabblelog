@@ -71,13 +71,19 @@ public class BlogController {
     }
 
     @GetMapping("/series")
-            public String mappingSeries(Model model, HttpServletRequest request) {
+    public String mappingSeries(Model model, HttpServletRequest request) {
 
 
         return "basic/Series";
     }
 
-    //레포지토리에 유저를 가진 블로그가 있는지 검색 없으면 생성
+    @GetMapping("/about")
+
+    public String mappingAbout(Model model, HttpServletRequest request) {
+
+        return "basic/about";
+    }
+        //레포지토리에 유저를 가진 블로그가 있는지 검색 없으면 생성
 
     Blog updateBlog(String email) {
         User user = userRepository.findByEmail(email).get();
