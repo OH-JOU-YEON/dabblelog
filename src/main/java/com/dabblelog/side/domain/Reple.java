@@ -20,6 +20,9 @@ public class Reple {
     @ManyToOne
     private Reple parentReple;
 
+    @ManyToOne
+            private Reple rootReple;
+
 
     String content;
 
