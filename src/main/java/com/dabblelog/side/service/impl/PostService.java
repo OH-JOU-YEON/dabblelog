@@ -32,8 +32,7 @@ public class PostService {
     @Autowired
     private  final RepleRepository repleRepository;
 
-    @Autowired
-    private final ReRepleRepository reRepleRepository;
+
 
 
     //포스트 디비 생성
@@ -97,7 +96,7 @@ public class PostService {
 
     public Long getTotalRepleCount(Post postId) {
 
-        return repleRepository.countByPostId(postId) + reRepleRepository.countByPostId(postId);
+        return repleRepository.countByPostId(postId);
     }
 
 

@@ -17,6 +17,10 @@ public class Reple {
     @ManyToOne
     private Post postId;
 
+    @ManyToOne
+    private Reple parentReple;
+
+
     String content;
 
 }
