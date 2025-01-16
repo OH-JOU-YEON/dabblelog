@@ -71,9 +71,9 @@ public class SeriesService {
 
          Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
 
-        return  seriesRepository.findAllByBlogId(blog,pageable).map(s -> new getSeriesDTO(s,postRepository.countByBlogIdAndSeriesId(blog,s),
-                getThumbnails(s,blog)
-                ));
+        return seriesRepository.findAllByBlogId(blog, pageable).map(s -> new getSeriesDTO(s,postRepository.countByBlogIdAndSeriesId(blog,s),getThumbnails(
+                s,blog
+        )));
 
 
     }
