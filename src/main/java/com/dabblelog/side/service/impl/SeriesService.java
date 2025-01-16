@@ -1,6 +1,7 @@
 package com.dabblelog.side.service.impl;
 
 import com.dabblelog.side.domain.Blog;
+import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Series;
 import com.dabblelog.side.domain.dto.getSeriesDTO;
 import com.dabblelog.side.repository.PostRepository;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -68,8 +72,8 @@ public class SeriesService {
          Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
 
         return  seriesRepository.findAllByBlogId(blog,pageable).map(s -> new getSeriesDTO(s,postRepository.countByBlogIdAndSeriesId(blog,s),
-                getThumbnails(postRepository.findTop1ByBlogIdAndSeriesIdOrderByCreatedDayDesc(blog,s).getContent()),
-                postRepository.findTop1ByBlogIdAndSeriesIdOrderByCreatedDayDesc(blog,s).getCreatedDay()));
+                getThumbnails(s,blog)
+                ));
 
 
     }
@@ -77,7 +81,17 @@ public class SeriesService {
 
 
 
-    static String getThumbnails(String postContent) {
+
+
+    public String getThumbnails(Series series, Blog blog) {
+
+        List<Post> postList = postRepository.findAllByBlogIdAndSeriesId(blog,series);
+
+        if(postList.isEmpty()) {
+            return "";
+        }
+        postList.sort(Collections.reverseOrder());
+        String postContent = postList.get(0).getContent();
         String[] splitPostContentWithTagStart = postContent.split("<");
 
         //위 메서드와 로직 반대. img> 포함하면 공백으로 잘라서 검사 후에 src를 포함하면 =로 자르고 뒤에 거 반환
