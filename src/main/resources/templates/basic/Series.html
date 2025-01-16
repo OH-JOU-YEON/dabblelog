@@ -287,6 +287,9 @@
         class="news-single"
         style="display: flex; flex-direction: row; flex-wrap: wrap"
       >
+        <li th:if="${seriesList.getTotalElements() == 0}">
+          <h3>현재 작성 중인 시리즈가 없습니다.</h3>
+        </li>
         <li class="single-main" th:each="series : ${seriesList}">
           <a href="SeriesDetails.html">
             <img
