@@ -56,14 +56,7 @@ public class PostService {
 
 
 
-    //시리즈 상세 페이지 띄우는 메서드
-    @Transactional
-    public List<Post> getSeriesDetails(Blog blog, Series series) {
 
-        return postRepository.findAllByBlogIdAndSeriesId(blog,series);
-
-
-    }
 
 
     public Page<getPostHomeDTO> getPostPageable(Pageable pageable) {
