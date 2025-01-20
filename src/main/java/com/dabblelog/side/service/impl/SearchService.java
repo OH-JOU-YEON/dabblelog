@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,25 +32,25 @@ public class SearchService {
 
 
 
-    List<Long> getPostTagsId(String keyword) {
+   List<Long> getPostTagsId(String keyword) {
 
         return  postTagRepository.findAllByTitleContaining(keyword).stream().map(PostTag::getId).toList();
     }
 
-    Page<TagMapping> getTagMappings(String keyword) {
+    Page<TagMapping> getTagMappings(String keyword, Pageable pageable) {
 
         List<Long> tagsIdList = getPostTagsId(keyword);
 
-        return tagMappingRepository.findAllByTagIdIn(tagsIdList);
+        return tagMappingRepository.findAllByTagIdIn(tagsIdList,pageable);
 
 
     }
 
-    Page<getPostHomeDTO> getPostHomeDTOS(String keyword) {
+    public Page<getPostHomeDTO> getPostHomeDTOS(String keyword, Pageable pageable) {
 
 
 
-        return getTagMappings(keyword).map(s->new getPostHomeDTO(s.getPostId(),repleRepository.countByPostId(s.getPostId())));
+        return getTagMappings(keyword,pageable).map(s->new getPostHomeDTO(s.getPostId(),repleRepository.countByPostId(s.getPostId())));
     }
 
 
