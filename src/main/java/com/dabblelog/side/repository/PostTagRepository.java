@@ -12,5 +12,5 @@ public interface PostTagRepository extends JpaRepository<PostTag, Long> {
 
     Optional<PostTag> findByTitle(String title);
 
-    List<PostTag> findByTitleContaining(String keyword);
+    List<PostTag> findAllByTitleContaining(String keyword);
 }
