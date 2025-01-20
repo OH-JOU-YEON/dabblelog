@@ -1,17 +1,30 @@
 package com.dabblelog.side.domain.dto;
 
+import com.dabblelog.side.domain.User;
 import lombok.Getter;
 
 @Getter
 public class getBlogProfileDTO {
 
-    private String profileImg;
+    private final String profileImg;
 
-    private String nickName;
+    private final String nickName;
 
-    private String readme;
+    private final String readme;
 
-    private Long following;
+    private final Long following;
 
-    private Long follower;
+    private final Long follower;
+
+    public getBlogProfileDTO(User user,Long following, Long follower) {
+        this.profileImg = user.getPicture();
+
+        this.nickName = user.getName();
+
+        this.readme = user.getReadme();
+
+        this.following = following;
+
+        this.follower = follower;
+    }
 }
