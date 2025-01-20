@@ -33,7 +33,7 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
-    @GetMapping("/dabblelog/{blogName}")
+    @GetMapping("/dabblelog/{BlogName}")
     public String blogMapping(Model model, HttpServletRequest
             request, @PathVariable String blogName) {
 
@@ -72,9 +72,9 @@ public class BlogController {
 
 
 
-    @GetMapping("/about")
+    @GetMapping("/dabblelog/{blogName}/about")
 
-    public String mappingAbout(Model model, HttpServletRequest request) {
+    public String mappingAbout(Model model, HttpServletRequest request,@PathVariable String blogName) {
 
         return "basic/about";
     }
