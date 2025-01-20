@@ -47,8 +47,22 @@ public class SearchController {
 
         HttpSession session = request.getSession(false);
 
-        model.addAttribute("myBlogURL", "/oauth2/authorization/google");
-        model.addAttribute("email", "dabblelog.com");
+        if(session != null ) {
+            SessionUser sessionuser = (SessionUser) session.getAttribute("user");
+            model.addAttribute("loginOrNot","새 글 작성하기");
+            model.addAttribute("path","/write");
+            model.addAttribute("email",sessionuser.getEmail());
+            model.addAttribute("myBlogURL", "/oauth2/authorization/google");
+
+        } else {
+            model.addAttribute("loginOrNot","구글 로그인");
+            model.addAttribute("path","/oauth2/authorization/google");
+            model.addAttribute("email", "dabblelog.com");
+            model.addAttribute("myBlogURL", "/oauth2/authorization/google");
+        }
+
+
+
         Page<getPostHomeDTO> postList = searchService.getPostHomeDTOS(request.getParameter("search"),pageable);
         model.addAttribute("list",postList);
         //페이지블럭 처리
@@ -61,18 +75,7 @@ public class SearchController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        //세션이 만약 없으면 홈으로 돌려보냄
 
-        if(session == null ) {
-            return "basic/home";
-        }
-
-        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
-
-
-        String email = sessionuser.getEmail();
-
-        model.addAttribute("email", email);
 
         return "/basic/SearchResult";
     }
