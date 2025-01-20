@@ -182,13 +182,14 @@
         </div>
 
         <div class="single-main" th:each="save:${savesList}">
+          <div th:if="${savesList.isEmpty()}">
+            <h3>임시로 저장된 글이 없습니다.</h3>
+          </div>
+
           <div>
             <div style="margin-bottom: 2rem">
               <a th:href = |/write/${saves.title}|>
-                <h4 style="font-weight: 550" th:text="${save.title}">
-                  제목
-                </h4></a
-              >
+              <h4 style="font-weight: 550" th:text="${save.title}">제목</h4>
             </div>
             <div class="saves_content" style="margin-bottom: 1rem">
               <h6 th:text="${save.preview}">미리보기</h6>
