@@ -221,6 +221,9 @@
     <section class="container" style="margin-top: 3rem">
       <div class="news-single" style="padding-top: 2rem">
         <div class="single-main" style="display: flex; flex-direction: row">
+          <div th:if="${list.isEmpty()}">
+            <h3>작성된 글이 없습니다.</h3>
+          </div>
           <div
             class="wrapper"
             style="width: 20rem; height: 13rem; margin-right: 2rem"
@@ -247,98 +250,22 @@
               "
             >
               <p>작성한 날</p>
-              <button
-                style="
-                  border: none;
-                  color: rgb(22, 21, 21);
-                  text-decoration: underline;
-                  background-color: transparent;
-                "
-              >
-                삭제
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="single-main" style="display: flex; flex-direction: row">
-          <div
-            class="wrapper"
-            style="width: 20rem; height: 13rem; margin-right: 2rem"
-          >
-            <a href="Post.html"
-              ><img src="../../static/img/rose-2101475_1280.jpg"
-            /></a>
-          </div>
-          <div class="texts">
-            <div style="margin-bottom: 2rem">
-              <a href="Post.html"
-                ><h4 style="font-weight: 550">작성한 글 제목</h4></a
-              >
-            </div>
-            <div class="saves_content" style="margin-bottom: 1rem">
-              <h6>한 줄 미리보기</h6>
-            </div>
-            <div
-              style="
-                margin-bottom: 1rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-              "
-            >
-              <p>작성한 날</p>
-              <button
-                style="
-                  border: none;
-                  color: rgb(22, 21, 21);
-                  text-decoration: underline;
-                  background-color: transparent;
-                "
-              >
-                삭제
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="single-main" style="display: flex; flex-direction: row">
-          <div
-            class="wrapper"
-            style="width: 20rem; height: 13rem; margin-right: 2rem"
-          >
-            <a href="Post.html"
-              ><img src="../../static/img/rose-2101475_1280.jpg"
-            /></a>
-          </div>
-          <div class="texts">
-            <div style="margin-bottom: 2rem">
-              <a href="Post.html"
-                ><h4 style="font-weight: 550">작성한 글 제목</h4></a
-              >
-            </div>
-            <div class="saves_content" style="margin-bottom: 1rem">
-              <h6>한 줄 미리보기</h6>
-            </div>
-            <div
-              style="
-                margin-bottom: 1rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-              "
-            >
-              <p>작성한 날</p>
-              <button
-                style="
-                  border: none;
-                  color: rgb(22, 21, 21);
-                  text-decoration: underline;
-                  background-color: transparent;
-                "
-              >
-                삭제
-              </button>
+              <p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="13"
+                  height="13"
+                  fill="currentColor"
+                  class="bi bi-heart-fill"
+                  viewBox="0 -2 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                  />
+                </svg>
+                0개
+              </p>
             </div>
           </div>
         </div>
