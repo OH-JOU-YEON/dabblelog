@@ -7,6 +7,7 @@ import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.SeriesDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
+import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.SeriesService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +34,9 @@ public class SeriesController {
 
     @Autowired
     BlogRepository blogRepository;
+
+    @Autowired
+    BlogService blogService;
 
 @PostMapping("/series")
     public String seriesCreate(Model model, HttpServletRequest request, @PageableDefault(page=0, size=6) Pageable pageable) {
@@ -93,7 +97,13 @@ public class SeriesController {
         //세션이 만약 없으면 홈으로 돌려보냄
 
         if(session == null ) {
-            return "basic/home";
+            model.addAttribute("email","dabblelog.com");
+            model.addAttribute("myBlogURL","/oauth2/authorization/google");
+        } else {
+            SessionUser sessionUser = (SessionUser) session.getAttribute("user");
+
+            model.addAttribute("email",sessionUser.getEmail());
+            model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
         }
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
