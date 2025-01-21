@@ -4,9 +4,9 @@ import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Series;
 import com.dabblelog.side.domain.dto.SeriesDTO;
+import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.repository.SeriesRepository;
-import com.dabblelog.side.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class SeriesService {
     SeriesRepository seriesRepository;
 
     @Autowired
-    UserRepository userRepository;
+    BlogRepository blogRepository;
 
     //새 시리즈 생성 로직
 
@@ -67,9 +67,11 @@ public class SeriesService {
         seriesRepository.delete(series);
     }
 
-    public Page<SeriesDTO> getSeries(String email, Pageable pageable) {
 
-         Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
+
+    public Page<SeriesDTO> getSeries(String blogName, Pageable pageable) {
+
+         Blog blog = blogRepository.findByBlogName(blogName).get();
 
         return seriesRepository.findAllByBlogId(blog, pageable).map(s -> new SeriesDTO(s,postRepository.countByBlogIdAndSeriesId(blog,s),getThumbnails(
                 s,blog

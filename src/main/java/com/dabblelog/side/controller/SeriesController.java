@@ -4,6 +4,7 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
+import com.dabblelog.side.domain.dto.BlogProfileDTO;
 import com.dabblelog.side.domain.dto.SeriesDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Objects;
+
 @RequiredArgsConstructor
 @Controller
 public class SeriesController {
@@ -39,7 +42,7 @@ public class SeriesController {
     BlogService blogService;
 
 @PostMapping("/series/create")
-    public String seriesCreate(Model model, HttpServletRequest request, @PageableDefault(page=0, size=6) Pageable pageable) {
+    public String seriesCreate(Model model, HttpServletRequest request) {
 
     //세션 유저에서 유저 가져와서 유저 아이디 알아내기
 
@@ -66,13 +69,13 @@ public class SeriesController {
     String email = sessionuser.getEmail();
 
 
-    Page<SeriesDTO> getSeriesDTOS = seriesService.getSeries(email,pageable);
+
 
 
 
     model.addAttribute("email", email);
 
-    model.addAttribute("seriesList",getSeriesDTOS);
+
 
 
 
@@ -85,44 +88,46 @@ public class SeriesController {
 
         HttpSession session = request.getSession(false);
 
-        //세션이 만약 없으면 홈으로 돌려보냄
+        Page<SeriesDTO> seriesDTOS = seriesService.getSeries(blogName,pageable);
+        model.addAttribute("seriesList",seriesDTOS);
+        model.addAttribute("thisBlog","/dabblelog/"+blogName);
+
+        //페이지블럭 처리
+        //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
+        int nowPage = seriesDTOS.getPageable().getPageNumber() + 1;
+        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
+        int startPage =  Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage+9, seriesDTOS.getTotalPages());
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        BlogProfileDTO blogProfileDTO = blogService.getBlogProfileDTO(blogName);
+
+        model.addAttribute("profile",blogProfileDTO);
+
+
 
         if(session == null ) {
             model.addAttribute("email","dabblelog.com");
             model.addAttribute("myBlogURL","/oauth2/authorization/google");
+
+
         } else {
             SessionUser sessionUser = (SessionUser) session.getAttribute("user");
 
             model.addAttribute("email",sessionUser.getEmail());
             model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
+
+            if(Objects.equals(blogRepository.findByBlogName(blogName).get().getId(), userRepository.findByEmail(sessionUser.getEmail()).get().getId())) {
+
+                return "basic/Series";
+            }
+
         }
-
-        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
-
-
-        String email = sessionuser.getEmail();
-
-        Page<SeriesDTO> getSeriesDTOS = seriesService.getSeries(email,pageable);
-
-        //페이지블럭 처리
-        //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
-        int nowPage = getSeriesDTOS.getPageable().getPageNumber() + 1;
-        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
-        int startPage =  Math.max(nowPage - 4, 1);
-        int endPage = Math.min(nowPage+9, getSeriesDTOS.getTotalPages());
-        model.addAttribute("nowPage",nowPage);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
+        return "basic/SeriesOther";
 
 
-        model.addAttribute("email", email);
-
-        model.addAttribute("seriesList",getSeriesDTOS);
-
-
-
-
-        return "basic/Series";
     }
 
 
