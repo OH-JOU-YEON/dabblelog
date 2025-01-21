@@ -313,14 +313,16 @@
           >
             <h5
               style="font-weight: 600"
-              th:text="series.title"
-              th:style="${color : series.color}"
+              th:text="${series.seriesTitle}"
+              th:style="|color : ${series.seriesColor}|"
             >
               시리즈 제목
             </h5>
 
             <div class="postCard"></div>
-            <p th:text="|${series.seriesPostCount}|">게시물 개수</p>
+            <p th:text="|${series.seriesPostCount} 개의 게시물| ">
+              게시물 개수
+            </p>
           </div>
         </li>
       </ul>

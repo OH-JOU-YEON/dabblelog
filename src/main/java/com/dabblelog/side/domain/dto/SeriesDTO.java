@@ -22,19 +22,23 @@ public class SeriesDTO {
 
     public SeriesDTO(Series series, Long seriesPostCount, String seriesRecentThumbnails) {
         this.seriesColor = series.getColor();
-        log.info("seriesDTO.seriesColor = {}", this.seriesColor);
 
         this.seriesTitle = series.getTitle();
 
-        log.info("seriesDTO.seriesTitle = {}", this.seriesTitle);
+        String temp = seriesRecentThumbnails;
 
-        this.seriesRecentThumbnails = seriesRecentThumbnails;
+        if(temp.isEmpty()) {
+            temp = "/img/pencil-square.svg";
+        }
 
-        log.info("seriesDTO.seriesThumbnails = {}", this.seriesRecentThumbnails);
+
+        this.seriesRecentThumbnails = temp;
+
 
         this.seriesPostCount = seriesPostCount;
 
-        log.info("seriesDTO.seriesPostCount = {}", this.seriesPostCount);
+
+
 
 
 
