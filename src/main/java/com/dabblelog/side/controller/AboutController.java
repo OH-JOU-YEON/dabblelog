@@ -44,7 +44,21 @@ public class AboutController {
 
     @GetMapping("/dabblelog/{blogName}/about")
     public String getAbout(Model model, HttpServletRequest request, @PathVariable String blogName) {
-        Blog blog = blogService.getBlogByName(blogName);
+        HttpSession session = request.getSession(false);
+
+
+        if(session == null) {
+
+            model.addAttribute("email","dabblelog.com");
+            model.addAttribute("myBlogURL","/oauth2/authorization/google");
+
+        } else {
+            SessionUser sessionUser = (SessionUser) session.getAttribute("user");
+
+            model.addAttribute("email",sessionUser.getEmail());
+            model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
+
+        }
 
 
         return "basic/About";
