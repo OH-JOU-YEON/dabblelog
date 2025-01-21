@@ -214,35 +214,38 @@
 
     <section class="container" style="margin-top: 3rem">
       <div class="news-single" style="padding-top: 2rem">
-        <div class="single-main" style="display: flex; flex-direction: row">
-          <div class="texts">
-            <div style="margin-bottom: 2rem">
-              <h4 style="font-weight: 550">소개글 한 줄 인사</h4>
-            </div>
-            <div class="saves_content" style="margin-bottom: 1rem">
-              <h6>소개글 내용</h6>
-            </div>
-            <div
+        <div class="single-main">
+          <div style="display: flex">
+            <button
               style="
-                margin-bottom: 1rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-              "
-            >
-              <button
-                style="
-                  border: none;
-                  color: rgb(255, 251, 251);
+                border: none;
+                color: rgb(255, 251, 251);
 
-                  background-color: rgb(140, 175, 164);
-                  padding: 0.2rem;
-                "
-              >
-                수정하기
-              </button>
-            </div>
+                background-color: rgb(140, 175, 164);
+                padding: 1rem;
+                margin-left: auto;
+                margin-bottom: 2rem;
+              "
+              onclick="modify()"
+            >
+              수정하기
+            </button>
           </div>
+          <div
+            class="saves_content"
+            style="margin-bottom: 1rem"
+            contenteditable="false"
+          >
+            <h6>소개글 내용</h6>
+          </div>
+          <div
+            style="
+              margin-bottom: 1rem;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+            "
+          ></div>
         </div>
       </div>
     </section>
@@ -252,7 +255,23 @@
     <!-- Single News -->
 
     <!--/ End Single News -->
-
+    <script>
+      function modify() {
+        if (
+          document
+            .querySelector(".saves_content")
+            .getAttribute(contenteditable) == "false"
+        ) {
+          document
+            .querySelector(".saves_content")
+            .setAttribute(contenteditable, "true");
+        } else {
+          document
+            .querySelector(".saves_content")
+            .setAttribute(contenteditable, "false");
+        }
+      }
+    </script>
     <!-- jquery Min JS -->
     <script src="/js/jquery.min.js"></script>
     <!-- jquery Migrate JS -->
