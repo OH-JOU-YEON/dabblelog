@@ -41,7 +41,7 @@ public class BlogController {
 
     @GetMapping("/dabblelog/{blogName}")
     public String blogMapping(Model model, HttpServletRequest
-            request, @PathVariable String blogName, @PageableDefault(page=0, size=9, sort="createdDay", direction= Sort.Direction.DESC) Pageable pageable) {
+            request, @PathVariable String blogName, @PageableDefault(page=0, size=6, sort="createdDay", direction= Sort.Direction.DESC) Pageable pageable) {
 
         HttpSession session = request.getSession(false);
 
@@ -65,6 +65,16 @@ public class BlogController {
         model.addAttribute("list",getBlogPostDTOS);
 
         model.addAttribute("profile",getBlogProfileDTO);
+
+        int nowPage = getBlogPostDTOS.getPageable().getPageNumber() + 1;
+        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
+        int startPage =  Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage+9, getBlogPostDTOS.getTotalPages());
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        model.addAttribute("thisBlog","/dabblelog/" + blogName + "/");
 
         return "basic/Posts";
     }

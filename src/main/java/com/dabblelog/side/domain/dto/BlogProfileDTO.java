@@ -17,8 +17,14 @@ public class BlogProfileDTO {
     private final Long follower;
 
     public BlogProfileDTO(User user, Long following, Long follower) {
-        this.profileImg = user.getPicture();
 
+       String profileImg1 = user.getPicture();
+
+        if(profileImg1.isEmpty()) {
+            profileImg1 = "/img/person-circle.svg";
+        }
+
+        this.profileImg = profileImg1;
         this.nickName = user.getName();
 
         this.readme = user.getReadme();
