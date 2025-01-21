@@ -74,7 +74,7 @@ public class BlogController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        model.addAttribute("thisBlog","/dabblelog/" + blogName + "/");
+        model.addAttribute("thisBlog","/dabblelog/" + blogName);
 
         return "basic/Posts";
     }
