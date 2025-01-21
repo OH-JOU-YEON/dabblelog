@@ -48,6 +48,13 @@ public class BlogService {
         }
     }
 
+    public String getBlogName(String email) {
+        User user = userRepository.findByEmail(email).get();
+        Blog blog = blogRepository.findById(user.getId()).get();
+
+        return blog.getBlogName();
+    }
+
     public Page<getBlogPostDTO> getBlogPostDTOS(String blogName, Pageable pageable){
 
         Blog blog = blogRepository.findByBlogName(blogName).get();
