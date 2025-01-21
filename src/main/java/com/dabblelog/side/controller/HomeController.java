@@ -2,7 +2,7 @@ package com.dabblelog.side.controller;
 
 
 import com.dabblelog.side.domain.Blog;
-import com.dabblelog.side.domain.dto.getPostHomeDTO;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.PostService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +34,7 @@ public class HomeController {
         model.addAttribute("email", "dabblelog.com");
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
 
-        Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
+        Page<PostHomeDTO> postList = postService.getPostPageable(pageable);
 
         //페이지블럭 처리
         //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
@@ -90,7 +90,7 @@ public class HomeController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
-        Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
+        Page<PostHomeDTO> postList = postService.getPostPageable(pageable);
         model.addAttribute("email", "dabblelog.com");
         model.addAttribute("list",postList);
         //페이지블럭 처리
@@ -137,7 +137,7 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
         model.addAttribute("email", "dabblelog.com");
-        Page<getPostHomeDTO> postList = postService.getPostPageable(pageable);
+        Page<PostHomeDTO> postList = postService.getPostPageable(pageable);
         model.addAttribute("list",postList);
         //페이지블럭 처리
         //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
@@ -197,7 +197,7 @@ public class HomeController {
             model.addAttribute("path", "/write");
             model.addAttribute("loginOrNot", "새 글 작성하기");
             model.addAttribute("email",email);
-            Page<getPostHomeDTO> postList = postService.getFeed(pageable, email);
+            Page<PostHomeDTO> postList = postService.getFeed(pageable, email);
             model.addAttribute("pageList",postList);
             //페이지블럭 처리
             //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.

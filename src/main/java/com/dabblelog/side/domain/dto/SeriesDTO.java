@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
-public class getSeriesDTO {
+public class SeriesDTO {
 
     private final String seriesTitle;
 
@@ -20,7 +20,7 @@ public class getSeriesDTO {
 
 
 
-    public getSeriesDTO(Series series, Long seriesPostCount,String seriesRecentThumbnails) {
+    public SeriesDTO(Series series, Long seriesPostCount, String seriesRecentThumbnails) {
         this.seriesColor = series.getColor();
         log.info("seriesDTO.seriesColor = {}", this.seriesColor);
 

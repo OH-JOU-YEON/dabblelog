@@ -10,7 +10,7 @@ import java.util.List;
 
 @Slf4j
 @Getter
-public class getPostHomeDTO {
+public class PostHomeDTO {
 
     private final String title;
 
@@ -31,7 +31,7 @@ public class getPostHomeDTO {
     private final String thumbnail;
 
 
-    public getPostHomeDTO(Post post, Long totalRepleCount) {
+    public PostHomeDTO(Post post, Long totalRepleCount) {
 
         this.title = post.getTitle();
 

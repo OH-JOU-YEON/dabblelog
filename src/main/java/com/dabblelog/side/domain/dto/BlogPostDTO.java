@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Getter
-public class getBlogPostDTO {
+public class BlogPostDTO {
 
     private final String postImg;
 
@@ -21,7 +21,7 @@ public class getBlogPostDTO {
     private final Long likeCount;
 
 
-    public getBlogPostDTO(Post post) {
+    public BlogPostDTO(Post post) {
 
         this.postImg = getThumbnails(post.getContent());
 

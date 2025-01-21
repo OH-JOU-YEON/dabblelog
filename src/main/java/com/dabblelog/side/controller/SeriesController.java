@@ -4,7 +4,7 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
-import com.dabblelog.side.domain.dto.getSeriesDTO;
+import com.dabblelog.side.domain.dto.SeriesDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.SeriesService;
@@ -62,7 +62,7 @@ public class SeriesController {
     String email = sessionuser.getEmail();
 
 
-    Page<getSeriesDTO> getSeriesDTOS = seriesService.getSeries(email,pageable);
+    Page<SeriesDTO> getSeriesDTOS = seriesService.getSeries(email,pageable);
 
     //페이지블럭 처리
     //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
@@ -101,7 +101,7 @@ public class SeriesController {
 
         String email = sessionuser.getEmail();
 
-        Page<getSeriesDTO> getSeriesDTOS = seriesService.getSeries(email,pageable);
+        Page<SeriesDTO> getSeriesDTOS = seriesService.getSeries(email,pageable);
 
         //페이지블럭 처리
         //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.

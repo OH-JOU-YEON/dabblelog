@@ -4,7 +4,7 @@ import com.dabblelog.side.domain.User;
 import lombok.Getter;
 
 @Getter
-public class getBlogProfileDTO {
+public class BlogProfileDTO {
 
     private final String profileImg;
 
@@ -16,7 +16,7 @@ public class getBlogProfileDTO {
 
     private final Long follower;
 
-    public getBlogProfileDTO(User user,Long following, Long follower) {
+    public BlogProfileDTO(User user, Long following, Long follower) {
         this.profileImg = user.getPicture();
 
         this.nickName = user.getName();

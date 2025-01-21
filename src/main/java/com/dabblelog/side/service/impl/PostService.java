@@ -2,7 +2,7 @@ package com.dabblelog.side.service.impl;
 
 
 import com.dabblelog.side.domain.*;
-import com.dabblelog.side.domain.dto.getPostHomeDTO;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -59,12 +59,12 @@ public class PostService {
 
 
 
-    public Page<getPostHomeDTO> getPostPageable(Pageable pageable) {
-        return postRepository.findAll(pageable).map(post -> new getPostHomeDTO(post,getTotalRepleCount(post)));
+    public Page<PostHomeDTO> getPostPageable(Pageable pageable) {
+        return postRepository.findAll(pageable).map(post -> new PostHomeDTO(post,getTotalRepleCount(post)));
     }
 
 
-    public Page<getPostHomeDTO> getFeed(Pageable pageable, String email) {
+    public Page<PostHomeDTO> getFeed(Pageable pageable, String email) {
 
         //일단 내가 팔로잉한 목록을 얻자
 
@@ -81,7 +81,7 @@ public class PostService {
         //시간순서로 나열한다
 
 
-        return postRepository.findAllByBlogIdIn(myFollowingUserBlog, pageable).map(post -> new getPostHomeDTO(post,getTotalRepleCount(post)));
+        return postRepository.findAllByBlogIdIn(myFollowingUserBlog, pageable).map(post -> new PostHomeDTO(post,getTotalRepleCount(post)));
 
 
     }

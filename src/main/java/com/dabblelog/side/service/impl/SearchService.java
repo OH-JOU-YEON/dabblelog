@@ -3,7 +3,7 @@ package com.dabblelog.side.service.impl;
 
 import com.dabblelog.side.domain.PostTag;
 import com.dabblelog.side.domain.TagMapping;
-import com.dabblelog.side.domain.dto.getPostHomeDTO;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.repository.PostTagRepository;
 import com.dabblelog.side.repository.RepleRepository;
 import com.dabblelog.side.repository.TagMappingRepository;
@@ -46,11 +46,11 @@ public class SearchService {
 
     }
 
-    public Page<getPostHomeDTO> getPostHomeDTOS(String keyword, Pageable pageable) {
+    public Page<PostHomeDTO> getPostHomeDTOS(String keyword, Pageable pageable) {
 
 
 
-        return getTagMappings(keyword,pageable).map(s->new getPostHomeDTO(s.getPostId(),repleRepository.countByPostId(s.getPostId())));
+        return getTagMappings(keyword,pageable).map(s->new PostHomeDTO(s.getPostId(),repleRepository.countByPostId(s.getPostId())));
     }
 
 

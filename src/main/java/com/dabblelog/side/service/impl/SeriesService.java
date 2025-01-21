@@ -3,7 +3,7 @@ package com.dabblelog.side.service.impl;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Series;
-import com.dabblelog.side.domain.dto.getSeriesDTO;
+import com.dabblelog.side.domain.dto.SeriesDTO;
 import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -67,11 +67,11 @@ public class SeriesService {
         seriesRepository.delete(series);
     }
 
-    public Page<getSeriesDTO> getSeries(String email, Pageable pageable) {
+    public Page<SeriesDTO> getSeries(String email, Pageable pageable) {
 
          Blog blog = blogService.ifBlogIsNotExistCreateBlog(email);
 
-        return seriesRepository.findAllByBlogId(blog, pageable).map(s -> new getSeriesDTO(s,postRepository.countByBlogIdAndSeriesId(blog,s),getThumbnails(
+        return seriesRepository.findAllByBlogId(blog, pageable).map(s -> new SeriesDTO(s,postRepository.countByBlogIdAndSeriesId(blog,s),getThumbnails(
                 s,blog
         )));
 

@@ -2,7 +2,7 @@ package com.dabblelog.side.controller;
 
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
-import com.dabblelog.side.domain.dto.getPostHomeDTO;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.service.impl.SearchService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -63,7 +63,7 @@ public class SearchController {
 
 
 
-        Page<getPostHomeDTO> postList = searchService.getPostHomeDTOS(request.getParameter("search"),pageable);
+        Page<PostHomeDTO> postList = searchService.getPostHomeDTOS(request.getParameter("search"),pageable);
         model.addAttribute("list",postList);
         //페이지블럭 처리
         //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.

@@ -4,8 +4,8 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
-import com.dabblelog.side.domain.dto.getBlogPostDTO;
-import com.dabblelog.side.domain.dto.getBlogProfileDTO;
+import com.dabblelog.side.domain.dto.BlogPostDTO;
+import com.dabblelog.side.domain.dto.BlogProfileDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.BlogService;
@@ -59,8 +59,8 @@ public class BlogController {
 
         }
 
-        Page<getBlogPostDTO> getBlogPostDTOS = blogService.getBlogPostDTOS(blogName,pageable);
-        getBlogProfileDTO getBlogProfileDTO = blogService.getBlogProfileDTO(blogName);
+        Page<BlogPostDTO> getBlogPostDTOS = blogService.getBlogPostDTOS(blogName,pageable);
+        BlogProfileDTO getBlogProfileDTO = blogService.getBlogProfileDTO(blogName);
 
         model.addAttribute("list",getBlogPostDTOS);
 

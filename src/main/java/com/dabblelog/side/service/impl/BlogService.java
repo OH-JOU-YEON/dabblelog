@@ -3,8 +3,8 @@ package com.dabblelog.side.service.impl;
 
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
-import com.dabblelog.side.domain.dto.getBlogPostDTO;
-import com.dabblelog.side.domain.dto.getBlogProfileDTO;
+import com.dabblelog.side.domain.dto.BlogPostDTO;
+import com.dabblelog.side.domain.dto.BlogProfileDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.FollowerRepository;
 import com.dabblelog.side.repository.PostRepository;
@@ -55,18 +55,18 @@ public class BlogService {
         return blog.getBlogName();
     }
 
-    public Page<getBlogPostDTO> getBlogPostDTOS(String blogName, Pageable pageable){
+    public Page<BlogPostDTO> getBlogPostDTOS(String blogName, Pageable pageable){
 
         Blog blog = blogRepository.findByBlogName(blogName).get();
-        return postRepository.findAllByBlogId(blog,pageable).map(getBlogPostDTO::new);
+        return postRepository.findAllByBlogId(blog,pageable).map(BlogPostDTO::new);
     }
 
-    public getBlogProfileDTO getBlogProfileDTO(String blogName) {
+    public BlogProfileDTO getBlogProfileDTO(String blogName) {
         Blog blog = blogRepository.findByBlogName(blogName).get();
 
         User blogUser = blog.getUser();
 
-        return new getBlogProfileDTO(blogUser,followerRepository.countByFollowingId(blogUser),followerRepository.countByFollowedId(blogUser));
+        return new BlogProfileDTO(blogUser,followerRepository.countByFollowingId(blogUser),followerRepository.countByFollowedId(blogUser));
 
     }
 }
