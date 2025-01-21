@@ -21,11 +21,17 @@ public class About {
 
     private Blog blogId;
 
-    public About(AboutDTO aboutDTO,Blog blogId) {
 
-        this.content = aboutDTO.getContent();
+
+    public About(Blog blogId) {
 
         this.blogId = blogId;
+    }
 
+    public About(Blog blog, AboutDTO aboutDTO) {
+
+        this.blogId = blog;
+
+        this.content = aboutDTO.getContent();
     }
 }
