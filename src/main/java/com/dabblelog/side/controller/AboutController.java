@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,7 +29,7 @@ public class AboutController {
     AboutService aboutService;
 
     @PostMapping("/about/create")
-    public void getAbout(HttpServletRequest request, Model model, @RequestBody AboutDTO aboutDTO) {
+    public void createAbout(HttpServletRequest request, @RequestBody AboutDTO aboutDTO) {
 
         HttpSession session = request.getSession(false);
 
@@ -38,5 +40,13 @@ public class AboutController {
         About about = aboutService.getAboutByBlog(blog,aboutDTO);
 
 
+    }
+
+    @GetMapping("/dabblelog/{blogName}/about")
+    public String getAbout(Model model, HttpServletRequest request, @PathVariable String blogName) {
+        Blog blog = blogService.getBlogByName(blogName);
+
+
+        return "basic/About";
     }
 }

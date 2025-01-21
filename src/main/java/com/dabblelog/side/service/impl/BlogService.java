@@ -56,6 +56,10 @@ public class BlogService {
         return blog.getBlogName();
     }
 
+    public Blog getBlogByName(String blogName) {
+        return blogRepository.findByBlogName(blogName).get();
+    }
+
     public Page<BlogPostDTO> getBlogPostDTOS(String blogName, Pageable pageable){
 
         Blog blog = blogRepository.findByBlogName(blogName).get();
