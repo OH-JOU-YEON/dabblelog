@@ -2,6 +2,7 @@ package com.dabblelog.side.controller;
 
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
+import com.dabblelog.side.domain.dto.LikedDTO;
 import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.FavoriteService;
@@ -15,6 +16,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -55,5 +58,12 @@ public class LikedController {
 
 
         return "basic/Liked";
+    }
+
+    @PostMapping("/liked/modiCount")
+    public void modifyLikeCount(@RequestBody LikedDTO likedDTO) {
+
+        //포스트 얻어와서, 저 dto만큼 좋아요 총계 수정하고 재저장하기
+
     }
 }
