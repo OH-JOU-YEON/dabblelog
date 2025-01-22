@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @Getter
 @Entity
@@ -23,7 +25,13 @@ public class Reple {
     @ManyToOne
     private Reple rootReple;
 
+    @ManyToOne
+    private User replyUser;
 
+    private LocalDateTime createdDay;
+
+
+    @Column(length = 50000)
     String content;
 
 }
