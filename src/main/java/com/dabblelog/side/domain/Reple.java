@@ -26,7 +26,7 @@ public class Reple {
     private Reple rootReple;
 
     @ManyToOne
-    private User replyUser;
+    private User author;
 
     private LocalDateTime createdDay;
 
