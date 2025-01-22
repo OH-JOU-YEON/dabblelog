@@ -5,10 +5,14 @@ import com.dabblelog.side.domain.Reple;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RepleRepository extends JpaRepository<Reple,Long> {
 
     Long countByPostId(Post postId);
+
+    List<Reple> findAllByPostId(Post post);
 
 
 }
