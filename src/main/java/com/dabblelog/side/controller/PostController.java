@@ -7,6 +7,7 @@ import com.dabblelog.side.domain.dto.PostDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.repository.UserRepository;
+import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.PostService;
 import com.dabblelog.side.service.impl.PostTagService;
 import com.dabblelog.side.service.impl.TagMappingService;
@@ -44,9 +45,31 @@ public class PostController {
     @Autowired
     TagMappingService tagMappingService;
 
+    @Autowired
+    BlogService blogService;
+
+
     //개별 페이지 관련 로직들
     @GetMapping("/dabblelog/{blogName}/{title}")
     public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String title) {
+
+        HttpSession session = request.getSession(false);
+
+        if(session == null) {
+
+            model.addAttribute("email","dabblelog.com");
+            model.addAttribute("myBlogURL","/");
+
+        } else {
+
+            SessionUser sessionUser = (SessionUser) session.getAttribute("user");
+            String userBlog = blogService.getBlogName(sessionUser.getEmail());
+            model.addAttribute("email",sessionUser.getEmail());
+            model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
+
+        }
+
+
 
 
 
