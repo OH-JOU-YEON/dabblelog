@@ -5,6 +5,7 @@ import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.About;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.dto.AboutDTO;
+import com.dabblelog.side.domain.dto.BlogProfileDTO;
 import com.dabblelog.side.service.impl.AboutService;
 import com.dabblelog.side.service.impl.BlogService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -58,7 +59,38 @@ public class AboutController {
             model.addAttribute("email",sessionUser.getEmail());
             model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
 
+            //세션 블로그하고 url하고 일치하는지 알아본 후에 맞으면 수정하기 버튼 속성 block 아니면 none
+
+            if(blogService.getBlogByName(blogName).getUser().getEmail().equals(sessionUser.getEmail())) {
+
+                model.addAttribute("ifMyAbout","block");
+            } else {
+                model.addAttribute("ifMyAbout","none");
+            }
+
         }
+
+        BlogProfileDTO blogProfileDTO = blogService.getBlogProfileDTO(blogName);
+
+
+        model.addAttribute("profile",blogProfileDTO);
+
+        if(aboutService.isAboutExist(blogName)) {
+
+            About about = aboutService.getAboutByBlogName(blogName);
+            AboutDTO aboutDTO = new AboutDTO(about);
+
+            model.addAttribute("about",aboutDTO);
+
+        } else {
+
+            AboutDTO aboutDTO = new AboutDTO("소개말이 없습니다");
+
+            model.addAttribute("about",aboutDTO);
+
+        }
+
+
 
 
         return "basic/About";

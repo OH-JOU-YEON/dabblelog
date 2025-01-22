@@ -5,6 +5,7 @@ import com.dabblelog.side.domain.About;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.dto.AboutDTO;
 import com.dabblelog.side.repository.AboutRepository;
+import com.dabblelog.side.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class AboutService {
 
     @Autowired
     AboutRepository aboutRepository;
+
+    @Autowired
+    BlogRepository blogRepository;
 
     public About getAboutByBlog(Blog blog, AboutDTO aboutDTO) {
         if(aboutRepository.findByBlogId(blog).isPresent()) {
@@ -27,6 +31,20 @@ public class AboutService {
 
         }
 
+    }
+
+    public boolean isAboutExist(String blogName) {
+
+        Blog blog = blogRepository.findByBlogName(blogName).get();
+
+        return aboutRepository.findByBlogId(blog).isPresent();
+    }
+
+    public About getAboutByBlogName(String blogName) {
+
+        Blog blog = blogRepository.findByBlogName(blogName).get();
+
+        return aboutRepository.findByBlogId(blog).get();
     }
 
 }
