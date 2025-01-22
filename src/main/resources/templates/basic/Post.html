@@ -215,7 +215,7 @@
                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
                     />
                   </svg>
-                  좋아요 0개
+                  <span id="count">0</span>
                 </h2>
                 <!-- Contact Form -->
                 <form class="form" method="post" action="#">
@@ -361,8 +361,39 @@
       function turnRed() {
         if (document.querySelector("#like").getAttribute("fill") == "grey") {
           document.querySelector("#like").setAttribute("fill", "red");
+          document.querySelector("#count").innerText =
+            parseInt(document.querySelector("#count").innerText) + 1;
         } else {
           document.querySelector("#like").setAttribute("fill", "grey");
+          document.querySelector("#count").innerText =
+            parseInt(document.querySelector("#count").innerText) - 1;
+        }
+
+        like();
+      }
+
+      function like() {
+        const url = "/like/modiCount";
+
+        const params = {
+          likeCount: document.querySelector("#count").innerText,
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
         }
       }
     </script>
