@@ -217,7 +217,7 @@
         <div class="single-main">
           <div style="display: flex">
             <button
-              style="
+              th:style="|
                 border: none;
                 color: rgb(255, 251, 251);
 
@@ -225,6 +225,7 @@
                 padding: 1rem;
                 margin-left: auto;
                 margin-bottom: 2rem;
+                display: ${ifMyAbout}|
               "
               onclick="modify()"
             >

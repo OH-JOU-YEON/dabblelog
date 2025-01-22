@@ -4,6 +4,7 @@ import com.dabblelog.side.domain.dto.AboutDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,7 @@ public class About {
     @Column(length = 50000)
     private String content;
 
+    @ManyToOne
     private Blog blogId;
 
 

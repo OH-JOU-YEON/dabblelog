@@ -81,13 +81,7 @@ public class BlogController {
 
 
 
-    @GetMapping("/dabblelog/{blogName}/about")
 
-    public String mappingAbout(Model model, HttpServletRequest request,@PathVariable String blogName) {
-
-        return "basic/about";
-    }
-        //레포지토리에 유저를 가진 블로그가 있는지 검색 없으면 생성
 
     Blog updateBlog(String email) {
         User user = userRepository.findByEmail(email).get();
