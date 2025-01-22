@@ -52,7 +52,14 @@ public class PostService {
         return postRepository.save(new Post(blog,title,series,temp, content));
     }
 
-    //포스트 수정
+
+
+    public Post getPostByBlogNameAndTitle(String blogName,String postTitle) {
+
+        Blog blog = blogRepository.findByBlogName(blogName).get();
+
+        return postRepository.findByBlogIdAndTitle(blog,postTitle);
+    }
 
 
 

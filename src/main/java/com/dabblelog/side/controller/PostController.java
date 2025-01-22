@@ -4,7 +4,9 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.*;
 import com.dabblelog.side.domain.dto.PostDTO;
+import com.dabblelog.side.domain.dto.PostViewDTO;
 import com.dabblelog.side.repository.BlogRepository;
+import com.dabblelog.side.repository.RepleRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.BlogService;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -48,6 +52,9 @@ public class PostController {
     @Autowired
     BlogService blogService;
 
+    @Autowired
+    RepleRepository repleRepository;
+
 
     //개별 페이지 관련 로직들
     @GetMapping("/dabblelog/{blogName}/{title}")
@@ -68,6 +75,12 @@ public class PostController {
             model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
 
         }
+
+        List<String> tagsTitle = tagMappingService.getTagTitle(blogName,title);
+
+        Post post = postService.getPostByBlogNameAndTitle(blogName,title);
+
+        PostViewDTO postViewDTO = new PostViewDTO(post,tagsTitle,postService.getTotalRepleCount(post));
 
 
 
