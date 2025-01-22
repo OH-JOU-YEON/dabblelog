@@ -14,27 +14,8 @@ public class SettingController {
         return "/basic/Setting";
     }
 
-    //좋아요 호출 메서드
-    @GetMapping("/liked")
-    public String mappingLiked(Model model) {
-
-        return "/basic/Liked";
-    }
-
-    //임시 저장 글 호출 메서드
-    @GetMapping("/saved")
-    public String mappingSaved(Model model) {
-
-        return "/basic/Saves";
-    }
 
 
-    //최근에 읽은 포스트 호출 메서드
-    @GetMapping("/recentRead")
-    public String mappingRecentRead(Model model) {
-
-        return "/basic/RecentRead";
-    }
 
 
 

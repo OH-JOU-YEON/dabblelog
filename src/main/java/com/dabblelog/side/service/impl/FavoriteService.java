@@ -1,12 +1,16 @@
 package com.dabblelog.side.service.impl;
 
 
+import com.dabblelog.side.domain.User;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.repository.FavoriteRepository;
-import com.dabblelog.side.repository.PostRepository;
+import com.dabblelog.side.repository.RepleRepository;
 import com.dabblelog.side.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,14 +22,18 @@ public class FavoriteService {
     UserRepository userRepository;
 
     @Autowired
-    PostRepository postRepository;
-
-    @Autowired
     FavoriteRepository favoriteRepository;
 
-    //똑같이 좋아요 누르면 하트 빨간색으로 바뀌고 세션 유저하고 포스트 이름? 받아와서 매핑함
+    @Autowired
+    RepleRepository repleRepository;
 
-    //이거는 dto 만들어서 던져야될듯 ㅇㅋ
+    public Page<PostHomeDTO> getLikedPages(String email, Pageable pageable) {
+
+        User user = userRepository.findByEmail(email).get();
+
+        return favoriteRepository.findAllByUserId(user,pageable).map(s -> new PostHomeDTO(s.getPostId(),repleRepository.countByPostId(s.getPostId())));
+
+    }
 
 
 }
