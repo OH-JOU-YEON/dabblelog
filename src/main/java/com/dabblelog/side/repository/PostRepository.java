@@ -26,7 +26,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Long countByBlogIdAndSeriesId(Blog blogId,Series series);
 
-    Post findTop1ByBlogIdAndSeriesIdOrderByCreatedDayDesc(Blog blogId, Series seriesId);
+    Post findByBlogIdAndTitle(Blog blogId,String title);
 
 
 

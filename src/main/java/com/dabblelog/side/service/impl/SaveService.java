@@ -42,8 +42,8 @@ public class SaveService {
 
     }
 
-    public SavesDetailsDTO getSavesDetails(String saveTitle) {
+    public SavesDetailsDTO getSavesDetails(String saveTitle,Blog blog) {
 
-      return new SavesDetailsDTO(postRepository.findByTitle(saveTitle), postTagService.getTags(postRepository.findByTitle(saveTitle)));
+      return new SavesDetailsDTO(postRepository.findByBlogIdAndTitle(blog,saveTitle), postTagService.getTags(postRepository.findByTitle(saveTitle)));
     }
 }

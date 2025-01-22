@@ -29,10 +29,10 @@ public class WriteController {
     @Autowired
     SaveService saveService;
 
-
-
     @Autowired
     BlogService blogService;
+
+
 
     @GetMapping("/write")
     public String writeMapping(Model model, HttpServletRequest request) {
@@ -71,8 +71,17 @@ public class WriteController {
     @GetMapping("/write/{saveTitle}")
     public String writeTempMapping(Model model, HttpServletRequest request, @PathVariable String saveTitle) {
 
+        HttpSession httpSession = request.getSession(false);
 
-        SavesDetailsDTO savesDetailsDTO = saveService.getSavesDetails(saveTitle);
+        if(httpSession == null) {
+
+            return "redirect:/";
+        }
+
+        SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
+
+
+        SavesDetailsDTO savesDetailsDTO = saveService.getSavesDetails(saveTitle,blogService.ifBlogIsNotExistCreateBlog(sessionUser.getEmail()));
 
         model.addAttribute("saveDetails",savesDetailsDTO);
 
