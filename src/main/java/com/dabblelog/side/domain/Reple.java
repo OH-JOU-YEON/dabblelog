@@ -34,4 +34,42 @@ public class Reple {
     @Column(length = 50000)
     String content;
 
+
+    public Reple(Post postId,User author,LocalDateTime localDateTime,String content) {
+
+        this.author = author;
+
+        this.postId = postId;
+
+        this.createdDay = localDateTime;
+
+        this.rootReple = this;
+
+        this.content = content;
+    }
+
+    public Reple(Post postId,User author,Reple parentReple,LocalDateTime localDateTime,String content) {
+
+        this.postId = postId;
+
+        this.author = author;
+
+       this.parentReple = parentReple;
+
+        Reple root = this.getParentReple();
+
+        while(root != null) {
+            root = root.getParentReple();
+
+        }
+
+        this.rootReple = root;
+
+        this.createdDay = localDateTime;
+
+        this.content = content;
+
+
+    }
+
 }
