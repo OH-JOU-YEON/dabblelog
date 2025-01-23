@@ -174,13 +174,15 @@
                 <div class="single-main">
                   <!-- News Title -->
                   <h1 class="news-title">
-                    <a href="news-single.html">제목</a>
+                    <a href="news-single.html" th:text="${profile.title}"
+                      >제목</a
+                    >
                   </h1>
                   <!-- Meta -->
                   <div class="meta">
                     <div class="meta-left">
                       <span class="author">
-                        <a href="#">주연</a>
+                        <a href="#" th:text="${profile.author}">주연</a>
                       </span>
                     </div>
                     <div class="meta-right">
@@ -195,7 +197,10 @@
             </div>
             <div class="col-12-7">
               <div class="comments-form">
-                <h2 style="display: inline-block; margin-right: 1rem">
+                <h2
+                  style="display: inline-block; margin-right: 1rem"
+                  th:text="|${profile.repleCount}개의 댓글|"
+                >
                   0개의 댓글
                 </h2>
                 <h2 style="display: inline-block">
@@ -215,7 +220,7 @@
                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
                     />
                   </svg>
-                  <span id="count">0</span>
+                  <span id="count" th:text="${profile.likeCount}">0</span>
                 </h2>
                 <!-- Contact Form -->
                 <form class="form" method="post" action="#">
@@ -244,83 +249,65 @@
               <div class="blog-comments">
                 <h2>All Comments</h2>
                 <div class="comments-body">
-                  <!-- Single Comments -->
-                  <div class="single-comments">
-                    <div class="main">
-                      <div class="head">
-                        <img src="img/author1.jpg" alt="#" />
-                      </div>
-                      <div class="body">
-                        <h4>Afsana Mimi</h4>
-                        <div class="comment-meta">
-                          <span class="meta"
-                            ><i class="fa fa-calendar"></i>March 05, 2019</span
-                          ><span class="meta"
-                            ><i class="fa fa-clock-o"></i>03:38 AM</span
-                          >
+                  <div th:each="reple : ${reples}">
+                    <!-- Single Comments -->
+                    <div class="single-comments">
+                      <div class="main">
+                        <div class="head">
+                          <img th:src="reple.authorProfile" alt="#" />
                         </div>
-                        <p>
-                          Lorem Ipsum available, but the majority have suffered
-                          alteration in some form, by injected humour, or
-                          randomised words Mirum est notare quam littera
-                          gothica, quam nunc putamus parum claram, anteposuerit
-                          litterarum formas
-                        </p>
-                        <a href="#"><i class="fa fa-reply"></i>replay</a>
+                        <div class="body">
+                          <h4 th:text="${reple.authorName}">Afsana Mimi</h4>
+                          <div class="comment-meta">
+                            <span class="meta" th:text="${reple.yearAndMonth}"
+                              ><i class="fa fa-calendar"></i>March 05,
+                              2019</span
+                            ><span class="meta" th:text="${reple.timeAndMinute}"
+                              ><i class="fa fa-clock-o"></i>03:38 AM</span
+                            >
+                          </div>
+                          <p th:text="${reple.content}">
+                            Lorem Ipsum available, but the majority have
+                            suffered alteration in some form, by injected
+                            humour, or randomised words Mirum est notare quam
+                            littera gothica, quam nunc putamus parum claram,
+                            anteposuerit litterarum formas
+                          </p>
+                          <a href="#"><i class="fa fa-reply"></i>replay</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <!--/ End Single Comments -->
-                  <!-- Single Comments -->
-                  <div class="single-comments left">
-                    <div class="main">
-                      <div class="head">
-                        <img src="img/author2.jpg" alt="#" />
-                      </div>
-                      <div class="body">
-                        <h4>Naimur Rahman</h4>
-                        <div class="comment-meta">
-                          <span class="meta"
-                            ><i class="fa fa-calendar"></i>March 05, 2019</span
-                          ><span class="meta"
-                            ><i class="fa fa-clock-o"></i>03:38 AM</span
-                          >
+                    <!--/ End Single Comments -->
+                    <!-- Single Comments -->
+                    <div
+                      class="single-comments left"
+                      th:each="rereple : ${reple.reRepleDTOS}"
+                    >
+                      <div class="main">
+                        <div class="head">
+                          <img src="img/author2.jpg" alt="#" />
                         </div>
-                        <p>
-                          Lorem Ipsum available, but the majority have suffered
-                          alteration in some form, by injected humour, or
-                          randomised words Mirum est notare quam littera
-                          gothica, quam nunc putamus parum claram, anteposuerit
-                          litterarum formas
-                        </p>
-                        <a href="#"><i class="fa fa-reply"></i>replay</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!--/ End Single Comments -->
-                  <!-- Single Comments -->
-                  <div class="single-comments">
-                    <div class="main">
-                      <div class="head">
-                        <img src="img/author3.jpg" alt="#" />
-                      </div>
-                      <div class="body">
-                        <h4>Suriya Molharta</h4>
-                        <div class="comment-meta">
-                          <span class="meta"
-                            ><i class="fa fa-calendar"></i>March 05, 2019</span
-                          ><span class="meta"
-                            ><i class="fa fa-clock-o"></i>03:38 AM</span
-                          >
+                        <div class="body">
+                          <h4>Naimur Rahman</h4>
+                          <div class="comment-meta">
+                            <span class="meta" th:text="${rereple.yearAndMonth}"
+                              ><i class="fa fa-calendar"></i>March 05,
+                              2019</span
+                            ><span
+                              class="meta"
+                              th:text="${rereple.timeAndMinute}"
+                              ><i class="fa fa-clock-o"></i>03:38 AM</span
+                            >
+                          </div>
+                          <p th:text="${rereple.content}">
+                            Lorem Ipsum available, but the majority have
+                            suffered alteration in some form, by injected
+                            humour, or randomised words Mirum est notare quam
+                            littera gothica, quam nunc putamus parum claram,
+                            anteposuerit litterarum formas
+                          </p>
+                          <a href="#"><i class="fa fa-reply"></i>replay</a>
                         </div>
-                        <p>
-                          Lorem Ipsum available, but the majority have suffered
-                          alteration in some form, by injected humour, or
-                          randomised words Mirum est notare quam littera
-                          gothica, quam nunc putamus parum claram, anteposuerit
-                          litterarum formas
-                        </p>
-                        <a href="#"><i class="fa fa-reply"></i>replay</a>
                       </div>
                     </div>
                   </div>
@@ -352,7 +339,9 @@
     </section>
 
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
-    <script>
+    <script th:inline="javascript">
+
+      const content = [[${profile.content}]];
       const viewer = new toastui.Editor({
         el: document.querySelector("#viewer"),
         initialValue: content,
