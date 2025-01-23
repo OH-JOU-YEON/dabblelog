@@ -5,14 +5,11 @@ import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.*;
 import com.dabblelog.side.domain.dto.PostDTO;
 import com.dabblelog.side.domain.dto.PostViewDTO;
+import com.dabblelog.side.domain.dto.RepleDTO;
 import com.dabblelog.side.repository.BlogRepository;
-import com.dabblelog.side.repository.RepleRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.repository.UserRepository;
-import com.dabblelog.side.service.impl.BlogService;
-import com.dabblelog.side.service.impl.PostService;
-import com.dabblelog.side.service.impl.PostTagService;
-import com.dabblelog.side.service.impl.TagMappingService;
+import com.dabblelog.side.service.impl.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -53,7 +50,7 @@ public class PostController {
     BlogService blogService;
 
     @Autowired
-    RepleRepository repleRepository;
+    RepleService repleService;
 
 
     //개별 페이지 관련 로직들
@@ -82,8 +79,11 @@ public class PostController {
 
         PostViewDTO postViewDTO = new PostViewDTO(post,tagsTitle,postService.getTotalRepleCount(post));
 
+        List<RepleDTO> repleDTOS = repleService.getReples(post);
 
+        model.addAttribute("profile",postViewDTO);
 
+        model.addAttribute("reples",repleDTOS);
 
 
 

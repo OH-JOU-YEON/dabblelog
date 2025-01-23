@@ -35,6 +35,8 @@ public class Reple {
     String content;
 
 
+    //댓글 생성자
+
     public Reple(Post postId,User author,LocalDateTime localDateTime,String content) {
 
         this.author = author;
@@ -48,6 +50,8 @@ public class Reple {
         this.content = content;
     }
 
+    //답글 생성자
+
     public Reple(Post postId,User author,Reple parentReple,LocalDateTime localDateTime,String content) {
 
         this.postId = postId;
@@ -56,14 +60,7 @@ public class Reple {
 
        this.parentReple = parentReple;
 
-        Reple root = this.getParentReple();
-
-        while(root != null) {
-            root = root.getParentReple();
-
-        }
-
-        this.rootReple = root;
+        this.rootReple = parentReple.getRootReple();
 
         this.createdDay = localDateTime;
 
