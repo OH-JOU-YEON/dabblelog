@@ -232,7 +232,7 @@
                           id="repleCreate"
                           name="message"
                           rows="7"
-                          placeholder="Type Your Message Here"
+                          placeholder="댓글을 입력해주세요."
                         >
                         </textarea>
                       </div>
@@ -278,7 +278,7 @@
                             littera gothica, quam nunc putamus parum claram,
                             anteposuerit litterarum formas
                           </p>
-                          <a href="#repleCreate"
+                          <a href="#repleCreate" onclick="getUser()"
                             ><i class="fa fa-reply"></i>replay</a
                           >
                         </div>
@@ -293,8 +293,8 @@
                       <div class="main">
                         <div class="head">
                           <img
-                            src="${reReple.authorProfile}"
-                            alt="${reReple.authorBlog}"
+                            th:src="${reReple.authorProfile}"
+                            th:href="${reReple.authorBlog}"
                           />
                         </div>
                         <div class="body">
@@ -316,7 +316,7 @@
                             littera gothica, quam nunc putamus parum claram,
                             anteposuerit litterarum formas
                           </p>
-                          <a href="#repleCreate"
+                          <a href="#repleCreate" onclick="getUser()"
                             ><i class="fa fa-reply"></i>replay</a
                           >
                         </div>
@@ -352,8 +352,13 @@
 
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
     <script th:inline="javascript">
+      let target;
 
-      const content = [[${profile.content}]];
+      function getUser() {
+        console.log(target);
+      }
+
+      const content = [["${profile.content}"]];
       const viewer = new toastui.Editor({
         el: document.querySelector("#viewer"),
         initialValue: content,
