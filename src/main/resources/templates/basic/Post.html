@@ -223,16 +223,18 @@
                   <span id="count" th:text="${profile.likeCount}">0</span>
                 </h2>
                 <!-- Contact Form -->
-                <form class="form" method="post" action="#">
+                <form class="form" method="post" action="/reple/create">
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group message">
                         <i class="fa fa-pencil"></i>
                         <textarea
+                          id="repleCreate"
                           name="message"
                           rows="7"
                           placeholder="Type Your Message Here"
-                        ></textarea>
+                        >
+                        </textarea>
                       </div>
                     </div>
                     <div class="col-12">
@@ -273,7 +275,9 @@
                             littera gothica, quam nunc putamus parum claram,
                             anteposuerit litterarum formas
                           </p>
-                          <a href="#"><i class="fa fa-reply"></i>replay</a>
+                          <a href="#repleCreate"
+                            ><i class="fa fa-reply"></i>replay</a
+                          >
                         </div>
                       </div>
                     </div>
@@ -306,7 +310,9 @@
                             littera gothica, quam nunc putamus parum claram,
                             anteposuerit litterarum formas
                           </p>
-                          <a href="#"><i class="fa fa-reply"></i>replay</a>
+                          <a href="#repleCreate"
+                            ><i class="fa fa-reply"></i>replay</a
+                          >
                         </div>
                       </div>
                     </div>

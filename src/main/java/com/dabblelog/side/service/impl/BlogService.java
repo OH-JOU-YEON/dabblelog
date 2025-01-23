@@ -2,6 +2,7 @@ package com.dabblelog.side.service.impl;
 
 
 import com.dabblelog.side.domain.Blog;
+import com.dabblelog.side.domain.Reple;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.BlogPostDTO;
 import com.dabblelog.side.domain.dto.BlogProfileDTO;
@@ -73,5 +74,9 @@ public class BlogService {
 
         return new BlogProfileDTO(blogUser,followerRepository.countByFollowingId(blogUser),followerRepository.countByFollowedId(blogUser));
 
+    }
+
+    public Blog getRepleAuthor(Reple reple) {
+        return blogRepository.findById(reple.getAuthor().getId()).get();
     }
 }

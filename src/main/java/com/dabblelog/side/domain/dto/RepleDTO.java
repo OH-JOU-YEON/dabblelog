@@ -21,7 +21,9 @@ public class RepleDTO {
 
     private final List<ReRepleDTO> reRepleDTOS;
 
-    public RepleDTO(Reple reple,List<ReRepleDTO> reRepleDTOS) {
+    private String authorBlog;
+
+    public RepleDTO(Reple reple,List<ReRepleDTO> reRepleDTOS,String authorBlog) {
 
         this.authorName = reple.getAuthor().getName();
 
@@ -34,6 +36,8 @@ public class RepleDTO {
         this.content = reple.getContent();
 
         this.reRepleDTOS = reRepleDTOS;
+
+        this.authorBlog = authorBlog;
     }
 
 

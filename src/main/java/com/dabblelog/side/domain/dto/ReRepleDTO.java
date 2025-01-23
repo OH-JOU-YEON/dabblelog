@@ -18,7 +18,9 @@ public class ReRepleDTO {
 
     private final String content;
 
-    public ReRepleDTO(Reple reple){
+    private final String authorBlog;
+
+    public ReRepleDTO(Reple reple,String authorBlog){
 
         this.authorName = reple.getAuthor().getName();
 
@@ -29,6 +31,8 @@ public class ReRepleDTO {
         this.timeAndMinute = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("dd-h-mm"));
 
         this.content = reple.getContent();
+
+        this.authorBlog = authorBlog;
 
     }
 }
