@@ -256,7 +256,10 @@
                     <div class="single-comments">
                       <div class="main">
                         <div class="head">
-                          <img th:src="reple.authorProfile" alt="#" />
+                          <img
+                            th:src="${reple.authorProfile}"
+                            alt="${reple.authorBlog}"
+                          />
                         </div>
                         <div class="body">
                           <h4 th:text="${reple.authorName}">Afsana Mimi</h4>
@@ -289,7 +292,10 @@
                     >
                       <div class="main">
                         <div class="head">
-                          <img src="img/author2.jpg" alt="#" />
+                          <img
+                            src="${reReple.authorProfile}"
+                            alt="${reReple.authorBlog}"
+                          />
                         </div>
                         <div class="body">
                           <h4>Naimur Rahman</h4>

@@ -21,7 +21,7 @@ public class RepleDTO {
 
     private final List<ReRepleDTO> reRepleDTOS;
 
-    private String authorBlog;
+    private final String authorBlog;
 
     public RepleDTO(Reple reple,List<ReRepleDTO> reRepleDTOS,String authorBlog) {
 
