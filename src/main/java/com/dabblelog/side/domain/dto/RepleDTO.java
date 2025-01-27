@@ -35,7 +35,7 @@ public class RepleDTO {
 
         this.yearAndMonth = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
 
-        this.timeAndMinute = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("hh-mm-ss"));
+        this.timeAndMinute = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("hh:mm:ss"));
 
         this.content = reple.getContent();
 
