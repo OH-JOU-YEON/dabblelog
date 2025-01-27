@@ -39,7 +39,7 @@ public class Post {
 
 
 
-    private int likeCount;
+    private Long likeCount;
 
 
     private LocalDateTime createdDay;
@@ -62,7 +62,7 @@ public class Post {
 
 
 
-        this.likeCount = 0;
+        this.likeCount = 0L;
 
         this.temp = temp;
     }
@@ -82,7 +82,7 @@ public class Post {
 
         this.createdDay = LocalDateTime.now();
 
-        this.likeCount = 0;
+        this.likeCount = 0L;
 
         this.temp = temp;
     }
@@ -93,6 +93,12 @@ public class Post {
         this.temp = false;
 
         this.seriesId = series;
+
+        return this;
+    }
+
+    public Post modifyLikeCount(Long count) {
+        this.likeCount = count;
 
         return this;
     }

@@ -470,6 +470,7 @@
 
         const params = {
           likeCount: document.querySelector("#count").innerText,
+          url: window.location.href,
         };
 
         console.log(params);
@@ -495,6 +496,8 @@
 
         const format = document.querySelector(".single-comments").cloneNode;
 
+        format.querySelector("h4").innerText = res.authorName;
+
         format.querySelector(p).innerText = res.content;
 
         format.querySelectorAll("span")[0].innerText = res.yearAndMonth;
@@ -514,6 +517,8 @@
         const format = document.querySelector(
           ".single-comments left"
         ).cloneNode;
+
+        format.querySelector("h4").innerText = res.authorName;
 
         format.querySelector(p).innerText = res.content;
 

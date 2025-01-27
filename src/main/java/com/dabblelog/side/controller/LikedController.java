@@ -2,10 +2,13 @@ package com.dabblelog.side.controller;
 
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
+import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.dto.LikedDTO;
 import com.dabblelog.side.domain.dto.PostHomeDTO;
+import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.FavoriteService;
+import com.dabblelog.side.service.impl.PostService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +31,12 @@ public class LikedController {
 
     @Autowired
     BlogService blogService;
+
+    @Autowired
+    PostService postService;
+
+    @Autowired
+    PostRepository postRepository;
 
     //내가 좋아요 누른 게시물들을 볼 수 있는 페이지
 
@@ -64,6 +73,10 @@ public class LikedController {
     public void modifyLikeCount(@RequestBody LikedDTO likedDTO) {
 
         //포스트 얻어와서, 저 dto만큼 좋아요 총계 수정하고 재저장하기
+
+        Post post = postService.getPostIdByURL(likedDTO.getUrl());
+
+        postRepository.save(post.modifyLikeCount(likedDTO.getLikeCount()));
 
     }
 }

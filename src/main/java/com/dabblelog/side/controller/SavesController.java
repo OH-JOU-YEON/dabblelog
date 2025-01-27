@@ -39,7 +39,7 @@ public class SavesController {
         //세션이 만약 없으면 홈으로 돌려보냄
 
         if(session == null ) {
-            return "basic/home";
+            return "redirect:/";
         }
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
