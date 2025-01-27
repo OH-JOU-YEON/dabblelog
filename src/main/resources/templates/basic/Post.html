@@ -133,7 +133,7 @@
               <div class="col-lg-3 col-md-3 col-12">
                 <!-- Start Logo -->
                 <div class="logo">
-                  <a href="/"><h2>dabblelog</h2></a>
+                  <a href="/" id="logo"><h2>dabblelog</h2></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Mobile Nav -->
@@ -223,7 +223,7 @@
                   <span id="count" th:text="${profile.likeCount}">0</span>
                 </h2>
                 <!-- Contact Form -->
-                <form class="form" method="post" action="/reple/create">
+                <form class="form">
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group message">
@@ -238,8 +238,8 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <div class="form-group button" style="display: none">
-                        <button type="submit" class="btn primary">
+                      <div class="form-group button">
+                        <button class="btn primary" onclick="createReple()">
                           <i class="fa fa-send"></i>댓글 작성
                         </button>
                       </div>
@@ -411,11 +411,38 @@
         initialValue: content,
       });
 
-      function dismiss() {
-        event.target.parentNode.parentNode.parentNode.setAttribute(
-          "display",
-          "none"
-        );
+      function createReple() {
+        if (document.querySelector("#logo").getAttribute("href") == "/") {
+          alert("댓글을 달려면 로그인 해주세요.");
+          return;
+        }
+        const url = "/reple/create";
+
+        const params = {
+          content:
+            event.target.parentNode.parentNode.parentNode.querySelector(
+              "textarea"
+            ).innerText,
+
+          url: window.location.href,
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          }).then((response) => response.json);
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
       }
 
       function turnRed() {
@@ -471,6 +498,10 @@
         format.querySelector("img").setAttribute("src", res.authorProfile);
 
         format.querySelector("#authorURL").setAttribute("href", res.authorBlog);
+
+        event.target.parentNode.parentNode.parentNode.parentNode.appendChild(
+          format
+        );
       }
     </script>
   </body>
