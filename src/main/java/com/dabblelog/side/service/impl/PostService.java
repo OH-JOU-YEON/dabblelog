@@ -61,6 +61,16 @@ public class PostService {
         return postRepository.findByBlogIdAndTitle(blog,postTitle);
     }
 
+    public Post getPostIdByURL(String url) {
+
+        String[] parseURL = url.split("/");
+
+
+
+        return getPostByBlogNameAndTitle(parseURL[2],parseURL[3]);
+
+    }
+
 
 
 

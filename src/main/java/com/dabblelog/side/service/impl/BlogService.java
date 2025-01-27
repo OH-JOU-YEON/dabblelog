@@ -57,6 +57,11 @@ public class BlogService {
         return blog.getBlogName();
     }
 
+    public User getUserByBlogName(String blogName) {
+
+        return blogRepository.findByBlogName(blogName).get().getUser();
+    }
+
     public Blog getBlogByName(String blogName) {
         return blogRepository.findByBlogName(blogName).get();
     }

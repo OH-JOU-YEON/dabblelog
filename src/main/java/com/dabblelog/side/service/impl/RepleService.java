@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,13 @@ public class RepleService {
 
     @Autowired
     BlogService blogService;
+
+    @Autowired
+    PostService postService;
+
+
+
+
 
    public List<RepleDTO> getReples(Post post){
 
@@ -51,11 +59,26 @@ public class RepleService {
 
     }
 
-    public void createReple(User author, String url, ReplyDTO replyDTO) {
 
-       url = url.replace("https://","");
+    public User getUserByURL(String url) {
+
        String[] parseURL = url.split("/");
 
+       return blogService.getUserByBlogName(parseURL[2]);
+    }
+
+
+    public Reple createReple( ReplyDTO replyDTO) {
+
+        User author = getUserByURL(replyDTO.getUrl());
+
+        Post post = postService.getPostIdByURL(replyDTO.getParentBlogURL());
+
+        LocalDateTime createdDay = LocalDateTime.parse(replyDTO.getParentDay() + " " + replyDTO.getParentTime());
+
+        Reple parentReple = repleRepository.findByPostIdAndAuthorAndCreatedDayBetween(post,author,createdDay,createdDay.plusSeconds(1));
+
+        return repleRepository.save(new Reple(post,author,parentReple,LocalDateTime.now(),replyDTO.getContent()));
 
 
     }
