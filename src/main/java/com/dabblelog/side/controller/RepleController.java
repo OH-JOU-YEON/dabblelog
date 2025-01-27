@@ -2,9 +2,11 @@ package com.dabblelog.side.controller;
 
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
-import com.dabblelog.side.domain.Blog;
+import com.dabblelog.side.domain.Reple;
+import com.dabblelog.side.domain.dto.ReRepleDTO;
 import com.dabblelog.side.domain.dto.ReplyDTO;
 import com.dabblelog.side.service.impl.BlogService;
+import com.dabblelog.side.service.impl.RepleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RepleController {
 
     @Autowired
+    RepleService repleService;
+
+    @Autowired
     BlogService blogService;
 
 
@@ -29,16 +34,18 @@ public class RepleController {
 
     @ResponseBody
     @PostMapping("/reple/reply")
-    public void createReReple(HttpServletRequest request, @RequestBody ReplyDTO replyDTO) {
+    public ReRepleDTO createReReple(HttpServletRequest request, @RequestBody ReplyDTO replyDTO) {
 
         HttpSession httpSession = request.getSession(false);
 
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
 
-        Blog blog = blogService.ifBlogIsNotExistCreateBlog(sessionUser.getEmail());
+        Reple reple = repleService.createReple(replyDTO);
+
+        String authorBlog = "/dabblelog/" + blogService.getBlogName(sessionUser.getEmail());
 
 
-
+        return new ReRepleDTO(reple,authorBlog);
 
     }
 }
