@@ -6,6 +6,7 @@ import com.dabblelog.side.domain.Reple;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.ReRepleDTO;
 import com.dabblelog.side.domain.dto.RepleDTO;
+import com.dabblelog.side.domain.dto.ReplyDTO;
 import com.dabblelog.side.repository.RepleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,15 @@ public class RepleService {
         User user = reple.getAuthor();
 
         return "/dabblelog/" + blogService.getRepleAuthor(reple).getBlogName();
+
+    }
+
+    public void createReple(User author, String url, ReplyDTO replyDTO) {
+
+       url = url.replace("https://","");
+       String[] parseURL = url.split("/");
+
+
 
     }
 

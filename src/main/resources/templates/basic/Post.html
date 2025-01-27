@@ -256,10 +256,9 @@
                     <div class="single-comments">
                       <div class="main">
                         <div class="head">
-                          <img
-                            th:src="${reple.authorProfile}"
-                            alt="${reple.authorBlog}"
-                          />
+                          <a th:href="${reple.authorBlog}">
+                            <img th:src="${reple.authorProfile}" />
+                          </a>
                         </div>
                         <div class="body">
                           <h4 th:text="${reple.authorName}">Afsana Mimi</h4>
@@ -292,10 +291,9 @@
                     >
                       <div class="main">
                         <div class="head">
-                          <img
-                            th:src="${reReple.authorProfile}"
-                            th:href="${reReple.authorBlog}"
-                          />
+                          <a th:href="${reReple.authorBlog}">
+                            <img th:src="${reReple.authorProfile}" />
+                          </a>
                         </div>
                         <div class="body">
                           <h4>Naimur Rahman</h4>
@@ -366,6 +364,14 @@
             content:
               event.target.parentNode.lastElementChild.querySelector("textarea")
                 .innerText,
+            url: window.location.href,
+            parentDay:
+              event.target.parentNode.querySelectorAll("span")[0].innerText,
+            parentTime:
+              event.target.parentNode.querySelectorAll("span")[1].innerText,
+            parentBlog: event.target.parentNode.parentNode
+              .querySelector("a")
+              .getAttribute("href"),
           };
 
           console.log(params);

@@ -23,15 +23,19 @@ public class RepleDTO {
 
     private final String authorBlog;
 
+
+
     public RepleDTO(Reple reple,List<ReRepleDTO> reRepleDTOS,String authorBlog) {
+
+
 
         this.authorName = reple.getAuthor().getName();
 
         this.authorProfile = reple.getAuthor().getPicture();
 
-        this.yearAndMonth = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("yy-MM"));
+        this.yearAndMonth = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
 
-        this.timeAndMinute = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("dd-h-mm"));
+        this.timeAndMinute = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("hh-mm-ss"));
 
         this.content = reple.getContent();
 
