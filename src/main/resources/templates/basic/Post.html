@@ -307,6 +307,7 @@
                               ><i class="fa fa-clock-o"></i>03:38 AM</span
                             >
                           </div>
+                          <b id="to">@name</b>
                           <p th:text="${rereple.content}">
                             Lorem Ipsum available, but the majority have
                             suffered alteration in some form, by injected
@@ -351,6 +352,11 @@
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
     <script th:inline="javascript">
       function getText() {
+        if (document.querySelector("#logo").getAttribute("href") == "/") {
+          alert("댓글을 달려면 로그인 해주세요.");
+          return;
+        }
+
         if (
           event.target.parentNode.lastElementChild.getAttribute("class") ==
           "form"
@@ -384,7 +390,7 @@
                 "Content-Type": "application/json; charset=utf-8;",
               },
               body: JSON.stringify(params),
-            }).then((response) => response.json);
+            }).then((response) => addReply(response));
             console.log(params);
           } catch (error) {
             console.error("저장 실패 : ", error);
@@ -437,7 +443,7 @@
               "Content-Type": "application/json; charset=utf-8;",
             },
             body: JSON.stringify(params),
-          }).then((response) => response.json);
+          }).then((response) => addReple(response));
           console.log(params);
         } catch (error) {
           console.error("저장 실패 : ", error);
@@ -484,10 +490,10 @@
         }
       }
 
-      function addReply(response) {
+      function addReple(response) {
         const res = response.json;
 
-        const format = document.querySelector("single-comments left").cloneNode;
+        const format = document.querySelector(".single-comments").cloneNode;
 
         format.querySelector(p).innerText = res.content;
 
@@ -498,6 +504,28 @@
         format.querySelector("img").setAttribute("src", res.authorProfile);
 
         format.querySelector("#authorURL").setAttribute("href", res.authorBlog);
+
+        document.querySelector(".blog-comments").appendChild(format);
+      }
+
+      function addReply(response) {
+        const res = response.json;
+
+        const format = document.querySelector(
+          ".single-comments left"
+        ).cloneNode;
+
+        format.querySelector(p).innerText = res.content;
+
+        format.querySelectorAll("span")[0].innerText = res.yearAndMonth;
+
+        format.querySelectorAll("span")[1].innerText = res.timeAndMinute;
+
+        format.querySelector("img").setAttribute("src", res.authorProfile);
+
+        format.querySelector("#authorURL").setAttribute("href", res.authorBlog);
+
+        format.querySelector("#to").innerText = res.toName;
 
         event.target.parentNode.parentNode.parentNode.parentNode.appendChild(
           format

@@ -7,6 +7,7 @@ import com.dabblelog.side.domain.Reple;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.ReRepleDTO;
 import com.dabblelog.side.domain.dto.RepleCreateDTO;
+import com.dabblelog.side.domain.dto.RepleSendDTO;
 import com.dabblelog.side.domain.dto.ReplyDTO;
 import com.dabblelog.side.repository.RepleRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -65,7 +66,7 @@ public class RepleController {
 
     @ResponseBody
     @PostMapping("/reple/reply")
-    public ReRepleDTO createReReple(HttpServletRequest request, @RequestBody ReplyDTO replyDTO) {
+    public RepleSendDTO createReReple(HttpServletRequest request, @RequestBody ReplyDTO replyDTO) {
 
         HttpSession httpSession = request.getSession(false);
 
@@ -76,7 +77,7 @@ public class RepleController {
         String authorBlog = "/dabblelog/" + blogService.getBlogName(sessionUser.getEmail());
 
 
-        return new ReRepleDTO(reple,authorBlog);
+        return new RepleSendDTO(reple,authorBlog);
 
     }
 }

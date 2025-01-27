@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.format.DateTimeFormatter;
 
 @Getter
-public class ReRepleDTO {
+public class RepleSendDTO {
 
     private final String authorName;
 
@@ -20,11 +20,11 @@ public class ReRepleDTO {
 
     private final String authorBlog;
 
-    private final String toName;
 
 
 
-    public ReRepleDTO(Reple reple,String authorBlog){
+
+    public RepleSendDTO(Reple reple, String authorBlog){
 
 
         this.authorName = reple.getAuthor().getName();
@@ -39,7 +39,6 @@ public class ReRepleDTO {
 
         this.authorBlog = authorBlog;
 
-        this.toName = "@" + reple.getParentReple().getAuthor().getName();
 
     }
 }
