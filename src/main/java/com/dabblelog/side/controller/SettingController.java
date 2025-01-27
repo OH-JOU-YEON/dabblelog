@@ -6,6 +6,7 @@ import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.ModiTitleDTO;
 import com.dabblelog.side.domain.dto.ModifyProfileTextDTO;
+import com.dabblelog.side.domain.dto.ProfileImgDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.BlogService;
@@ -85,6 +86,17 @@ public class SettingController {
 
     }
 
+    @PostMapping("/setting/profileImg")
+    public void modiProfileImg(HttpServletRequest request, @RequestBody ProfileImgDTO profileImgDTO) {
+        HttpSession httpSession = request.getSession(false);
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+
+        User user = userRepository.findByEmail(sessionUser.getEmail()).get();
+
+        userRepository.save(user.updatePicture(profileImgDTO.getProfileImg()));
+
+    }
 
 
 

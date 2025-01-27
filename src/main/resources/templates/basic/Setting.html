@@ -188,6 +188,7 @@
               <div style="display: flex; flex-basis: auto">
                 <img
                   class="img-concert"
+                  id="preview-image"
                   src="../../static/img/realLogo.png"
                   width="128"
                   style="border-radius: 50%"
@@ -213,10 +214,19 @@
                     margin-bottom: 0.2rem;
                     background-color: rgb(39, 118, 192);
                   "
+                  id="img-upload-btn"
                   class="btn"
                 >
                   이미지 업로드
                 </button>
+                <input
+                  type="file"
+                  id="imageInput"
+                  nmae="file"
+                  onchange="uploadFile(this)"
+                  enctype="multipart/form-data"
+                  style="display: none"
+                />
               </div>
               <div style="display: flex; flex-basis: auto">
                 <button
@@ -344,8 +354,46 @@
         </div>
       </div>
     </section>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
 
     <script th:inline="javascript">
+      $(document).on("click", "#img-upload-btn", function (e) {
+        e.preventDefault();
+        $("#imageInput").click();
+      });
+      function uploadFile(input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#preview-image").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+        const url = "/setting/profileImg";
+
+        const params = {
+          profileImg: e.target.result,
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
       function modiAbout() {
         const profileText = document.querySelector("#profileText");
 
