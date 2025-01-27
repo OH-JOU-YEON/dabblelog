@@ -52,9 +52,9 @@ public class User {
         return this;
     }
 
-    public User updateReadme(String readme) {
+    public User updateReadme(String name , String readme) {
         this.readme = readme;
-
+        this.name = name;
         return this;
     }
 
