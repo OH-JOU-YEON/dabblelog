@@ -20,12 +20,16 @@ public class Dabble {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    String yearAndMonth;
+    private String yearAndMonth;
+
+    private String title;
 
 
     public Dabble(LocalDateTime localDateTime) {
 
         this.yearAndMonth = localDateTime.format(DateTimeFormatter.ofPattern("yy-MM"));
+
+        this.title = localDateTime.format(DateTimeFormatter.ofPattern("MM")) + "월 회고";
     }
 
 
