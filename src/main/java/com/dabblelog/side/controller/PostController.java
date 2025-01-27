@@ -104,7 +104,7 @@ public class PostController {
         HttpSession session = request.getSession(false);
 
         if(session == null ) {
-            return "basic/home";
+            return "redirect:/";
         }
 
 
@@ -158,7 +158,7 @@ public class PostController {
             tagMapper(tags,post);
         }
 
-        return "basic/post";
+        return "redirect:/dabblelog/" + blog.getBlogName();
 
 
     }
@@ -172,7 +172,7 @@ public class PostController {
         HttpSession session = request.getSession(false);
 
         if(session == null ) {
-            return "basic/home";
+            return "redirect:/";
         }
 
 
@@ -208,7 +208,7 @@ public class PostController {
 
 
 
-        return "basic/post";
+        return "redirect:/dabblelog/" + blog.getBlogName();
     }
 
 
