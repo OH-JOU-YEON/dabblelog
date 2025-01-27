@@ -291,7 +291,7 @@
                     >
                       <div class="main">
                         <div class="head">
-                          <a th:href="${reReple.authorBlog}">
+                          <a th:href="${reReple.authorBlog}" id="authorURL">
                             <img th:src="${reReple.authorProfile}" />
                           </a>
                         </div>
@@ -371,7 +371,7 @@
               event.target.parentNode.querySelectorAll("span")[1].innerText,
             parentBlogURL: event.target.parentNode.parentNode
               .querySelector("a")
-              .getAttribute("href"),
+              .getAttribute("href").innerText,
           };
 
           console.log(params);
@@ -384,7 +384,7 @@
                 "Content-Type": "application/json; charset=utf-8;",
               },
               body: JSON.stringify(params),
-            });
+            }).then((response) => response.json);
             console.log(params);
           } catch (error) {
             console.error("저장 실패 : ", error);
@@ -455,6 +455,22 @@
           console.error("저장 실패 : ", error);
           console.log(params);
         }
+      }
+
+      function addReply(response) {
+        const res = response.json;
+
+        const format = document.querySelector("single-comments left").cloneNode;
+
+        format.querySelector(p).innerText = res.content;
+
+        format.querySelectorAll("span")[0].innerText = res.yearAndMonth;
+
+        format.querySelectorAll("span")[1].innerText = res.timeAndMinute;
+
+        format.querySelector("img").setAttribute("src", res.authorProfile);
+
+        format.querySelector("#authorURL").setAttribute("href", res.authorBlog);
       }
     </script>
   </body>

@@ -1,9 +1,15 @@
 package com.dabblelog.side.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -14,9 +20,15 @@ public class Dabble {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int Year;
+    String yearAndMonth;
 
-    private int Month;
+
+    public Dabble(LocalDateTime localDateTime) {
+
+        this.yearAndMonth = localDateTime.format(DateTimeFormatter.ofPattern("yy-MM"));
+    }
+
+
 
 
 }
