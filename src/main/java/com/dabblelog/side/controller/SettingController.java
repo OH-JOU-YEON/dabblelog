@@ -50,6 +50,18 @@ public class SettingController {
 
     }
 
+    @PostMapping("/setting/deleteUser")
+    public void deleteUser(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession(false);
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+
+        User user = userRepository.findByEmail(sessionUser.getEmail()).get();
+
+        userRepository.delete(user);
+
+    }
+
 
 
 
