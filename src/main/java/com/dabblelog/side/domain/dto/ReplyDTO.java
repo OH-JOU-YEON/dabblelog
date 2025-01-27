@@ -10,5 +10,9 @@ public class ReplyDTO {
 
     private String url;
 
+    private String parentDay;
 
+    private String parentTime;
+
+    private String parentBlogURL;
 }
