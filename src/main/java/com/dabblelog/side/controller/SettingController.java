@@ -2,9 +2,13 @@ package com.dabblelog.side.controller;
 
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
+import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.User;
+import com.dabblelog.side.domain.dto.ModiTitleDTO;
 import com.dabblelog.side.domain.dto.ModifyProfileTextDTO;
+import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
+import com.dabblelog.side.service.impl.BlogService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +25,12 @@ public class SettingController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    BlogService blogService;
+
+    @Autowired
+    BlogRepository blogRepository;
 
     //설정 호출 메서드
     @GetMapping("/setting")
@@ -62,6 +72,18 @@ public class SettingController {
 
     }
 
+    @PostMapping("/setting/modiTitle")
+    public void modiTitle(HttpServletRequest request, @RequestBody ModiTitleDTO modiTitleDTO) {
+
+        HttpSession httpSession = request.getSession(false);
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+
+        Blog blog = blogService.getBlogByEmail(sessionUser.getEmail());
+
+        blogRepository.save(blog.updateBlogName(modiTitleDTO.getBlogName()));
+
+    }
 
 
 

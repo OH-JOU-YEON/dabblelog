@@ -49,6 +49,12 @@ public class BlogService {
         }
     }
 
+    public Blog getBlogByEmail(String email) {
+        User user = userRepository.findByEmail(email).get();
+
+        return blogRepository.findById(user.getId()).get();
+    }
+
 
     public String getBlogName(String email) {
         User user = userRepository.findByEmail(email).get();

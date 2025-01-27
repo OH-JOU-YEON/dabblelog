@@ -307,6 +307,7 @@
                 border: none;
                 background-color: transparent;
               "
+              onclick="modiTitle()"
             >
               수정
             </button>
@@ -364,6 +365,39 @@
           const params = {
             nickname: profileText.querySelector("h6").innerText,
             readme: profileText.querySelector("p").innerText,
+          };
+
+          console.log(params);
+
+          // 3. API 호출
+          try {
+            const request = fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8;",
+              },
+              body: JSON.stringify(params),
+            });
+            console.log(params);
+          } catch (error) {
+            console.error("저장 실패 : ", error);
+            console.log(params);
+          }
+        }
+      }
+
+      function modiTitle() {
+        const title = document.querySelector("#titleNow");
+
+        if (title.getAttribute("contenteditable" == "false")) {
+          title.setAttribute("contenteditable", "true");
+        } else {
+          title.setAttribute("contenteditable", "false");
+
+          const url = "/setting/modiTitle";
+
+          const params = {
+            blogName: title.innerText,
           };
 
           console.log(params);
