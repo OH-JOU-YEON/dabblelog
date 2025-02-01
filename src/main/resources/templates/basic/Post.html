@@ -173,10 +173,14 @@
               <div class="col-12">
                 <div class="single-main">
                   <!-- News Title -->
-                  <h1 class="news-title">
+
+                  <h1 class="news-title" style="display: flex">
                     <a href="news-single.html" th:text="${profile.title}"
                       >제목</a
                     >
+                    <button class="btn" style="margin-left: auto">
+                      팔로우
+                    </button>
                   </h1>
                   <!-- Meta -->
                   <div class="meta">
