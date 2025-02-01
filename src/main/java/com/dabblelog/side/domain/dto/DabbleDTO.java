@@ -1,6 +1,7 @@
 package com.dabblelog.side.domain.dto;
 
 
+import com.dabblelog.side.domain.Dabble;
 import lombok.Getter;
 
 import java.util.List;
@@ -8,9 +9,20 @@ import java.util.List;
 @Getter
 public class DabbleDTO {
 
-    private String year;
+    private final String year;
 
-    private String month;
+    private final String month;
 
-    private List<DabblePostDTO> dabblePosts;
+    private final List<DabblePostDTO> dabblePosts;
+
+    public DabbleDTO(Dabble dabble,List<DabblePostDTO> dabblePostDTOS) {
+
+        String[] dates = dabble.getYearAndMonth().split("-");
+
+        this.year = dates[0];
+
+        this.month = dates[1];
+
+        this.dabblePosts = dabblePostDTOS;
+    }
 }
