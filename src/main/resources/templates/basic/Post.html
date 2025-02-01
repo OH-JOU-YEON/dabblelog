@@ -179,6 +179,7 @@
                       >제목</a
                     >
                     <button
+                      th:if="${canFollow == true}"
                       id="follow"
                       class="btn"
                       style="margin-left: auto"
@@ -559,7 +560,7 @@
         const url = "/follow";
 
         const params = {
-          likeCount: document.querySelector("#follow").innerText,
+          followOrNot: document.querySelector("#follow").innerText,
           url: window.location.href,
         };
 

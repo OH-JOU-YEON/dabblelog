@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 @NoArgsConstructor
@@ -44,8 +46,10 @@ public class FollowerService {
 
         User followedUser = blogRepository.findByBlogName(blogName).get().getUser();
 
+        Optional<Follower> follower = followerRepository.findByFollowingIdAndFollowedId(followingUser,followingUser);
 
-       return  followerRepository.save(new Follower(followingUser, followedUser));
+        return follower.orElseGet(() -> followerRepository.save(new Follower(followingUser, followedUser)));
+
 
     }
 

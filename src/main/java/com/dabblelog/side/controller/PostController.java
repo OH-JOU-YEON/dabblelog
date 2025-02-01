@@ -71,6 +71,16 @@ public class PostController {
             model.addAttribute("email",sessionUser.getEmail());
             model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
 
+
+            if(blogService.getBlogName(sessionUser.getEmail()).equals(blogName)) {
+                model.addAttribute("canFollow", "false");
+
+            }else {
+
+                model.addAttribute("canFollow","true");
+
+            }
+
         }
 
         List<String> tagsTitle = tagMappingService.getTagTitle(blogName,title);
