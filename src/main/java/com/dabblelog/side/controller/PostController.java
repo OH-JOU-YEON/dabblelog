@@ -4,6 +4,7 @@ package com.dabblelog.side.controller;
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.*;
 import com.dabblelog.side.domain.dto.PostDTO;
+import com.dabblelog.side.domain.dto.PostDeleteDTO;
 import com.dabblelog.side.domain.dto.PostViewDTO;
 import com.dabblelog.side.domain.dto.RepleDTO;
 import com.dabblelog.side.repository.BlogRepository;
@@ -101,6 +102,23 @@ public class PostController {
     }
 
 
+    @PostMapping("post/delete")
+    public void deletePost(HttpServletRequest request, @RequestBody PostDeleteDTO postDeleteDTO) {
+
+        HttpSession session = request.getSession(false);
+
+        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
+
+        String[] paresURL = postDeleteDTO.getUrl().split("/");
+
+        String blogName = paresURL[2];
+
+        String postTitle = paresURL[3];
+
+        postService.deletePost(blogName,postTitle);
+
+
+    }
 
 
 

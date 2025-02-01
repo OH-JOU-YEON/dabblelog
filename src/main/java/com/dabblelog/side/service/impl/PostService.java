@@ -110,6 +110,17 @@ public class PostService {
     }
 
 
+    public void deletePost(String blogName, String postTitle) {
+
+        Blog blog = blogRepository.findByBlogName(blogName).get();
+
+
+
+        Post post = postRepository.findByBlogIdAndTitle(blog,postTitle);
+
+        postRepository.delete(post);
+    }
+
 
 
 
