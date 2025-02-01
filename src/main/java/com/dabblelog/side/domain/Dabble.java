@@ -29,7 +29,8 @@ public class Dabble {
 
         this.yearAndMonth = localDateTime.format(DateTimeFormatter.ofPattern("yy-MM"));
 
-        this.title = localDateTime.format(DateTimeFormatter.ofPattern("MM")) + "월 회고";
+        this.title = localDateTime.format(DateTimeFormatter.ofPattern(("yy"))) + "년 " +
+                localDateTime.format(DateTimeFormatter.ofPattern("MM")) + "월 회고";
     }
 
 

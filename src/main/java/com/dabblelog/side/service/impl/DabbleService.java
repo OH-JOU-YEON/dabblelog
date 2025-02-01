@@ -10,6 +10,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +21,12 @@ public class DabbleService {
     @Autowired
     DabbleRepository dabbleRepository;
 
-    @Scheduled(cron = "0 0 0 1 * *")
-    public void makeDabble() {
+    public Dabble getDabbleByDate(LocalDateTime now) {
 
-        dabbleRepository.save(new Dabble(LocalDateTime.now().minusMonths(1)));
+        Optional<Dabble> dabble = dabbleRepository.findByYearAndMonth(now.format(DateTimeFormatter.ofPattern("yy-MM")));
 
+        return dabble.orElseGet(() -> dabbleRepository.save(new Dabble(now)));
     }
+
+
 }
