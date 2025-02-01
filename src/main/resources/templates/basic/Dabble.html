@@ -187,7 +187,7 @@
                   d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
                 />
               </svg>
-              <h1>Month</h1>
+              <h1 th:text="${dabble.month}">Month</h1>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -204,7 +204,7 @@
               </svg>
             </div>
 
-            <p>Year</p>
+            <p th:text="${dabble.year}">Year</p>
           </div>
           <div class="calendar">
             <span class="day-name">Mon</span><span class="day-name">Tue</span
@@ -251,5 +251,6 @@
         </div>
       </div>
     </div>
+    <script th:inline="javascript"></script>
   </body>
 </html>
