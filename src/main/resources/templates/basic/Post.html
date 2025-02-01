@@ -178,7 +178,12 @@
                     <a href="news-single.html" th:text="${profile.title}"
                       >제목</a
                     >
-                    <button class="btn" style="margin-left: auto">
+                    <button
+                      id="follow"
+                      class="btn"
+                      style="margin-left: auto"
+                      onclick="following()"
+                    >
                       팔로우
                     </button>
                   </h1>
@@ -539,6 +544,41 @@
         event.target.parentNode.parentNode.parentNode.parentNode.appendChild(
           format
         );
+      }
+
+      function following() {
+        if (document.getElementById("follow").innerText == "팔로우") {
+          following_fetch();
+          document.getElementById("follow").innerText = "팔로잉";
+        } else {
+          document.getElementById("follow").innerText = "팔로우";
+        }
+      }
+
+      function following_fetch() {
+        const url = "/follow";
+
+        const params = {
+          likeCount: document.querySelector("#follow").innerText,
+          url: window.location.href,
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
       }
     </script>
   </body>
