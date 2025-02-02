@@ -26,7 +26,7 @@ public class DabblePostDTO {
             title = title.substring(0,16) + "..." ;
         }
 
-        this.title = title + "<br/>";
+        this.title = title;
 
         this.color = post.getSeriesId().getColor();
 

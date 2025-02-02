@@ -39,7 +39,7 @@ public class PostHomeDTO {
 
         this.createdDay = post.getCreatedDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        this.likeCount = post.getLikeCount();
+        this.likeCount = Math.toIntExact(post.getLikeCount());
 
         this.thumbnail = getThumbnails(post.getContent());
 

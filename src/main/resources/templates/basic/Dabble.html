@@ -181,13 +181,14 @@
                 class="bi bi-chevron-left"
                 viewBox="0 0 16 16"
                 style="margin-right: 1rem; cursor: pointer"
+                onclick="moveLeft()"
               >
                 <path
                   fill-rule="evenodd"
                   d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
                 />
               </svg>
-              <h1 th:text="${dabble.month}">Month</h1>
+              <h1 id="month" th:text="${dabble.month}">Month</h1>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -196,6 +197,7 @@
                 class="bi bi-chevron-right"
                 viewBox="0 0 16 16"
                 style="margin-left: 1rem; cursor: pointer"
+                onclick="monthRight()"
               >
                 <path
                   fill-rule="evenodd"
@@ -204,53 +206,90 @@
               </svg>
             </div>
 
-            <p th:text="${dabble.year}">Year</p>
+            <p th:text="${dabble.year}" id="year">Year</p>
           </div>
           <div class="calendar">
             <span class="day-name">Mon</span><span class="day-name">Tue</span
             ><span class="day-name">Wed</span><span class="day-name">Thu</span
             ><span class="day-name">Fri</span><span class="day-name">Sat</span
             ><span class="day-name">Sun</span>
-            <div class="day">30</div>
-            <div class="day">31</div>
-            <div class="day">1</div>
-
-            <div class="day">2</div>
-            <div class="day">3</div>
-            <div class="day">4</div>
-            <div class="day">5</div>
-            <div class="day">6</div>
-            <div class="day">7</div>
-            <div class="day">8</div>
-            <div class="day">9</div>
-            <div class="day">10</div>
-            <div class="day">11</div>
-            <div class="day">12</div>
-            <div class="day">13</div>
-            <div class="day">14</div>
-            <div class="day">15</div>
-            <div class="day">16</div>
-            <div class="day">17</div>
-            <div class="day">18</div>
-            <div class="day">19</div>
-            <div class="day">20</div>
-            <div class="day">21</div>
-            <div class="day">22</div>
-            <div class="day">23</div>
-            <div class="day">24</div>
-            <div class="day">25</div>
-            <div class="day">26</div>
-            <div class="day">27</div>
-            <div class="day">28</div>
-            <div class="day">29</div>
-            <div class="day">30</div>
-            <div class="day">31</div>
-            <div class="day">1</div>
-            <div class="day">2</div>
+            <div
+              class="day"
+              th:each="date : ${dabble.dabbleDaysDTOS}"
+              th:text="${date.day}"
+            >
+              <p
+                th:each="post : ${day.dabblePostDTOS}"
+                th:text="${post.title}"
+                th:style="|color : ${post.color}|"
+              ></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <script th:inline="javascript"></script>
+    <script th:inline="javascript">
+      function monthRight() {
+        const url = "/dabble/monthRight";
+
+        const params = {
+          year: document.getElementById("year"),
+
+          month: document.getElementById("month"),
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          }).then((response) => modifyDabble(response));
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+
+      function moveLeft() {
+        const url = "/dabble/monthLeft";
+
+        const params = {
+          year: document.getElementById("year"),
+
+          month: document.getElementById("month"),
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          }).then((response) => modifyDabble(response));
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+
+      function modifyDabble(response) {
+        const res = response.json;
+
+        document.getElementById("year").innerText = res.year;
+
+        document.getElementById("month").innerText = res.month;
+      }
+    </script>
   </body>
 </html>

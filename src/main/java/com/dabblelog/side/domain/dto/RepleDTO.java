@@ -33,7 +33,7 @@ public class RepleDTO {
 
         this.authorProfile = reple.getAuthor().getPicture();
 
-        this.yearAndMonth = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
+        this.yearAndMonth = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         this.timeAndMinute = reple.getCreatedDay().format(DateTimeFormatter.ofPattern("hh:mm:ss"));
 

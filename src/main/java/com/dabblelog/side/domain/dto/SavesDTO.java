@@ -22,7 +22,7 @@ public class SavesDTO {
 
         this.preview = getPreview(post.getContent());
 
-        this.lastUpdateDate = post.getCreatedDay().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
+        this.lastUpdateDate = post.getCreatedDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
 

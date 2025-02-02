@@ -29,7 +29,7 @@ public class BlogPostDTO {
 
         this.preview = getPreview(post.getContent());
 
-        this.createdDay = post.getCreatedDay().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
+        this.createdDay = post.getCreatedDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         this.likeCount = (long) post.getLikeCount();
 
