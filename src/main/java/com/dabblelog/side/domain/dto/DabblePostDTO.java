@@ -34,4 +34,13 @@ public class DabblePostDTO {
     }
 
 
+    public DabblePostDTO(int anotherCount, LocalDateTime createdDay) {
+
+        this.title = "그 외 " + anotherCount + "개";
+
+        this.color = "#000000";
+
+        this.createdDay = createdDay;
+    }
+
 }

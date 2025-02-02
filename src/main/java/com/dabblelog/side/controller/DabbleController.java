@@ -44,11 +44,6 @@ public class DabbleController {
 
             Dabble dabble = dabbleService.getDabbleByDate(localDateTime);
 
-            List<DabblePostDTO> dabblePostDTOS = dabbleService.getDabblePostDTOs(localDateTime,blog);
-
-            DabbleDTO dabbleDTO = new DabbleDTO(dabble,dabblePostDTOS);
-
-            model.addAttribute("dabble",dabbleDTO);
 
 
 

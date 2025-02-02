@@ -13,9 +13,9 @@ public class DabbleDTO {
 
     private final String month;
 
-    private final List<DabblePostDTO> dabblePosts;
+    private final List<DabbleDaysDTO> dabbleDaysDTOS;
 
-    public DabbleDTO(Dabble dabble,List<DabblePostDTO> dabblePostDTOS) {
+    public DabbleDTO(Dabble dabble,List<DabbleDaysDTO> dabbleDaysDTOS) {
 
         String[] dates = dabble.getYearAndMonth().split("-");
 
@@ -23,6 +23,6 @@ public class DabbleDTO {
 
         this.month = dates[1];
 
-        this.dabblePosts = dabblePostDTOS;
+        this.dabbleDaysDTOS = dabbleDaysDTOS;
     }
 }

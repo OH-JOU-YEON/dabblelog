@@ -58,11 +58,11 @@ public class DabbleService {
             int delta = firstDayOfWeek - 1;
 
             start = firstDay.minusDays(delta);
-            end = firstDay.plusDays(34);
+            end = firstDay.plusDays(35).minusNanos(1);
         } else {
             start = firstDay;
 
-            end = firstDay.plusDays(34);
+            end = firstDay.plusDays(35).minusNanos(1);
 
         }
 
