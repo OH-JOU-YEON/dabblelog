@@ -20,7 +20,13 @@ public class DabblePostDTO {
 
     public DabblePostDTO(Post post) {
 
-        this.title = post.getTitle();
+        String title = post.getTitle();
+
+        if(title.length() >19) {
+            title = title.substring(0,16) + "...";
+        }
+
+        this.title = title;
 
         this.color = post.getSeriesId().getColor();
 
