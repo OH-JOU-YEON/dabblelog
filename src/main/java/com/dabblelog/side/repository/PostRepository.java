@@ -30,7 +30,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Post findByBlogIdAndTitle(Blog blogId,String title);
 
 
-    List<Post> findAllByBlogIdAndCreatedDayBetween(Blog blog, LocalDateTime start,LocalDateTime end);
+    List<Post> findAllByBlogIdAndCreatedDayBetweenOrderByCreatedDay(Blog blog, LocalDateTime start,LocalDateTime end);
 
 
 

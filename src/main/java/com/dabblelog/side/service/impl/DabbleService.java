@@ -3,6 +3,7 @@ package com.dabblelog.side.service.impl;
 
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Dabble;
+import com.dabblelog.side.domain.dto.DabbleDaysDTO;
 import com.dabblelog.side.domain.dto.DabblePostDTO;
 import com.dabblelog.side.repository.DabbleRepository;
 import com.dabblelog.side.repository.PostRepository;
@@ -17,6 +18,7 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +43,7 @@ public class DabbleService {
         return dabble.orElseGet(() -> dabbleRepository.save(new Dabble(now)));
     }
 
-    public List<Integer> getDivDays(LocalDateTime now) {
+    public List<DabbleDaysDTO> getDivDays(LocalDateTime now,List<DabblePostDTO> dabblePostDTOS) {
         LocalDateTime start;
 
         LocalDateTime end;
@@ -67,14 +69,42 @@ public class DabbleService {
         }
 
 
-        List<Integer> list = new ArrayList<>();
+        List<DabbleDaysDTO> list = new ArrayList<>();
 
         for(int i = 1; i<=35; i++  ){
-            list.add(start.getDayOfMonth());
+            list.add(new DabbleDaysDTO(start));
             start.plusDays(1);
         }
 
-        return list;
+
+
+
+        return getDivPosts(list,dabblePostDTOS);
+
+    }
+
+    //리스트 정렬한 뒤에 날짜별로 묶고 그 날짜에 맞는 데이디티오에 집어넣기
+
+    public List<DabbleDaysDTO> getDivPosts(List<DabbleDaysDTO> dabbleDaysDTOS,List<DabblePostDTO> dabblePostDTOS) {
+
+        for(DabbleDaysDTO dabbleDaysDTO : dabbleDaysDTOS) {
+            List<DabblePostDTO> dabblePostDTOList = new ArrayList<>();
+
+            for(DabblePostDTO dabblePostDTO : dabblePostDTOS) {
+
+                if(dabbleDaysDTO.getCreatedDay().isEqual(dabblePostDTO.getCreatedDay())) {
+                    dabblePostDTOList.add(dabblePostDTO);
+                } else if(dabbleDaysDTO.getCreatedDay().isBefore(dabblePostDTO.getCreatedDay())) {
+
+                    break;
+
+                }
+            }
+
+            dabbleDaysDTO.updatePostList(dabblePostDTOList);
+        }
+
+        return dabbleDaysDTOS;
 
     }
 
@@ -105,7 +135,7 @@ public class DabbleService {
 
         }
 
-        return postRepository.findAllByBlogIdAndCreatedDayBetween(blog,start,end).stream().map(DabblePostDTO::new).toList();
+        return postRepository.findAllByBlogIdAndCreatedDayBetweenOrderByCreatedDay(blog,start,end).stream().map(DabblePostDTO::new).toList();
     }
 
 }

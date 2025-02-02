@@ -14,7 +14,7 @@ public class DabbleDaysDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private final LocalDateTime createdDay;
 
-    private final List<DabblePostDTO> dabblePostDTOS;
+    private List<DabblePostDTO> dabblePostDTOS;
 
 
     public DabbleDaysDTO(LocalDateTime createdDay,List<DabblePostDTO> dabblePostDTOS){
@@ -32,6 +32,29 @@ public class DabbleDaysDTO {
         }
 
         this.dabblePostDTOS = dabblePostDTOS;
+
+    }
+
+    public DabbleDaysDTO(LocalDateTime createdDay) {
+
+        this.day = createdDay.getDayOfMonth();
+
+        this.createdDay = getCreatedDay();
+    }
+
+
+    public DabbleDaysDTO updatePostList(List<DabblePostDTO> dabblePostDTOS) {
+        if(dabblePostDTOS.size() > 3) {
+            int anotherCount = dabblePostDTOS.size() - 2;
+            dabblePostDTOS.subList(3, dabblePostDTOS.size()).clear();
+
+            dabblePostDTOS.add(new DabblePostDTO(anotherCount,this.createdDay));
+
+        }
+
+        this.dabblePostDTOS = dabblePostDTOS;
+
+        return this;
 
     }
 

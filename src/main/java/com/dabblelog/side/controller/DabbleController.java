@@ -5,6 +5,7 @@ import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Dabble;
 import com.dabblelog.side.domain.dto.DabbleDTO;
+import com.dabblelog.side.domain.dto.DabbleDaysDTO;
 import com.dabblelog.side.domain.dto.DabblePostDTO;
 import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.DabbleService;
@@ -44,6 +45,13 @@ public class DabbleController {
 
             Dabble dabble = dabbleService.getDabbleByDate(localDateTime);
 
+            List<DabblePostDTO> dabblePostDTOS = dabbleService.getDabblePostDTOs(localDateTime,blog);
+
+            List<DabbleDaysDTO> dabbleDaysDTOS = dabbleService.getDivDays(localDateTime,dabblePostDTOS);
+
+            DabbleDTO dabbleDTO = new DabbleDTO(dabble,dabbleDaysDTOS);
+
+            model.addAttribute("dabble",dabbleDTO);
 
 
 
