@@ -34,21 +34,23 @@ public class DabbleController {
     BlogService blogService;
 
     @ResponseBody
-    @PostMapping("/dabble/monthRight")
-    public DabbleDTO getMonthAfter(HttpServletRequest request, @RequestBody MonthDTO monthDTO) {
+    @GetMapping("/dabble/right")
+    public String getMonthAfter(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession(false);
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
+        model.addAttribute("loginOrNot","새 글 작성하기");
+        model.addAttribute("path","/write");
+        model.addAttribute("email",sessionuser.getEmail());
+
         Blog blog = blogService.getBlogByEmail(sessionuser.getEmail());
 
-        String yearAndMonth = monthDTO.getYear() + monthDTO.getMonth();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 
         // 문자열 -> Date
-        LocalDateTime afterMonth = LocalDateTime.parse(yearAndMonth, formatter).plusMonths(1);
+        LocalDateTime afterMonth = LocalDateTime.now().plusMonths(1);
 
         Dabble dabble = dabbleService.getDabbleByDate(afterMonth);
 
@@ -56,8 +58,11 @@ public class DabbleController {
 
         List<DabbleDaysDTO> dabbleDaysDTOS = dabbleService.getDivDays(afterMonth,dabblePostDTOS);
 
-        return new DabbleDTO(dabble,dabbleDaysDTOS);
+        DabbleDTO dabbleDTO =  new DabbleDTO(dabble,dabbleDaysDTOS);
 
+        model.addAttribute("dabble",dabbleDTO);
+
+        return "/basic/Dabble";
 
 
 
@@ -65,21 +70,23 @@ public class DabbleController {
     }
 
     @ResponseBody
-    @PostMapping("/dabble/monthLeft")
-    public DabbleDTO getMonthBefore(HttpServletRequest request, @RequestBody MonthDTO monthDTO) {
+    @GetMapping("/dabble/left")
+    public String getMonthBefore(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession(false);
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
+        model.addAttribute("loginOrNot","새 글 작성하기");
+        model.addAttribute("path","/write");
+        model.addAttribute("email",sessionuser.getEmail());
+
         Blog blog = blogService.getBlogByEmail(sessionuser.getEmail());
 
-        String yearAndMonth = monthDTO.getYear() + monthDTO.getMonth();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMM");
 
         // 문자열 -> Date
-        LocalDateTime afterMonth = LocalDateTime.parse(yearAndMonth, formatter).minusMonths(1);
+        LocalDateTime afterMonth = LocalDateTime.now().minusMonths(1);
 
         Dabble dabble = dabbleService.getDabbleByDate(afterMonth);
 
@@ -87,9 +94,11 @@ public class DabbleController {
 
         List<DabbleDaysDTO> dabbleDaysDTOS = dabbleService.getDivDays(afterMonth,dabblePostDTOS);
 
-        return new DabbleDTO(dabble,dabbleDaysDTOS);
+        DabbleDTO dabbleDTO =  new DabbleDTO(dabble,dabbleDaysDTOS);
 
+        model.addAttribute("dabble",dabbleDTO);
 
+        return "/basic/Dabble";
 
 
 
