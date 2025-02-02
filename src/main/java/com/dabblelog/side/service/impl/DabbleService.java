@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,12 +41,69 @@ public class DabbleService {
         return dabble.orElseGet(() -> dabbleRepository.save(new Dabble(now)));
     }
 
+    public List<Integer> getDivDays(LocalDateTime now) {
+        LocalDateTime start;
+
+        LocalDateTime end;
+
+        LocalDateTime firstDay = now.with(firstDayOfMonth()).with(LocalTime.MIN);
+
+        LocalDateTime lastDay = now.with(lastDayOfMonth()).with(LocalTime.MAX);
+
+        int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
+
+        int lastDayOfWeek = lastDay.getDayOfWeek().getValue();
+
+        if(firstDayOfWeek != 1) {
+            int delta = firstDayOfWeek - 1;
+
+            start = firstDay.minusDays(delta);
+            end = firstDay.plusDays(34);
+        } else {
+            start = firstDay;
+
+            end = firstDay.plusDays(34);
+
+        }
+
+
+        List<Integer> list = new ArrayList<>();
+
+        for(int i = 1; i<=35; i++  ){
+            list.add(start.getDayOfMonth());
+            start.plusDays(1);
+        }
+
+        return list;
+
+    }
+
 
     public List<DabblePostDTO> getDabblePostDTOs(LocalDateTime now, Blog blog) {
 
-        LocalDateTime start = now.with(firstDayOfMonth()).with(LocalTime.MIN);
+        LocalDateTime start;
 
-        LocalDateTime end = now.with(lastDayOfMonth()).with(LocalTime.MAX);;
+        LocalDateTime end;
+
+        LocalDateTime firstDay = now.with(firstDayOfMonth()).with(LocalTime.MIN);
+
+        LocalDateTime lastDay = now.with(lastDayOfMonth()).with(LocalTime.MAX);
+
+        int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
+
+        int lastDayOfWeek = lastDay.getDayOfWeek().getValue();
+
+        if(firstDayOfWeek != 1) {
+            int delta = firstDayOfWeek - 1;
+
+            start = firstDay.minusDays(delta);
+             end = lastDay.minusDays(delta);
+        } else {
+            start = firstDay;
+
+            end = lastDay;
+
+        }
 
         return postRepository.findAllByBlogIdAndCreatedDayBetween(blog,start,end).stream().map(DabblePostDTO::new).toList();
     }
