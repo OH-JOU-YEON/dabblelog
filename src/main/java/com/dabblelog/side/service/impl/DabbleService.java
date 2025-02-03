@@ -10,15 +10,12 @@ import com.dabblelog.side.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +35,7 @@ public class DabbleService {
 
     public Dabble getDabbleByDate(LocalDateTime now) {
 
-        Optional<Dabble> dabble = dabbleRepository.findByYearAndMonth(now.format(DateTimeFormatter.ofPattern("yy-MM")));
+        Optional<Dabble> dabble = dabbleRepository.findByDate(now.format(DateTimeFormatter.ofPattern("yyyy-MM")));
 
         return dabble.orElseGet(() -> dabbleRepository.save(new Dabble(now)));
     }

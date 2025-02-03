@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface DabbleRepository extends JpaRepository<Dabble, Long> {
 
-    Optional<Dabble> findByYearAndMonth(String yearAndMonth);
+    Optional<Dabble> findByDate(String date);
 }

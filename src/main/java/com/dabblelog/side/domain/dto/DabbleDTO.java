@@ -17,7 +17,7 @@ public class DabbleDTO {
 
     public DabbleDTO(Dabble dabble,List<DabbleDaysDTO> dabbleDaysDTOS) {
 
-        String[] dates = dabble.getYearAndMonth().split("-");
+        String[] dates = dabble.getDate().split("-");
 
         this.year = dates[0];
 
