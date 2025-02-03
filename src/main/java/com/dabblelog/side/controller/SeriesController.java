@@ -83,7 +83,7 @@ public class SeriesController {
 }
 
     @GetMapping("/dabblelog/{blogName}/series")
-    public String mappingSeries(Model model, HttpServletRequest request, @PageableDefault(page=0, size=6) Pageable pageable,
+    public String mappingSeries(Model model, HttpServletRequest request, @PageableDefault( size=6) Pageable pageable,
                                 @PathVariable String blogName) {
 
         HttpSession session = request.getSession(false);
@@ -92,10 +92,8 @@ public class SeriesController {
         model.addAttribute("seriesList",seriesDTOS);
         model.addAttribute("thisBlog","/dabblelog/"+blogName);
 
-        //페이지블럭 처리
-        //1을 더해주는 이유는 pageable은 0부터라 1을 처리하려면 1을 더해서 시작해주어야 한다.
+
         int nowPage = seriesDTOS.getPageable().getPageNumber() + 1;
-        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
         int startPage =  Math.max(nowPage - 4, 1);
         int endPage = Math.min(nowPage+9, seriesDTOS.getTotalPages());
         model.addAttribute("nowPage",nowPage);

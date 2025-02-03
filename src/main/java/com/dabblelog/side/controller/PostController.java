@@ -96,8 +96,6 @@ public class PostController {
 
         model.addAttribute("reples",repleDTOS);
 
-
-
         return "/basic/Post";
     }
 

@@ -2,6 +2,7 @@ package com.dabblelog.side.domain.dto;
 
 
 import com.dabblelog.side.domain.Post;
+import com.dabblelog.side.domain.Series;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 
@@ -28,7 +29,19 @@ public class DabblePostDTO {
 
         this.title = title;
 
-        this.color = post.getSeriesId().getColor();
+        Series series = post.getSeriesId();
+
+        String color;
+
+        if(series == null) {
+            color = "#000000";
+        } else{
+
+            color = post.getSeriesId().getColor();
+        }
+
+
+        this.color = color;
 
         this.createdDay = post.getCreatedDay();
     }

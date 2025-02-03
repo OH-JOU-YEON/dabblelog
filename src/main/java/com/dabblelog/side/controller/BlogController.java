@@ -67,9 +67,8 @@ public class BlogController {
         model.addAttribute("profile",getBlogProfileDTO);
 
         int nowPage = getBlogPostDTOS.getPageable().getPageNumber() + 1;
-        //-1값이 들어가는 것을 막기 위해서 max값으로 두 개의 값을 넣고 더 큰 값을 넣어주게 된다.
-        int startPage =  Math.max(nowPage - 4, 1);
-        int endPage = Math.min(nowPage+9, getBlogPostDTOS.getTotalPages());
+        int startPage =  Math.max(nowPage - 2, 1);
+        int endPage = Math.min(nowPage+5, getBlogPostDTOS.getTotalPages());
         model.addAttribute("nowPage",nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);

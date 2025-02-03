@@ -108,10 +108,9 @@
             <div class="col-lg-6 col-md-7 col-12">
               <!-- Top Contact -->
               <ul class="top-contact">
-                <li><i class="fa fa-phone"></i>010-4948-5707</li>
                 <li>
                   <i class="fa fa-envelope"></i
-                  ><a href="mailto:support@yourmail.com"
+                  ><a th:href="${myBlogURL}" th:text="${email}"
                     >hyperclutter@gmail.com</a
                   >
                 </li>
@@ -130,7 +129,7 @@
               <div class="col-lg-3 col-md-3 col-12">
                 <!-- Start Logo -->
                 <div class="logo">
-                  <a href="index.html"><h2>dabblelog</h2></a>
+                  <a href="/"><h2>dabblelog</h2></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Mobile Nav -->
@@ -144,7 +143,7 @@
                     <ul class="nav menu">
                       <li><a href="/liked"> 좋아요를 누른 포스트 </a></li>
                       <li><a href="/saves"> 임시 저장 글 </a></li>
-                      <li><a href="/dabble">나의 데블</a></li>
+                      <li><a href="/dabble">나의 회고</a></li>
                       <li><a href="/setting"> 설정 </a></li>
                     </ul>
                   </nav>
@@ -153,7 +152,9 @@
               </div>
               <div class="col-lg-2 col-12">
                 <div class="get-quote">
-                  <a href="appointment.html" class="btn">구글 로그인</a>
+                  <a th:href="${path}" th:text="${loginOrNot}" class="btn"
+                    >구글 로그인</a
+                  >
                 </div>
               </div>
             </div>
@@ -218,11 +219,12 @@
               th:each="date : ${dabble.dabbleDaysDTOS}"
               th:text="${date.day}"
             >
-              <p
-                th:each="post : ${day.dabblePostDTOS}"
+              <th:block
+                th:each="post : ${date.dabblePostDTOS}"
                 th:text="${post.title}"
-                th:style="|color : ${post.color}|"
-              ></p>
+                th:style="|color : ${post.title}|"
+              >
+              </th:block>
             </div>
           </div>
         </div>

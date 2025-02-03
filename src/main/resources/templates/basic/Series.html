@@ -206,8 +206,8 @@
                   <nav class="navigation">
                     <ul class="nav menu">
                       <li><a th:href="|${thisBlog}|"> 글 </a></li>
-                      <li><a th:href="|${thisBlog}/series|"> 시리즈 </a></li>
-                      <li><a th:href="|${thisBlog}/about|"> 소개 </a></li>
+                      <li><a th:href="|/series|"> 시리즈 </a></li>
+                      <li><a th:href="|/about|"> 소개 </a></li>
                     </ul>
                   </nav>
                 </div>
@@ -328,19 +328,6 @@
       </ul>
     </section>
 
-    <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
-      <a
-        style="color: inherit"
-        th:if="${page != nowPage}"
-        th:href="@{/board/list(page=${page-1})}"
-        th:text="${page}"
-      ></a>
-      <strong
-        th:if="${page==nowPage}"
-        th:text="${page}"
-        style="color: blue"
-      ></strong>
-    </th:block>
     <!-- End Breadcrumbs -->
 
     <!-- Single News -->

@@ -39,11 +39,12 @@ public class DabbleDaysDTO {
 
         this.day = createdDay.getDayOfMonth();
 
-        this.createdDay = getCreatedDay();
+        this.createdDay = createdDay;
+
     }
 
 
-    public DabbleDaysDTO updatePostList(List<DabblePostDTO> dabblePostDTOS) {
+    public void updatePostList(List<DabblePostDTO> dabblePostDTOS) {
         if(dabblePostDTOS.size() > 3) {
             int anotherCount = dabblePostDTOS.size() - 2;
             dabblePostDTOS.subList(3, dabblePostDTOS.size()).clear();
@@ -53,8 +54,6 @@ public class DabbleDaysDTO {
         }
 
         this.dabblePostDTOS = dabblePostDTOS;
-
-        return this;
 
     }
 

@@ -70,7 +70,7 @@ public class DabbleService {
 
         for(int i = 1; i<=35; i++  ){
             list.add(new DabbleDaysDTO(start));
-            start.plusDays(1);
+            start = start.plusDays(1);
         }
 
 
@@ -85,11 +85,14 @@ public class DabbleService {
     public List<DabbleDaysDTO> getDivPosts(List<DabbleDaysDTO> dabbleDaysDTOS,List<DabblePostDTO> dabblePostDTOS) {
 
         for(DabbleDaysDTO dabbleDaysDTO : dabbleDaysDTOS) {
+
             List<DabblePostDTO> dabblePostDTOList = new ArrayList<>();
 
             for(DabblePostDTO dabblePostDTO : dabblePostDTOS) {
 
-                if(dabbleDaysDTO.getCreatedDay().isEqual(dabblePostDTO.getCreatedDay())) {
+
+
+                if(dabbleDaysDTO.getCreatedDay().equals(dabblePostDTO.getCreatedDay())) {
                     dabblePostDTOList.add(dabblePostDTO);
                 } else if(dabbleDaysDTO.getCreatedDay().isBefore(dabblePostDTO.getCreatedDay())) {
 
@@ -118,19 +121,19 @@ public class DabbleService {
 
         int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
 
-        int lastDayOfWeek = lastDay.getDayOfWeek().getValue();
 
         if(firstDayOfWeek != 1) {
             int delta = firstDayOfWeek - 1;
 
             start = firstDay.minusDays(delta);
-             end = lastDay.minusDays(delta);
+             end = firstDay.plusDays(35).minusNanos(1);
         } else {
             start = firstDay;
 
             end = lastDay;
 
         }
+
 
         return postRepository.findAllByBlogIdAndCreatedDayBetweenOrderByCreatedDay(blog,start,end).stream().map(DabblePostDTO::new).toList();
     }

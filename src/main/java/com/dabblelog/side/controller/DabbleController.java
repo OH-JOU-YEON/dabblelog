@@ -7,23 +7,20 @@ import com.dabblelog.side.domain.Dabble;
 import com.dabblelog.side.domain.dto.DabbleDTO;
 import com.dabblelog.side.domain.dto.DabbleDaysDTO;
 import com.dabblelog.side.domain.dto.DabblePostDTO;
-import com.dabblelog.side.domain.dto.MonthDTO;
 import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.DabbleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Slf4j
 @Controller
 public class DabbleController {
 
@@ -33,7 +30,7 @@ public class DabbleController {
     @Autowired
     BlogService blogService;
 
-    @ResponseBody
+
     @GetMapping("/dabble/right")
     public String getMonthAfter(HttpServletRequest request, Model model) {
 
@@ -69,7 +66,7 @@ public class DabbleController {
 
     }
 
-    @ResponseBody
+
     @GetMapping("/dabble/left")
     public String getMonthBefore(HttpServletRequest request, Model model) {
 
@@ -114,6 +111,7 @@ public class DabbleController {
             model.addAttribute("loginOrNot","새 글 작성하기");
             model.addAttribute("path","/write");
             model.addAttribute("email",sessionuser.getEmail());
+            model.addAttribute("myBlogURL","dabblelog/" + blogService.getBlogName(sessionuser.getEmail()));
 
             Blog blog = blogService.ifBlogIsNotExistCreateBlog(sessionuser.getEmail());
 
@@ -127,7 +125,11 @@ public class DabbleController {
 
             DabbleDTO dabbleDTO = new DabbleDTO(dabble,dabbleDaysDTOS);
 
+
+
             model.addAttribute("dabble",dabbleDTO);
+
+
 
 
 

@@ -53,11 +53,17 @@ public class AboutController {
             model.addAttribute("email","dabblelog.com");
             model.addAttribute("myBlogURL","/oauth2/authorization/google");
 
+            model.addAttribute("path", "/oauth2/authorization/google");
+            model.addAttribute("loginOrNot", "구글 로그인");
+
         } else {
             SessionUser sessionUser = (SessionUser) session.getAttribute("user");
 
             model.addAttribute("email",sessionUser.getEmail());
             model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
+
+            model.addAttribute("path", "/write");
+            model.addAttribute("loginOrNot", "새 글 작성하기");
 
             //세션 블로그하고 url하고 일치하는지 알아본 후에 맞으면 수정하기 버튼 속성 block 아니면 none
 
@@ -71,6 +77,8 @@ public class AboutController {
         }
 
         BlogProfileDTO blogProfileDTO = blogService.getBlogProfileDTO(blogName);
+
+        model.addAttribute("thisBlogURL","/dabblelog/" + blogName);
 
 
         model.addAttribute("profile",blogProfileDTO);
@@ -89,9 +97,6 @@ public class AboutController {
             model.addAttribute("about",aboutDTO);
 
         }
-
-
-
 
         return "basic/About";
     }

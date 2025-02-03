@@ -239,13 +239,13 @@
             class="wrapper"
             style="width: 20rem; height: 13rem; margin-right: 2rem"
           >
-            <a href="|${thisBlog}${post.title}|"
+            <a th:href="|${thisBlog}/${post.title}|"
               ><img th:src="${post.postImg}"
             /></a>
           </div>
           <div class="texts">
             <div style="margin-bottom: 2rem">
-              <a href="Post.html"
+              <a th:href="|${thisBlog}/${post.title}|"
                 ><h4 style="font-weight: 550" th:text="${post.title}">
                   작성한 글 제목
                 </h4></a
@@ -283,6 +283,23 @@
           </div>
         </div>
       </div>
+
+      <th:block
+        th:each="page:${#numbers.sequence(startPage,endPage)}"
+        style="margin-left: auto; margin-right: auto"
+      >
+        <a
+          style="color: inherit"
+          th:if="${page != nowPage}"
+          th:href="@{/series(page=${page-1})}"
+          th:text="${page}"
+        ></a>
+        <strong
+          th:if="${page==nowPage}"
+          th:text="${page}"
+          style="color: blue"
+        ></strong>
+      </th:block>
     </section>
 
     <!-- End Breadcrumbs -->

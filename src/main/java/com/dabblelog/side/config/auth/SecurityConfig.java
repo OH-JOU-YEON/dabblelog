@@ -41,27 +41,18 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests((authorizeRequest) -> authorizeRequest
 
-                        //홈이랑 로그인 페이지만 아무나 접근 가능 나머지는 인증된 사용자만 접근 가능
-                        //페이지 다 만들고 코드 추가
 
                         .requestMatchers("/posts/new").hasRole(Role.USER.name())
                         .requestMatchers("/", "/login", "/login/**", "/logout/*",
                                 "/css/**","/js/**","/fonts/**","/img/**","/mail/**" ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .logout( // 로그아웃 성공 시 / 주소로 이동
+                .logout(
                         (logoutConfig) -> logoutConfig.logoutSuccessUrl("/")
                 )
-                // OAuth2 로그인 기능에 대한 여러 설정
-                .oauth2Login(Customizer.withDefaults()); // 아래 코드와 동일한 결과
-        /*
-                .oauth2Login(
-                        (oauth) ->
-                            oauth.userInfoEndpoint(
-                                    (endpoint) -> endpoint.userService(customOAuth2UserService)
-                            )
-                );
-        */
+
+                .oauth2Login(Customizer.withDefaults());
+
 
         return http.build();
     }

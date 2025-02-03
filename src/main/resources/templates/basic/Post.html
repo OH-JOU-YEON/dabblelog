@@ -205,7 +205,7 @@
                     </div>
                   </div>
                   <!-- News Text -->
-                  <div id="viewer"></div>
+                  <div id="viewer" th:utext="${profile.content}"></div>
                 </div>
               </div>
             </div>
@@ -263,7 +263,6 @@
                 <!--/ End Contact Form -->
               </div>
               <div class="blog-comments">
-                <h2>All Comments</h2>
                 <div class="comments-body">
                   <div th:each="reple : ${reples}">
                     <!-- Single Comments -->
@@ -424,12 +423,6 @@
           event.target.parentNode.appendChild(cloneTextArea);
         }
       }
-
-      const content = "[[${profile.content}]]";
-      const viewer = new toastui.Editor({
-        el: document.querySelector("#viewer"),
-        initialValue: content,
-      });
 
       function createReple() {
         if (document.querySelector("#logo").getAttribute("href") == "/") {

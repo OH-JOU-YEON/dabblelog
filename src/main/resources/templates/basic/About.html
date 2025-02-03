@@ -113,7 +113,10 @@
               <ul class="top-contact">
                 <li></li>
                 <li>
-                  <i class="fa fa-envelope"></i><a href="#">dabblelog.com</a>
+                  <i class="fa fa-envelope"></i
+                  ><a th:href="${myBlogURL}" th:text="${email}"
+                    >dabblelog.com</a
+                  >
                 </li>
               </ul>
               <!-- End Top Contact -->
@@ -130,7 +133,7 @@
               <div class="col-lg-3 col-md-3 col-12">
                 <!-- Start Logo -->
                 <div class="logo">
-                  <a href="Home.html"><h2>dabblelog</h2></a>
+                  <a href="/"><h2>dabblelog</h2></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Mobile Nav -->
@@ -152,7 +155,9 @@
               </div>
               <div class="col-lg-2 col-12">
                 <div class="get-quote">
-                  <a href="appointment.html" class="btn">구글 로그인</a>
+                  <a th:href="${path}" th:text="${loginOrNot}" class="btn"
+                    >구글 로그인</a
+                  >
                 </div>
               </div>
             </div>
@@ -191,7 +196,7 @@
               <div style="display: flex; flex-basis: auto">
                 <img
                   class="img-concert"
-                  src="../../static/img/person-circle.svg"
+                  src="/img/person-circle.svg"
                   width="128"
                   ;
                   style="border-radius: 50%"

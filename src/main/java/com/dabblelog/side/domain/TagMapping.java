@@ -2,9 +2,11 @@ package com.dabblelog.side.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class TagMapping {
 
     @Id

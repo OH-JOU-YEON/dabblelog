@@ -1,6 +1,7 @@
 package com.dabblelog.side.domain.dto;
 
 import com.dabblelog.side.domain.Post;
+import com.dabblelog.side.domain.Series;
 import lombok.Getter;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class PostViewDTO {
 
     private final Long repleCount;
 
+    private final String content;
+
 
 
     public PostViewDTO(Post post,List<String> tagsTitle, Long repleCount){
@@ -28,7 +31,25 @@ public class PostViewDTO {
 
         this.author = post.getBlogId().getUser().getName();
 
-        this.seriesTitle = post.getSeriesId().getTitle();
+        Series series = post.getSeriesId();
+        String seriesTitle;
+
+        if(series == null) {
+            seriesTitle = "";
+        } else {
+
+            seriesTitle = post.getSeriesId().getTitle();
+        }
+
+
+
+        if(seriesTitle == null) {
+            seriesTitle = "";
+        }
+
+        this.content = post.getContent();
+
+        this.seriesTitle = seriesTitle;
 
         this.tagsTitle = tagsTitle;
 
