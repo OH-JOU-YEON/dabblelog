@@ -29,7 +29,7 @@ public class HomeController {
     @Autowired
     BlogService blogService;
 
-    @GetMapping("/") String mappingHome(Model model, @PageableDefault(page=0, size=9, sort="likeCount") Pageable pageable) {
+    @GetMapping("/") String mappingHome(Model model, @PageableDefault(page=0, size=12, sort="likeCount") Pageable pageable) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("email", "dabblelog.com");
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
@@ -86,7 +86,7 @@ public class HomeController {
 
     //트렌딩 처리
     @GetMapping("/trend")
-    String mappingTrend(Model model, @PageableDefault(page=0, size=9, sort="likeCount") Pageable pageable) {
+    String mappingTrend(Model model, @PageableDefault(page=0, size=12, sort="likeCount") Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
@@ -132,7 +132,7 @@ public class HomeController {
 
     //최신 글 처리
     @GetMapping("/new")
-    String mappingNew(Model model, @PageableDefault(page=0, size=9, sort="createdDay", direction= Sort.Direction.DESC) Pageable pageable) {
+    String mappingNew(Model model, @PageableDefault(page=0, size=12, sort="createdDay", direction= Sort.Direction.DESC) Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
@@ -178,7 +178,7 @@ public class HomeController {
 
     //피드 처리
     @GetMapping("/feed")
-    String mappingFeed(Model model, @PageableDefault(page=0, size=9, sort="createdDay" , direction= Sort.Direction.DESC) Pageable pageable) {
+    String mappingFeed(Model model, @PageableDefault(page=0, size=12, sort="createdDay" , direction= Sort.Direction.DESC) Pageable pageable) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("myBlogURL", "/oauth2/authorization/google");
