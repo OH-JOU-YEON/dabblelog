@@ -125,6 +125,16 @@ public class DabbleController {
 
             DabbleDTO dabbleDTO = new DabbleDTO(dabble,dabbleDaysDTOS);
 
+            for(DabbleDaysDTO dabbleDaysDTO : dabbleDaysDTOS) {
+
+                log.info(String.valueOf(dabbleDaysDTO.getCreatedDay()));
+
+                for(DabblePostDTO dabblePostDTO : dabbleDaysDTO.getDabblePostDTOS()) {
+
+                    log.info(dabblePostDTO.getTitle());
+                }
+            }
+
 
 
             model.addAttribute("dabble",dabbleDTO);

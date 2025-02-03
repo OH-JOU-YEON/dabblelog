@@ -45,9 +45,9 @@ public class DabbleDaysDTO {
 
 
     public void updatePostList(List<DabblePostDTO> dabblePostDTOS) {
-        if(dabblePostDTOS.size() > 3) {
+        if(dabblePostDTOS.size() > 2) {
             int anotherCount = dabblePostDTOS.size() - 2;
-            dabblePostDTOS.subList(3, dabblePostDTOS.size()).clear();
+            dabblePostDTOS.subList(2, dabblePostDTOS.size()).clear();
 
             dabblePostDTOS.add(new DabblePostDTO(anotherCount,this.createdDay));
 

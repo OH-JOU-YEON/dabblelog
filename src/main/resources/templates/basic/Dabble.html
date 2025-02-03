@@ -214,17 +214,14 @@
             ><span class="day-name">Wed</span><span class="day-name">Thu</span
             ><span class="day-name">Fri</span><span class="day-name">Sat</span
             ><span class="day-name">Sun</span>
-            <div
-              class="day"
-              th:each="date : ${dabble.dabbleDaysDTOS}"
-              th:text="${date.day}"
-            >
-              <th:block
+
+            <div class="day" th:each="date : ${dabble.dabbleDaysDTOS}">
+              <p th:text="${date.day}"></p>
+              <p
                 th:each="post : ${date.dabblePostDTOS}"
-                th:text="${post.title}"
+                th:text="|${post.title}|"
                 th:style="|color : ${post.title}|"
-              >
-              </th:block>
+              ></p>
             </div>
           </div>
         </div>

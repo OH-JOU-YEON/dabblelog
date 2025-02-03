@@ -90,11 +90,18 @@ public class DabbleService {
 
             for(DabblePostDTO dabblePostDTO : dabblePostDTOS) {
 
+                int dayMonth = dabbleDaysDTO.getCreatedDay().getMonthValue();
+                int dayWeek = dabbleDaysDTO.getCreatedDay().getDayOfMonth();
+
+                int postMonth = dabblePostDTO.getCreatedDay().getMonthValue();
+
+                int postWeek = dabblePostDTO.getCreatedDay().getDayOfMonth();
 
 
-                if(dabbleDaysDTO.getCreatedDay().equals(dabblePostDTO.getCreatedDay())) {
+
+                if(dayMonth == postMonth && dayWeek == postWeek) {
                     dabblePostDTOList.add(dabblePostDTO);
-                } else if(dabbleDaysDTO.getCreatedDay().isBefore(dabblePostDTO.getCreatedDay())) {
+                } else if((dayMonth < postMonth) || (dayWeek < postWeek && dayMonth == postMonth)) {
 
                     break;
 
@@ -133,6 +140,7 @@ public class DabbleService {
             end = lastDay;
 
         }
+
 
 
         return postRepository.findAllByBlogIdAndCreatedDayBetweenOrderByCreatedDay(blog,start,end).stream().map(DabblePostDTO::new).toList();
