@@ -156,7 +156,7 @@ public class PostController {
 
         PostController.log.info(tags);
 
-        String seriesTitle = postDTO.getSeriesTitle();
+        String seriesTitle = postDTO.getSeries();
 
         log.info(seriesTitle);
 

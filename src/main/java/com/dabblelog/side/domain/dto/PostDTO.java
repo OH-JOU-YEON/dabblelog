@@ -14,5 +14,5 @@ public class PostDTO {
 
     private String content;
 
-    private String seriesTitle;
+    private String series;
 }
