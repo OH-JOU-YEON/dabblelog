@@ -167,12 +167,21 @@
     <section class="container" style="margin-top: 3rem">
       <ul
         class="news-single"
-        style="display: flex; flex-direction: row; flex-wrap: wrap"
+        style="
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          column-gap: 10px;
+        "
       >
         <li th:if="${list.isEmpty()}">
           <h3>첫 포스트의 주인공이 되어 보세요!</h3>
         </li>
-        <li class="single-main" th:each="post:${list}">
+        <li
+          class="single-main"
+          th:each="post:${list}"
+          style="width: 360px; height: 380px"
+        >
           <a th:href="|dabblelog/${post.blogName}/${post.title}|">
             <img
               th:src="${post.thumbnail}"

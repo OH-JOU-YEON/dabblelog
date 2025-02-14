@@ -178,7 +178,7 @@
       <li th:if="${list.isEmpty()}">
         <h3>좋아요를 누른 포스트가 없습니다.</h3>
       </li>
-      <li class="single-main" th:each="post:${list}">
+      <li class="single-main" th:each="post:${list}" >
         <a th:href="|dabblelog/${post.blogName}/${post.title}|">
           <img
             th:src="${post.thumbnail}"
