@@ -129,6 +129,15 @@ public class SeriesController {
     }
 
 
+    @GetMapping("/dabblelog/{blogName}/series/{seriesTitle}")
+    public String getSeriesDetails(Model model, HttpServletRequest request, @PageableDefault( size=6) Pageable pageable,
+                                   @PathVariable String blogName, @PathVariable String seriesTitle){
+
+        return "basic/SeriesDetails";
+
+    }
+
+
     //시리즈 생성 데이터 받아서 파싱해다가 시리즈 생성하는 로직
 
 
