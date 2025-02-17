@@ -259,19 +259,65 @@
       </ul>
     </section>
 
-    <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
-      <a
-        style="color: inherit"
-        th:if="${page != nowPage}"
-        th:href="@{/board/list(page=${page-1})}"
-        th:text="${page}"
-      ></a>
-      <strong
-        th:if="${page==nowPage}"
-        th:text="${page}"
-        style="color: blue"
-      ></strong>
-    </th:block>
+    <section
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div th:if="${!seriesList.isEmpty()}" class="news-single">
+        <ul
+          style="display: flex; flex-direction: row"
+          class="pagination"
+          th:with="
+            pageNumber = ${seriesList.pageable.pageNumber},
+            pageSize = ${seriesList.pageable.pageSize},
+            totalPages = ${seriesList.totalPages},
+            startPage = ${T(java.lang.Math).floor(pageNumber / pageSize) * pageSize + 1},
+            tempEndPage = ${startPage + pageSize - 1},
+            endPage = (${tempEndPage < totalPages ? tempEndPage : totalPages})"
+        >
+          <li
+            th:classappend="${seriesList.first} ? 'disabled'"
+            class="page-item"
+          >
+            <a
+              class="page-link"
+              th:href="${seriesList.first} ? '#' : @{/(page=${pageNumber - 1})}"
+            >
+              <span aria-hidden="true">&lt;</span>
+            </a>
+          </li>
+
+          <li
+            th:each="page: ${#numbers.sequence(startPage, endPage)}"
+            th:classappend="${page == pageNumber + 1} ? 'active'"
+            class="page-item"
+          >
+            <a
+              th:text="${page}"
+              class="page-link"
+              th:href="@{/(page=${page - 1})}"
+            ></a>
+          </li>
+
+          <li
+            th:classappend="${seriesList.last} ? 'disabled'"
+            class="page-item"
+          >
+            <a
+              class="page-link"
+              th:href="${seriesList.last} ? '#' : @{/(page=${pageNumber + 1})}"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
     <!-- End Breadcrumbs -->
 
     <!-- Single News -->
