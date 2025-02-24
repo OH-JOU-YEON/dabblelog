@@ -22,7 +22,7 @@ public class FileApiController {
     String path = System.getProperty("user.dir");
 
     // 파일을 업로드할 디렉터리 경로
-    private final String uploadDir = Paths.get(path , "/side/src/main/resources/static","tui-editor", "upload").toString();
+    private final String uploadDir = Paths.get(path , "/side/src/main/resources/static/img","tui-editor", "upload").toString();
 
     /**
      * 에디터 이미지 업로드
