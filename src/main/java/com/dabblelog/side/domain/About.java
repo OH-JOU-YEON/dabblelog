@@ -1,10 +1,7 @@
 package com.dabblelog.side.domain;
 
 import com.dabblelog.side.domain.dto.AboutDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class About {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private Long id;
 

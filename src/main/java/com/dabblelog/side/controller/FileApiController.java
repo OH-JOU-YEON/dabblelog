@@ -19,9 +19,10 @@ import java.util.UUID;
 @Controller
 @Slf4j
 public class FileApiController {
+    String path = System.getProperty("user.dir");
 
     // 파일을 업로드할 디렉터리 경로
-    private final String uploadDir = Paths.get("C:", "tui-editor", "upload").toString();
+    private final String uploadDir = Paths.get(path , "/side/src/main/resources/static","tui-editor", "upload").toString();
 
     /**
      * 에디터 이미지 업로드
@@ -57,6 +58,7 @@ public class FileApiController {
             // 파일 저장 (write to disk)
             File uploadFile = new File(fileFullPath);
             image.transferTo(uploadFile);
+            log.info("저장된 파일 경로 "+ saveFilename );
             return saveFilename;
 
         } catch (IOException e) {
