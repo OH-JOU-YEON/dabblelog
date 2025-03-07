@@ -44,7 +44,7 @@ public class SecurityConfig {
 
                         .requestMatchers("/posts/new").hasRole(Role.USER.name())
                         .requestMatchers("/", "/login", "/login/**", "/logout/*",
-                                "/css/**","/js/**","/fonts/**","/img/**","/mail/**" ).permitAll()
+                                "/css/**","/js/**","/fonts/**","/img/**","/mail/**","/error" ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .logout(
