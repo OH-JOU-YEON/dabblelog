@@ -61,6 +61,7 @@ public class WriteController {
 
         seriesListCheck(seriesList,model);
 
+        model.addAttribute("myblogURL","/dabblelog/" + blog.getBlogName());
 
         model.addAttribute("seriesList", seriesList);
 
