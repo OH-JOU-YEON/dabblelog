@@ -14,6 +14,7 @@ import com.dabblelog.side.service.impl.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,31 +28,32 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class PostController {
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
 
-    PostService postService;
+   private final PostService postService;
 
 
-    SeriesRepository seriesRepository;
+   private final SeriesRepository seriesRepository;
 
 
-    PostTagService postTagService;
+   private final PostTagService postTagService;
 
 
-    TagMappingService tagMappingService;
+   private final TagMappingService tagMappingService;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
-    RepleService repleService;
+   private final RepleService repleService;
 
 
     //개별 페이지 관련 로직들

@@ -30,16 +30,16 @@ import java.util.Objects;
 public class SeriesController {
 
 
-    SeriesService seriesService;
+   private final SeriesService seriesService;
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 @PostMapping("/series/create")
     public String seriesCreate(Model model, HttpServletRequest request) {

@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 public class AboutService {
 
 
-    AboutRepository aboutRepository;
+   private final AboutRepository aboutRepository;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
     public About getAboutByBlog(Blog blog, AboutDTO aboutDTO) {
         if(aboutRepository.findByBlogId(blog).isPresent()) {

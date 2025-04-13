@@ -27,10 +27,10 @@ public class WriteController {
     private final SeriesRepository seriesRepository;
 
 
-    SaveService saveService;
+   private final SaveService saveService;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
 

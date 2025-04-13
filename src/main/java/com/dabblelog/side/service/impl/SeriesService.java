@@ -22,17 +22,17 @@ import java.util.List;
 public class SeriesService {
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
 
-    PostRepository postRepository;
+   private final PostRepository postRepository;
 
 
-    SeriesRepository seriesRepository;
+   private final SeriesRepository seriesRepository;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
     //새 시리즈 생성 로직
 

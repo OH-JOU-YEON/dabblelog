@@ -30,19 +30,19 @@ import java.time.LocalDateTime;
 public class RepleController {
 
 
-    RepleService repleService;
+    private final RepleService repleService;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
 
-    PostService postService;
+   private final PostService postService;
 
 
-    RepleRepository repleRepository;
+   private final RepleRepository repleRepository;
 
     @ResponseBody
     @PostMapping("/reple/create")

@@ -23,13 +23,13 @@ import java.util.List;
 public class RepleService {
 
 
-    RepleRepository repleRepository;
+   private final RepleRepository repleRepository;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
-    PostService postService;
+   private final PostService postService;
 
 
 

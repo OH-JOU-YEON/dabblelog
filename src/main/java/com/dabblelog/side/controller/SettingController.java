@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class SettingController {
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
     //설정 호출 메서드
     @GetMapping("/setting")

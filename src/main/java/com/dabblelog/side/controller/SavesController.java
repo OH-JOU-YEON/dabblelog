@@ -22,13 +22,13 @@ import java.util.List;
 public class SavesController {
 
 
-    SaveService saveService;
+   private final SaveService saveService;
     //임시 저장 페이지 관련 로직들
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
     @GetMapping("/saves")
     public String mappingHome(Model model, HttpServletRequest request) {

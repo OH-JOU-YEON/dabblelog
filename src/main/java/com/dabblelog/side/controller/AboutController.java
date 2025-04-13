@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class AboutController {
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
-    AboutService aboutService;
+   private final AboutService aboutService;
 
     @PostMapping("/about/create")
     public void createAbout(HttpServletRequest request, @RequestBody AboutDTO aboutDTO) {

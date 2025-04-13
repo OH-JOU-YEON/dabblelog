@@ -31,13 +31,13 @@ import java.util.Optional;
 public class BlogController {
 
 
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
     @GetMapping("/dabblelog/{blogName}")
     public String blogMapping(Model model, HttpServletRequest

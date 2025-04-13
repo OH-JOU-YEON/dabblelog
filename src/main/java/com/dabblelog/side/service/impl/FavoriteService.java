@@ -19,9 +19,9 @@ import org.springframework.stereotype.Service;
 public class FavoriteService {
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
-    FavoriteRepository favoriteRepository;
+   private final FavoriteRepository favoriteRepository;
 
 
     RepleRepository repleRepository;

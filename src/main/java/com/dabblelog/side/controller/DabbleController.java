@@ -11,6 +11,7 @@ import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.DabbleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,16 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class DabbleController {
 
 
-    DabbleService dabbleService;
+   private final DabbleService dabbleService;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
+
+
 
 
     @GetMapping("/dabble/right")

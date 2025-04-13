@@ -28,9 +28,9 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 public class DabbleService {
 
 
-    DabbleRepository dabbleRepository;
+   private final DabbleRepository dabbleRepository;
 
-    PostRepository postRepository;
+   private final PostRepository postRepository;
 
     public Dabble getDabbleByDate(LocalDateTime now) {
 

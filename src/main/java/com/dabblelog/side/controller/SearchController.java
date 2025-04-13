@@ -6,6 +6,7 @@ import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.service.impl.SearchService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,10 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class SearchController {
 
 
-    SearchService searchService;
+   private final SearchService searchService;
 
     @GetMapping("/search")
     public String locationToSearch(Model model, HttpServletRequest request) {

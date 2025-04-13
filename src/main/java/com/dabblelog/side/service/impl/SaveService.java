@@ -20,16 +20,16 @@ import java.util.List;
 public class SaveService {
 
 
-    PostRepository postRepository;
+   private final PostRepository postRepository;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
 
-    PostTagService postTagService;
+   private final PostTagService postTagService;
 
     public List<SavesDTO> getSaves(String email) {
 

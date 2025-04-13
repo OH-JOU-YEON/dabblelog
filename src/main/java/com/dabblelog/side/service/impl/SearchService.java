@@ -22,13 +22,13 @@ import java.util.List;
 public class SearchService {
 
 
-    TagMappingRepository tagMappingRepository;
+   private final TagMappingRepository tagMappingRepository;
 
 
-    PostTagRepository postTagRepository;
+   private final PostTagRepository postTagRepository;
 
 
-    RepleRepository repleRepository;
+   private final RepleRepository repleRepository;
 
 
 

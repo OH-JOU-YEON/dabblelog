@@ -27,16 +27,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class LikedController {
 
 
-    FavoriteService favoriteService;
+   private final FavoriteService favoriteService;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
 
-    PostService postService;
+   private final PostService postService;
 
 
-    PostRepository postRepository;
+   private final PostRepository postRepository;
 
     //내가 좋아요 누른 게시물들을 볼 수 있는 페이지
 

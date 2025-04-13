@@ -8,22 +8,24 @@ import com.dabblelog.side.domain.TagMapping;
 import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.repository.TagMappingRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TagMappingService {
 
 
-    TagMappingRepository tagMappingRepository;
+  private final TagMappingRepository tagMappingRepository;
 
 
-    PostRepository postRepository;
+  private final PostRepository postRepository;
 
 
-    BlogService blogService;
+   private final BlogService blogService;
 
     //태그 매핑 생성하는 로직
 

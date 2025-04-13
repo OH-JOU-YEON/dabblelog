@@ -9,6 +9,7 @@ import com.dabblelog.side.repository.FollowerRepository;
 import com.dabblelog.side.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,17 +18,17 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class FollowerService {
 
 
-    FollowerRepository followerRepository;
+   private final FollowerRepository followerRepository;
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
     //팔로우 버튼을 누르면 버튼이 팔로잉으로 바뀜
 

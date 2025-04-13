@@ -19,10 +19,10 @@ import java.util.List;
 public class PostTagService {
 
 
-    PostTagRepository postTagRepository;
+   private final PostTagRepository postTagRepository;
 
 
-    TagMappingRepository tagMappingRepository;
+   private final TagMappingRepository tagMappingRepository;
 
 
 
