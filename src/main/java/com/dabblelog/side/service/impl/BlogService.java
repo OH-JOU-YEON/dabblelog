@@ -24,16 +24,16 @@ import org.springframework.stereotype.Service;
 public class BlogService {
 
 
-    BlogRepository blogRepository;
+   private final BlogRepository blogRepository;
 
 
-    UserRepository userRepository;
+   private final UserRepository userRepository;
 
 
-    PostRepository postRepository;
+   private final PostRepository postRepository;
 
 
-    FollowerRepository followerRepository;
+   private final  FollowerRepository followerRepository;
 
     //본인 블로그가 존재하는지 하지 않는지 판단 후에 없으면 새 블로그 생성함 검사하는 거 이메일
 
