@@ -234,11 +234,11 @@
             body: JSON.stringify(params),
           });
           console.log(params);
-          window.history.back;
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
         }
+        window.history.back();
       }
 
       function saveTemp() {
@@ -264,11 +264,11 @@
             body: JSON.stringify(params),
           });
           console.log(params);
-          window.history.back;
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
         }
+        window.history.back();
       }
     </script>
   </body>

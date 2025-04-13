@@ -53,18 +53,18 @@ public class PostHomeDTO {
     }
 
     static String getPreview(String postContent) {
-       List<String> splitPostContentWithTagStart = Arrays.stream(postContent.split("<")).filter(s -> !s.isEmpty()).toList();
+       List<String> splitPostContentWithTagStart = Arrays.stream(postContent.split("<p>")).filter(s -> !s.isEmpty()).toList();
 
 
 
 
        for(String splitContent : splitPostContentWithTagStart) {
-           if(splitContent.contains("img>")) {
+           if(splitContent.contains("<img")) {
                continue;
            }
            else {
-               String[] splitPostContentWithTagEnd = splitContent.split(">");
-               return splitPostContentWithTagEnd[1];
+               String[] splitPostContentWithTagEnd = splitContent.split("</p>");
+               return splitPostContentWithTagEnd[0];
            }
        }
 
@@ -76,19 +76,19 @@ public class PostHomeDTO {
     }
 
     static String getThumbnails(String postContent) {
-        String[] splitPostContentWithTagStart = postContent.split("<");
+        String[] splitPostContentWithTagStart = postContent.split("<p>");
 
         //위 메서드와 로직 반대. img> 포함하면 공백으로 잘라서 검사 후에 src를 포함하면 =로 자르고 뒤에 거 반환
 
         for(String splitContent : splitPostContentWithTagStart) {
-            if(splitContent.contains("img>")) {
+            if(splitContent.contains("<img")) {
 
                 String[] splitContentWithBlank = splitContent.split(" ");
 
                 for(String splitWithBlankContent : splitContentWithBlank) {
                     if(splitWithBlankContent.contains("src")) {
-                        String[] splitContentWithSrc = splitWithBlankContent.split("=");
-                        return splitContentWithSrc[1];
+                        String[] splitContentWithSrc = splitWithBlankContent.split("src=");
+                        return splitContentWithSrc[1].replace("\"","");
                     }
                     else {
                         continue;
