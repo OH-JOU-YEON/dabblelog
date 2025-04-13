@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>dabblelog.home</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/realLogo.png" th:href="@{/img/realLogo.png}" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+      href="../../static/css/bootstrap.min.css"
+    />
+    <!-- Nice Select CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/nice-select.css}"
+      href="../../static/css/nice-select.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/font-awesome.min.css}"
+      href="../../static/css/font-awesome.min.css"
+    />
+    <!-- icofont CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/icofont.css}"
+      href="../../static/css/icofont.css"
+    />
+    <!-- Slicknav -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/slicknav.min.css}"
+      href="../../static/css/slicknav.min.css"
+    />
+    <!-- Owl Carousel CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/owl-carousel.css}"
+      href="../../static/css/owl-carousel.css"
+    />
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" th:href="@{/css/datepicker.css}" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}" />
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" />
+
+    <!-- Medipro CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/normalize.css}"
+      href="../../static/css/normalize.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/responsive.css}"
+      href="../../static/css/responsive.css"
+    />
+  </head>
+  <body>
+    <!-- Header Area -->
+    <header class="header">
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-5 col-12"></div>
+            <div class="col-lg-6 col-md-7 col-12">
+              <!-- Top Contact -->
+              <ul class="top-contact">
+                <li>
+                  <i class="fa fa-envelope"></i
+                  ><a href="/blog" th:text="${email}">dabblelog.com</a>
+                </li>
+              </ul>
+              <!-- End Top Contact -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Topbar -->
+      <!-- Header Inner -->
+      <div class="header-inner">
+        <div class="container">
+          <div class="inner">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-12">
+                <!-- Start Logo -->
+                <div class="logo">
+                  <a href="/"><h2>dabblelog</h2></a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Nav -->
+                <div class="mobile-nav"></div>
+                <!-- End Mobile Nav -->
+              </div>
+              <div class="col-lg-7 col-md-9 col-12">
+                <!-- Main Menu -->
+                <div class="main-menu">
+                  <nav class="navigation">
+                    <ul class="nav menu">
+                      <li>
+                        <a href="#">
+                          내 블로그 <i class="icofont-rounded-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                          <li>
+                            <a th:href="${myBlogURL}"> 내 블로그 </a>
+                          </li>
+                          <li><a href="/saves"> 임시 글 </a></li>
+                          <li><a href="/liked"> 좋아요 누른 포스트 </a></li>
+                          <li><a href="/dabble"> 나의 회고 </a></li>
+                          <li><a href="/setting"> 설정 </a></li>
+                          <li><a href="/logout"> 로그아웃 </a></li>
+                        </ul>
+                      </li>
+                      <li><a href="/new"> 최신 </a></li>
+                      <li><a href="/trend"> 트렌드 </a></li>
+                      <li><a href="/feed"> 피드 </a></li>
+                      <li><a href="/search"> 둘러보기 </a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <!--/ End Main Menu -->
+              </div>
+              <div class="col-lg-2 col-12" style="display: flex">
+                <div class="get-quote">
+                  <a th:href="${path}" th:text="${loginOrNot}" class="btn"
+                    >로그인</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ End Header Inner -->
+    </header>
+    <!-- End Header Area -->
+    <section class="container" style="margin-top: 3rem">
+      <ul
+        class="news-single"
+        style="
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          column-gap: 10px;
+        "
+      >
+        <li th:if="${list.isEmpty()}">
+          <h3>첫 포스트의 주인공이 되어 보세요!</h3>
+        </li>
+        <li
+          class="single-main"
+          th:each="post:${list}"
+          style="width: 360px; height: 380px"
+        >
+          <a th:href="|dabblelog/${post.blogName}/${post.title}|">
+            <img
+              th:src="${post.thumbnail}"
+              th:if="${post.thumbnail} != ''"
+              style="width: 300px; height: 166.98px"
+            />
+
+            <div
+              class="textCard"
+              style="
+                width: 319.95;
+                height: 165;
+                margin-top: 1rem;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <h5 style="font-weight: 600" th:text="${post.title}">제목</h5>
+              <p style="margin-top: 0.3rem" th:text="${post.preview}">
+                미리보기
+              </p>
+              <div class="postCard"></div>
+              <p
+                th:text="|${post.createdDay}   댓글${post.totalRepleCount}개   좋아요 ${post.likeCount}개|"
+              >
+                만든 날짜 | 0개의 댓글 | 좋아요 0개
+              </p>
+            </div>
+            <div class="by">
+              <p>by</p>
+              <p th:text="${post.nickname}">쓴 사람 이름</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div th:if="${!list.isEmpty()}" class="news-single">
+        <ul
+          style="display: flex; flex-direction: row"
+          class="pagination"
+          th:with="
+              pageNumber = ${list.pageable.pageNumber},
+              pageSize = ${list.pageable.pageSize},
+              totalPages = ${list.totalPages},
+              startPage = ${T(java.lang.Math).floor(pageNumber / pageSize) * pageSize + 1},
+              tempEndPage = ${startPage + pageSize - 1},
+              endPage = (${tempEndPage < totalPages ? tempEndPage : totalPages})"
+        >
+          <li th:classappend="${list.first} ? 'disabled'" class="page-item">
+            <a
+              class="page-link"
+              th:href="${list.first} ? '#' : @{/(page=${pageNumber - 1})}"
+            >
+              <span aria-hidden="true">&lt;</span>
+            </a>
+          </li>
+
+          <li
+            th:each="page: ${#numbers.sequence(startPage, endPage)}"
+            th:classappend="${page == pageNumber + 1} ? 'active'"
+            class="page-item"
+          >
+            <a
+              th:text="${page}"
+              class="page-link"
+              th:href="@{/(page=${page - 1})}"
+            ></a>
+          </li>
+
+          <li th:classappend="${list.last} ? 'disabled'" class="page-item">
+            <a
+              class="page-link"
+              th:href="${list.last} ? '#' : @{/(page=${pageNumber + 1})}"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>

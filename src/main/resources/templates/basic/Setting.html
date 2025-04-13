@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Title -->
+    <title>dabblelog.setting</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="../../static/img/realLogo.png"
+      th:href="@{/img/realLogo.png}"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+      href="../../static/css/bootstrap.min.css"
+    />
+    <!-- Nice Select CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/nice-select.css}"
+      href="../../static/css/nice-select.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/font-awesome.min.css}"
+      href="../../static/css/font-awesome.min.css"
+    />
+    <!-- icofont CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/icofont.css}"
+      href="../../static/css/icofont.css"
+    />
+    <!-- Slicknav -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/slicknav.min.css}"
+      href="../../static/css/slicknav.min.css"
+    />
+    <!-- Owl Carousel CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/owl-carousel.css}"
+      href="../../static/css/owl-carousel.css"
+    />
+    <!-- Datepicker CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/datepicker.css}"
+      href="../../static/css/datepicker.css"
+    />
+    <!-- Animate CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/animate.min.css}"
+      href="../../static/css/animate.min.css"
+    />
+    <!-- Magnific Popup CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/magnific-popup.css}"
+      href="../../static/css/magnific-popup.css"
+    />
+
+    <!-- Medipro CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/normalize.css}"
+      href="../../static/css/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/style.css}"
+      href="../../static/css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/responsive.css}"
+      href="../../static/css/responsive.css"
+    />
+  </head>
+  <body>
+    <!-- Header Area -->
+    <header class="header">
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-5 col-12"></div>
+            <div class="col-lg-6 col-md-7 col-12">
+              <!-- Top Contact -->
+              <ul class="top-contact">
+                <i class="fa fa-envelope"></i
+                ><a th:href="${myBlogURL}" th:text="${email}"
+                  >hyperclutter@gmail.com</a
+                >
+              </ul>
+              <!-- End Top Contact -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Topbar -->
+      <!-- Header Inner -->
+      <div class="header-inner">
+        <div class="container">
+          <div class="inner">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-12">
+                <!-- Start Logo -->
+                <div class="logo">
+                  <a href="index.html"><h2>dabblelog</h2></a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Nav -->
+                <div class="mobile-nav"></div>
+                <!-- End Mobile Nav -->
+              </div>
+              <div class="col-lg-7 col-md-9 col-12">
+                <!-- Main Menu -->
+                <div class="main-menu">
+                  <nav class="navigation">
+                    <ul class="nav menu">
+                      <li><a href="/liked"> 좋아요를 누른 포스트 </a></li>
+                      <li><a href="/saves"> 임시 저장 글 </a></li>
+                      <li><a href="/dabble">나의 데블</a></li>
+                      <li><a href="/setting"> 설정 </a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <!--/ End Main Menu -->
+              </div>
+              <div class="col-lg-2 col-12">
+                <div class="get-quote">
+                  <a href="appointment.html" class="btn">구글 로그인</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ End Header Inner -->
+    </header>
+    <!-- End Header Area -->
+
+    <section class="container">
+      <div
+        class="news-single"
+        id="setting"
+        style="
+          display: flex;
+
+          margin-top: 2rem;
+          margin-left: 12rem;
+        "
+      >
+        <div class="single-main">
+          <section
+            id="profile"
+            style="
+              display: flex;
+              justify-content: flex-start;
+              margin-bottom: 5rem;
+            "
+          >
+            <div id="profileImg">
+              <div style="display: flex; flex-basis: auto">
+                <img
+                  class="img-concert"
+                  id="preview-image"
+                  src="../../static/img/realLogo.png"
+                  width="128"
+                  style="border-radius: 50%"
+                />
+              </div>
+
+              <div
+                style="
+                  width: fit content;
+                  display: flex;
+                  flex-basis: auto;
+                  margin-top: 1rem;
+                "
+              >
+                <button
+                  style="
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+                    width: 128px;
+                    height: 30px;
+                    margin-bottom: 0.2rem;
+                    background-color: rgb(39, 118, 192);
+                  "
+                  id="img-upload-btn"
+                  class="btn"
+                >
+                  이미지 업로드
+                </button>
+                <input
+                  type="file"
+                  id="imageInput"
+                  nmae="file"
+                  onchange="uploadFile(this)"
+                  enctype="multipart/form-data"
+                  style="display: none"
+                />
+              </div>
+              <div style="display: flex; flex-basis: auto">
+                <button
+                  style="
+                    width: 128px;
+                    height: 30px;
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: rgb(140, 175, 164);
+                  "
+                  class="btn"
+                  ;
+                >
+                  이미지 제거
+                </button>
+              </div>
+            </div>
+            <div id="profileText" style="margin-left: 2rem">
+              <h6 contenteditable="false">별명</h6>
+              <p contenteditable="false">한 줄 소개</p>
+              <button
+                style="
+                  margin-top: 0.5rem;
+                  border: none;
+                  display: flex;
+                  width: 45px;
+                  height: 30px;
+                  font-weight: 600;
+                  background-color: 0;
+                  color: rgb(39, 118, 192);
+                  text-decoration: underline;
+                  background-color: transparent;
+                "
+                onclick="modiAbout()"
+              >
+                수정
+              </button>
+            </div>
+          </section>
+
+          <div
+            id="titleModify"
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              margin-top: 1.5rem;
+              margin-bottom: 1rem;
+            "
+          >
+            <h5
+              id="blogTitle"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin-right: 7rem;
+                font-weight: 600;
+              "
+            >
+              블로그 제목
+            </h5>
+            <p
+              id="titleNow"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+              "
+              contenteditable="false"
+            >
+              내 블로그 제목
+            </p>
+            <button
+              id="titleModi"
+              style="
+                font-weight: 600;
+                background-color: 0;
+                color: rgb(39, 118, 192);
+                text-decoration: underline;
+                width: 45px;
+                height: 30px;
+                border: none;
+                background-color: transparent;
+              "
+              onclick="modiTitle()"
+            >
+              수정
+            </button>
+          </div>
+          <div id="deleteMember" style="display: flex; flex-direction: row">
+            <h5
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10rem;
+                font-weight: 600;
+              "
+            >
+              회원 탈퇴
+            </h5>
+            <button
+              id="deleteMem"
+              class="btn"
+              style="
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                height: 35px;
+                background-color: rgb(140, 175, 164);
+              "
+              onclick="deleteUser()"
+            >
+              회원 탈퇴
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script th:inline="javascript">
+      $(document).on("click", "#img-upload-btn", function (e) {
+        e.preventDefault();
+        $("#imageInput").click();
+      });
+      function uploadFile(input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#preview-image").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+        const url = "/setting/profileImg";
+
+        const params = {
+          profileImg: e.target.result,
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+      function modiAbout() {
+        const profileText = document.querySelector("#profileText");
+
+        if (
+          profileText.querySelector("h6").getAttribute("contenteditable") ==
+          "false"
+        ) {
+          profileText
+            .querySelector("h6")
+            .setAttribute("contenteditable", "true");
+          profileText
+            .querySelector("p")
+            .setAttribute("contenteditable", "true");
+        } else {
+          const url = "/setting/profileText";
+
+          const params = {
+            nickname: profileText.querySelector("h6").innerText,
+            readme: profileText.querySelector("p").innerText,
+          };
+
+          console.log(params);
+
+          // 3. API 호출
+          try {
+            const request = fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8;",
+              },
+              body: JSON.stringify(params),
+            });
+            console.log(params);
+          } catch (error) {
+            console.error("저장 실패 : ", error);
+            console.log(params);
+          }
+        }
+      }
+
+      function modiTitle() {
+        const title = document.querySelector("#titleNow");
+
+        if (title.getAttribute("contenteditable" == "false")) {
+          title.setAttribute("contenteditable", "true");
+        } else {
+          title.setAttribute("contenteditable", "false");
+
+          const url = "/setting/modiTitle";
+
+          const params = {
+            blogName: title.innerText,
+          };
+
+          console.log(params);
+
+          // 3. API 호출
+          try {
+            const request = fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8;",
+              },
+              body: JSON.stringify(params),
+            });
+            console.log(params);
+          } catch (error) {
+            console.error("저장 실패 : ", error);
+            console.log(params);
+          }
+        }
+      }
+
+      function deleteUser() {
+        const url = "/setting/deleteUser";
+
+        const params = {
+          content: "회원 삭제",
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+          location.href = "/";
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+    </script>
+  </body>
+</html>

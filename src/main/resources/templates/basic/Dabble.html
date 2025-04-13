@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="Site keywords here" />
+    <meta name="description" content="" />
+    <meta name="copyright" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="../../static/img/realLogo.png"
+      th:href="@{/img/realLogo.png}"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+      href="../../static/css/bootstrap.min.css"
+    />
+    <!-- Nice Select CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/nice-select.css}"
+      href="../../static/css/nice-select.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/font-awesome.min.css}"
+      href="../../static/css/font-awesome.min.css"
+    />
+    <!-- icofont CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/icofont.css}"
+      href="../../static/css/icofont.css"
+    />
+    <!-- Slicknav -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/slicknav.min.css}"
+      href="../../static/css/slicknav.min.css"
+    />
+    <!-- Owl Carousel CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/owl-carousel.css}"
+      href="../../static/css/owl-carousel.css"
+    />
+    <!-- Datepicker CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/datepicker.css}"
+      href="../../static/css/datepicker.css"
+    />
+    <!-- Animate CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/animate.min.css}"
+      href="../../static/css/animate.min.css"
+    />
+    <!-- Magnific Popup CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/magnific-popup.css}"
+      href="../../static/css/magnific-popup.css"
+    />
+
+    <!-- Medipro CSS -->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/normalize.css}"
+      href="../../static/css/normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/style.css}"
+      href="../../static/css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/responsive.css}"
+      href="../../static/css/responsive.css"
+    />
+  </head>
+  <body>
+    <!-- Header Area -->
+    <header class="header">
+      <!-- Topbar -->
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-5 col-12"></div>
+            <div class="col-lg-6 col-md-7 col-12">
+              <!-- Top Contact -->
+              <ul class="top-contact">
+                <li>
+                  <i class="fa fa-envelope"></i
+                  ><a th:href="${myBlogURL}" th:text="${email}"
+                    >hyperclutter@gmail.com</a
+                  >
+                </li>
+              </ul>
+              <!-- End Top Contact -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Topbar -->
+      <!-- Header Inner -->
+      <div class="header-inner">
+        <div class="container">
+          <div class="inner">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-12">
+                <!-- Start Logo -->
+                <div class="logo">
+                  <a href="/"><h2>dabblelog</h2></a>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Nav -->
+                <div class="mobile-nav"></div>
+                <!-- End Mobile Nav -->
+              </div>
+              <div class="col-lg-7 col-md-9 col-12">
+                <!-- Main Menu -->
+                <div class="main-menu">
+                  <nav class="navigation">
+                    <ul class="nav menu">
+                      <li><a href="/liked"> 좋아요를 누른 포스트 </a></li>
+                      <li><a href="/saves"> 임시 저장 글 </a></li>
+                      <li><a href="/dabble">나의 회고</a></li>
+                      <li><a href="/setting"> 설정 </a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <!--/ End Main Menu -->
+              </div>
+              <div class="col-lg-2 col-12">
+                <div class="get-quote">
+                  <a th:href="${path}" th:text="${loginOrNot}" class="btn"
+                    >구글 로그인</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ End Header Inner -->
+    </header>
+    <!-- End Header Area -->
+
+    <!-- calendar Area -->
+    <div class="container">
+      <div>
+        <div>
+          <div class="calendar-header">
+            <div
+              id="calendar-menu"
+              style="display: flex; flex-direction: row; align-items: center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chevron-left"
+                viewBox="0 0 16 16"
+                style="margin-right: 1rem; cursor: pointer"
+                onclick="moveLeft()"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
+                />
+              </svg>
+              <h1 id="month" th:text="${dabble.month}">Month</h1>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chevron-right"
+                viewBox="0 0 16 16"
+                style="margin-left: 1rem; cursor: pointer"
+                onclick="monthRight()"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                />
+              </svg>
+            </div>
+
+            <p th:text="${dabble.year}" id="year">Year</p>
+          </div>
+          <div class="calendar">
+            <span class="day-name">Mon</span><span class="day-name">Tue</span
+            ><span class="day-name">Wed</span><span class="day-name">Thu</span
+            ><span class="day-name">Fri</span><span class="day-name">Sat</span
+            ><span class="day-name">Sun</span>
+
+            <div class="day" th:each="date : ${dabble.dabbleDaysDTOS}">
+              <p th:text="${date.day}"></p>
+              <p
+                th:each="post : ${date.dabblePostDTOS}"
+                th:text="|${post.title}|"
+                th:style="|color : ${post.title}|"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script th:inline="javascript">
+      function monthRight() {
+        location.href = "dabble/right";
+      }
+
+      function moveLeft() {
+        location.href = "/dabble/left";
+      }
+    </script>
+  </body>
+</html>
