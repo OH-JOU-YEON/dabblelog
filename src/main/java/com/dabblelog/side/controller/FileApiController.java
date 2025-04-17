@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/editor")
 public class FileApiController {
@@ -60,6 +61,13 @@ public class FileApiController {
     public byte[] printEditorImage(@RequestParam final String filename) {
         // 업로드 파일 전체 경로
         String fileFullPath = Paths.get(uploadDir, filename).toString();
+
+        log.info("filename: " + filename);
+        log.info("filepath: " + fileFullPath);
+
+        String path = System.getProperty("user.dir");
+        System.out.println("현재 작업 경로: " + path);
+
 
         // 파일이 없는 경우 예외
         File uploadedFile = new File(fileFullPath);

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Getter
@@ -104,6 +105,23 @@ public class PostHomeDTO {
 
         return "";
 
+    }
+
+    static String getFileName(String thumbnail) {
+
+        if(Objects.equals(thumbnail, ""))
+            return "";
+
+        else {
+
+            log.info("thumbnails :" + thumbnail);
+
+            String[] filepaths = thumbnail.split("=");
+
+            log.info("filename: " + filepaths[1]);
+
+            return filepaths[1];
+        }
     }
 
 
