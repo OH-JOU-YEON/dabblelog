@@ -9,13 +9,16 @@ import com.dabblelog.side.service.impl.FollowerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@Slf4j
 public class FollowController {
 
 
@@ -34,6 +37,10 @@ public class FollowController {
 
         String blogName = getBlogNameToUrl(followDTO.getUrl());
 
+        log.info("blogName : " + blogName);
+
+
+
 
         if(followDTO.getFollowOrNot().equals("팔로우")) {
 
@@ -51,7 +58,7 @@ public class FollowController {
 
         String[] parseURL = url.split("/");
 
-        return parseURL[2];
+        return parseURL[4];
     }
 
 
