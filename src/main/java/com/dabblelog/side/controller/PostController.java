@@ -76,13 +76,17 @@ public class PostController {
 
 
             if(blogService.getBlogName(sessionUser.getEmail()).equals(blogName)) {
-                model.addAttribute("canFollow", "false");
+                model.addAttribute("canFollow", false);
+
 
             }else {
 
-                model.addAttribute("canFollow","true");
+                model.addAttribute("canFollow",true);
+
 
             }
+            log.info("myblogName :" + blogService.getBlogName(sessionUser.getEmail()) );
+            log.info("blogName :" + blogName );
 
         }
 
