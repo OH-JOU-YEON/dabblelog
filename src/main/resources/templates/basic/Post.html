@@ -355,8 +355,13 @@
               <!-- Single Widget -->
               <div class="single-widget side-tags">
                 <h3 class="title">Tags</h3>
-                <ul></ul>
-                <ul class="tag"></ul>
+                <ul class="tag">
+                  <li
+                    style="color: blue"
+                    th:each="tag : ${tags}"
+                    th:text="${tag}"
+                  ></li>
+                </ul>
               </div>
               <!--/ End Single Widget -->
             </div>

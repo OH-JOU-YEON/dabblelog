@@ -92,6 +92,8 @@ public class PostController {
 
         List<String> tagsTitle = tagMappingService.getTagTitle(blogName,title);
 
+        log.info("tagsTitle :" + tagsTitle );
+
         Post post = postService.getPostByBlogNameAndTitle(blogName,title);
 
         PostViewDTO postViewDTO = new PostViewDTO(post,tagsTitle,postService.getTotalRepleCount(post));
@@ -101,6 +103,8 @@ public class PostController {
         model.addAttribute("profile",postViewDTO);
 
         model.addAttribute("reples",repleDTOS);
+
+        model.addAttribute("tags",tagsTitle);
 
         return "/basic/Post";
     }
