@@ -180,6 +180,7 @@
                     >
                     <button
                       th:if="${canFollow == true}"
+                      th:text="${followOrNot}"
                       id="follow"
                       class="btn"
                       style="margin-left: auto"
@@ -378,6 +379,7 @@
           document.getElementById("follow").innerText = "팔로잉";
         } else {
           document.getElementById("follow").innerText = "팔로우";
+          following_fetch();
         }
       }
 

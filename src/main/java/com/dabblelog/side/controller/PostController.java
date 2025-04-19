@@ -55,6 +55,8 @@ public class PostController {
 
    private final RepleService repleService;
 
+   private final FollowerService followerService;
+
 
     //개별 페이지 관련 로직들
     @GetMapping("/dabblelog/{blogName}/{title}")
@@ -69,11 +71,16 @@ public class PostController {
 
         } else {
 
+            //세션이 null이 아니고 로그인 돼 있을 때
+
             SessionUser sessionUser = (SessionUser) session.getAttribute("user");
             String userBlog = blogService.getBlogName(sessionUser.getEmail());
             model.addAttribute("email",sessionUser.getEmail());
             model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
 
+            //세션 유저가 이 블로그 유저를 팔로우하고 있는지 알아보는 로직 추가
+
+            model.addAttribute("followOrNot",followerService.followingOrNot(sessionUser,blogName));
 
             if(blogService.getBlogName(sessionUser.getEmail()).equals(blogName)) {
                 model.addAttribute("canFollow", false);

@@ -42,7 +42,7 @@ public class FollowController {
 
 
 
-        if(followDTO.getFollowOrNot().equals("팔로우")) {
+        if(followDTO.getFollowOrNot().equals("팔로잉")) {
 
             followerService.createFollower(sessionUser,blogName);
         }else {

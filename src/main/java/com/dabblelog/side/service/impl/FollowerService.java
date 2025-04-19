@@ -30,6 +30,8 @@ public class FollowerService {
 
    private final BlogRepository blogRepository;
 
+   private final BlogService blogService;
+
     //팔로우 버튼을 누르면 버튼이 팔로잉으로 바뀜
 
     //팔로우 버튼은 그사람 블로그에서만 할 수 있음 개인 포스트까지는 추가 못함
@@ -66,4 +68,18 @@ public class FollowerService {
     }
 
     //블로그 검색할 때 그 블로그가 내가 팔로우하는 블로그인지 아닌지 찾아보는 로직도 추가해야 될 듯
+    public String followingOrNot(SessionUser user, String blogName) {
+
+        User followingUser = userRepository.findByEmail(user.getEmail()).get();
+
+        //블로그 이름으로 그 블로그 유저 가져오기
+
+        User followedUser = userRepository.findById(blogService.getBlogByName(blogName).getUser().getId()).get();
+
+        if(followerRepository.findByFollowingIdAndFollowedId(followingUser,followedUser).isPresent()) {
+            return "팔로잉";
+        }else {
+          return "팔로우";
+        }
+    }
 }
