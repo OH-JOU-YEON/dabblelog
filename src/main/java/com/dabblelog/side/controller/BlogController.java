@@ -9,6 +9,7 @@ import com.dabblelog.side.domain.dto.BlogProfileDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.BlogService;
+import com.dabblelog.side.service.impl.FollowerService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,8 @@ public class BlogController {
 
 
    private final BlogRepository blogRepository;
+
+   private final FollowerService followerService;
 
 
    private final BlogService blogService;

@@ -204,12 +204,22 @@
               </div>
             </div>
             <div id="profileText" style="margin-left: 2rem; margin-top: 3rem">
-              <h5 style="font-weight: bold">이름</h5>
-              <p>한 줄 소개</p>
+              <h5 th:text="${profile.nickName}" style="font-weight: bold">
+                이름
+              </h5>
+              <p th:text="${profile.readme}">한 줄 소개</p>
 
               <div style="margin-left: 15rem">
-                <a style="margin-right: 0.5rem; font-weight: bold">0 팔로잉</a>
-                <a style="font-weight: bold">0 팔로워</a>
+                <a
+                  th:text="|${profile.following} 팔로잉| "
+                  style="margin-right: 0.5rem; font-weight: bold"
+                  >0 팔로잉</a
+                >
+                <a
+                  th:text="|${profile.follower} 팔로워|"
+                  style="font-weight: bold"
+                  >0 팔로워</a
+                >
               </div>
             </div>
           </section>
