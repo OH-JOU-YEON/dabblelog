@@ -20,6 +20,7 @@ public class PostHomeDTO {
     private final String blogName;
 
 
+
     //미리보기
     private final String preview;
 

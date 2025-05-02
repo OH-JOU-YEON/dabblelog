@@ -103,7 +103,7 @@ public class PostController {
 
         Post post = postService.getPostByBlogNameAndTitle(blogName,title);
 
-        PostViewDTO postViewDTO = new PostViewDTO(post,tagsTitle,postService.getTotalRepleCount(post));
+        PostViewDTO postViewDTO = new PostViewDTO(post,postService.getTotalRepleCount(post));
 
         List<RepleDTO> repleDTOS = repleService.getReples(post);
 

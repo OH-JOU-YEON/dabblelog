@@ -15,7 +15,7 @@ public class PostViewDTO {
 
     private final String seriesTitle;
 
-    private final List<String> tagsTitle;
+
 
     private final Long likeCount;
 
@@ -25,7 +25,7 @@ public class PostViewDTO {
 
 
 
-    public PostViewDTO(Post post,List<String> tagsTitle, Long repleCount){
+    public PostViewDTO(Post post, Long repleCount){
 
         this.title = post.getTitle();
 
@@ -51,7 +51,7 @@ public class PostViewDTO {
 
         this.seriesTitle = seriesTitle;
 
-        this.tagsTitle = tagsTitle;
+
 
         this.likeCount = (long) post.getLikeCount();
 

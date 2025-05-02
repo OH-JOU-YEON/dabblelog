@@ -261,7 +261,7 @@
                     </div>
                   </div>
                 </form>
-                <div class="blog-comments">
+                <div class="blog-comments" th:if="${reple != null}">
                   <div class="comments-body">
                     <div th:each="reple : ${reples}">
                       <!-- Single Comments -->
@@ -349,7 +349,9 @@
               <!-- Single Widget -->
               <div class="single-widget category">
                 <h3 class="title">series</h3>
-                <ul></ul>
+                <ul>
+                  <li th:text="${profile.seriesTitle}"></li>
+                </ul>
               </div>
               <!--/ End Single Widget -->
 
