@@ -39,7 +39,13 @@ public class ReRepleDTO {
 
         this.authorBlog = authorBlog;
 
-        this.toName = "@" + reple.getParentReple().getAuthor().getName();
+        if(reple.getParentReple() == null) {
+            this.toName = null;
+        }else {
+            this.toName = "@" + reple.getParentReple().getAuthor().getName();
+        }
+
+
 
     }
 }

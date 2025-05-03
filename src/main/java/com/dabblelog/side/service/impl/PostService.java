@@ -6,6 +6,7 @@ import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class PostService {
 
 
@@ -56,6 +58,9 @@ public class PostService {
 
     public Post getPostByBlogNameAndTitle(String blogName,String postTitle) {
 
+        log.info("getPostByBlogNameAndTitle.blogName : " + blogName);
+        log.info("getPostByBlogNameAndTitle.postTitle : " + postTitle);
+
         Blog blog = blogRepository.findByBlogName(blogName).get();
 
         return postRepository.findByBlogIdAndTitle(blog,postTitle);
@@ -63,11 +68,13 @@ public class PostService {
 
     public Post getPostIdByURL(String url) {
 
+        log.info("getPostIdByURL.URL : " + url);
         String[] parseURL = url.split("/");
 
+        log.info("getPostIdByUrl.parseURL[4] : " + parseURL[4]);
+        log.info("getPostIdByURL.parseURL[5] : "+ parseURL[5] );
 
-
-        return getPostByBlogNameAndTitle(parseURL[2],parseURL[3]);
+        return getPostByBlogNameAndTitle(parseURL[4],parseURL[5]);
 
     }
 

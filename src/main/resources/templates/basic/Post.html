@@ -114,8 +114,8 @@
                 <li></li>
                 <li>
                   <i class="fa fa-envelope"></i
-                  ><a href="mailto:support@yourmail.com"
-                    >hyperclutter@gmail.com</a
+                  ><a id="mymail" th:herf="${myBlogURL}" th:text="${email}"
+                    >dabblelog.com</a
                   >
                 </li>
               </ul>
@@ -248,8 +248,7 @@
                           name="message"
                           rows="7"
                           placeholder="댓글을 입력해주세요."
-                        >
-                        </textarea>
+                        ></textarea>
                       </div>
                     </div>
                     <div class="col-12">
@@ -412,123 +411,23 @@
       }
     </script>
     <script th:inline="javascript">
-      function getText() {
-        if (document.querySelector("#logo").getAttribute("href") == "/") {
-          alert("댓글을 달려면 로그인 해주세요.");
-          return;
-        }
-
-        if (
-          event.target.parentNode.lastElementChild.getAttribute("class") ==
-          "form"
-        ) {
-          console.log(
-            event.target.parentNode.lastElementChild.getAttribute("class")
-          );
-          const url = "/reple/reply";
-
-          const params = {
-            content:
-              event.target.parentNode.lastElementChild.querySelector("textarea")
-                .innerText,
-            url: window.location.href,
-            parentDay:
-              event.target.parentNode.querySelectorAll("span")[0].innerText,
-            parentTime:
-              event.target.parentNode.querySelectorAll("span")[1].innerText,
-            parentBlogURL: event.target.parentNode.parentNode
-              .querySelector("a")
-              .getAttribute("href").innerText,
-          };
-
-          console.log(params);
-
-          // 3. API 호출
-          try {
-            const request = fetch(url, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json; charset=utf-8;",
-              },
-              body: JSON.stringify(params),
-            }).then((response) => addReply(response));
-            console.log(params);
-          } catch (error) {
-            console.error("저장 실패 : ", error);
-            console.log(params);
-          }
-
-          event.target.parentNode.lastElementChild.remove();
-        } else {
-          const cloneTextArea = document.querySelector(".form").cloneNode(true);
-
-          cloneTextArea.setAttribute("action", "/reple/reply");
-
-          cloneTextArea
-            .querySelector(".form-group button")
-            .setAttribute("style", "display:none");
-
-          event.target.parentNode.appendChild(cloneTextArea);
-        }
-      }
-
       function createReple() {
-        if (document.querySelector("#logo").getAttribute("href") == "/") {
+        if (document.querySelector("#mymail").innerText == "dabblelog.com") {
           alert("댓글을 달려면 로그인 해주세요.");
-          return;
         }
-        const url = "/reple/create";
 
         const params = {
           content:
             event.target.parentNode.parentNode.parentNode.querySelector(
               "textarea"
-            ).innerText,
+            ).value,
 
           url: window.location.href,
         };
 
         console.log(params);
 
-        // 3. API 호출
-        try {
-          const request = fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json; charset=utf-8;",
-            },
-            body: JSON.stringify(params),
-          }).then((response) => addReple(response));
-          console.log(params);
-        } catch (error) {
-          console.error("저장 실패 : ", error);
-          console.log(params);
-        }
-      }
-
-      function turnRed() {
-        if (document.querySelector("#like").getAttribute("fill") == "grey") {
-          document.querySelector("#like").setAttribute("fill", "red");
-          document.querySelector("#count").innerText =
-            parseInt(document.querySelector("#count").innerText) + 1;
-        } else {
-          document.querySelector("#like").setAttribute("fill", "grey");
-          document.querySelector("#count").innerText =
-            parseInt(document.querySelector("#count").innerText) - 1;
-        }
-
-        like();
-      }
-
-      function like() {
-        const url = "/liked/modiCount";
-
-        const params = {
-          likeCount: document.querySelector("#count").innerText,
-          url: window.location.href,
-        };
-
-        console.log(params);
+        const url = "/reple/create";
 
         // 3. API 호출
         try {
@@ -539,7 +438,6 @@
             },
             body: JSON.stringify(params),
           });
-          console.log(params);
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
@@ -590,6 +488,104 @@
         event.target.parentNode.parentNode.parentNode.parentNode.appendChild(
           format
         );
+      }
+    </script>
+    <script th:inline="javascript">
+      function turnRed() {
+        if (document.querySelector("#like").getAttribute("fill") == "grey") {
+          document.querySelector("#like").setAttribute("fill", "red");
+          document.querySelector("#count").innerText =
+            parseInt(document.querySelector("#count").innerText) + 1;
+        } else {
+          document.querySelector("#like").setAttribute("fill", "grey");
+          document.querySelector("#count").innerText =
+            parseInt(document.querySelector("#count").innerText) - 1;
+        }
+
+        like();
+      }
+
+      function like() {
+        const url = "/liked/modiCount";
+
+        const params = {
+          likeCount: document.querySelector("#count").innerText,
+          url: window.location.href,
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+    </script>
+    <script th:inline="javascript">
+      function getText() {
+        if (
+          event.target.parentNode.lastElementChild.getAttribute("class") ==
+          "form"
+        ) {
+          console.log(
+            event.target.parentNode.lastElementChild.getAttribute("class")
+          );
+          const url = "/reple/reply";
+
+          const params = {
+            content: event.target.parentNode
+              .querySelector(".form")
+              .querySelector("textarea").value,
+            url: window.location.href,
+            parentDay:
+              event.target.parentNode.querySelectorAll("span")[0].innerText,
+            parentTime:
+              event.target.parentNode.querySelectorAll("span")[1].innerText,
+            parentBlogURL: event.target.parentNode.parentNode
+              .querySelector(".head")
+              .querySelector("a")
+              .getAttribute("href"),
+          };
+
+          console.log(params);
+
+          // 3. API 호출
+          try {
+            const request = fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8;",
+              },
+              body: JSON.stringify(params),
+            }).then((response) => addReply(response));
+            console.log(params);
+          } catch (error) {
+            console.error("저장 실패 : ", error);
+            console.log(params);
+          }
+
+          event.target.parentNode.lastElementChild.remove();
+        } else {
+          const cloneTextArea = document.querySelector(".form").cloneNode(true);
+
+          cloneTextArea.setAttribute("action", "/reple/reply");
+
+          cloneTextArea
+            .querySelector(".form-group button")
+            .setAttribute("style", "display:none");
+
+          event.target.parentNode.appendChild(cloneTextArea);
+        }
       }
 
       function modifyPost() {
