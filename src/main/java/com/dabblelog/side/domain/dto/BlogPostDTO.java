@@ -20,12 +20,16 @@ public class BlogPostDTO {
 
     private final Long likeCount;
 
+    private final String uuid;
+
 
     public BlogPostDTO(Post post) {
 
         this.postImg = getThumbnails(post.getContent());
 
         this.title = post.getTitle();
+
+        this.uuid = post.getUuid();
 
         this.preview = getPreview(post.getContent());
 

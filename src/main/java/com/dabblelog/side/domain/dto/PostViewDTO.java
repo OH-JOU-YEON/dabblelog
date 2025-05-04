@@ -15,7 +15,7 @@ public class PostViewDTO {
 
     private final String seriesTitle;
 
-
+    private final String uuid;
 
     private final Long likeCount;
 
@@ -28,6 +28,8 @@ public class PostViewDTO {
     public PostViewDTO(Post post, Long repleCount){
 
         this.title = post.getTitle();
+
+        this.uuid = post.getUuid(); 
 
         this.author = post.getBlogId().getUser().getName();
 

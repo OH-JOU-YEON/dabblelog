@@ -19,7 +19,7 @@ public class PostHomeDTO {
 
     private final String blogName;
 
-
+    private final String uuid;
 
     //미리보기
     private final String preview;
@@ -36,6 +36,8 @@ public class PostHomeDTO {
     public PostHomeDTO(Post post, Long totalRepleCount) {
 
         this.title = post.getTitle();
+
+        this.uuid = post.getUuid();
 
         this.preview = getPreview(post.getContent());
 

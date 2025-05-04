@@ -178,7 +178,7 @@
           th:each="post:${list}"
           style="width: 360px; height: 380px"
         >
-          <a th:href="|dabblelog/${post.blogName}/${post.title}|">
+          <a th:href="|dabblelog/${post.blogName}/${post.uuid}|">
             <img
               th:src="@{|${post.thumbnail}|}"
               th:if="${post.thumbnail} != ''"
