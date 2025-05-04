@@ -60,7 +60,7 @@ public class PostController {
 
     //개별 페이지 관련 로직들
     @GetMapping("/dabblelog/{blogName}/{UUID}")
-    public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String title) {
+    public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String UUID) {
 
         HttpSession session = request.getSession(false);
 
@@ -97,11 +97,13 @@ public class PostController {
 
         }
 
-        List<String> tagsTitle = tagMappingService.getTagTitle(blogName,title);
+
+
+        Post post = postService.getPostByBlogNameAndUUID(blogName,UUID);
+
+        List<String> tagsTitle = tagMappingService.getTagTitle(blogName,post.getTitle());
 
         log.info("tagsTitle :" + tagsTitle );
-
-        Post post = postService.getPostByBlogNameAndUUID(blogName,title);
 
         PostViewDTO postViewDTO = new PostViewDTO(post,postService.getTotalRepleCount(post));
 
