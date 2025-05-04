@@ -415,32 +415,6 @@
 
         document.querySelector(".blog-comments").appendChild(format);
       }
-
-      function addReply(response) {
-        const res = response.json;
-
-        const format = document.querySelector(
-          ".single-comments left"
-        ).cloneNode;
-
-        format.querySelector("h4").innerText = res.authorName;
-
-        format.querySelector(p).innerText = res.content;
-
-        format.querySelectorAll("span")[0].innerText = res.yearAndMonth;
-
-        format.querySelectorAll("span")[1].innerText = res.timeAndMinute;
-
-        format.querySelector("img").setAttribute("src", res.authorProfile);
-
-        format.querySelector("#authorURL").setAttribute("href", res.authorBlog);
-
-        format.querySelector("#to").innerText = res.toName;
-
-        event.target.parentNode.parentNode.parentNode.parentNode.appendChild(
-          format
-        );
-      }
     </script>
     <script th:inline="javascript">
       function turnRed() {
@@ -484,62 +458,6 @@
       }
     </script>
     <script th:inline="javascript">
-      function getText() {
-        if (
-          event.target.parentNode.lastElementChild.getAttribute("class") ==
-          "form"
-        ) {
-          console.log(
-            event.target.parentNode.lastElementChild.getAttribute("class")
-          );
-          const url = "/reple/reply";
-
-          const params = {
-            content: event.target.parentNode
-              .querySelector(".form")
-              .querySelector("textarea").value,
-            url: window.location.href,
-            parentDay:
-              event.target.parentNode.querySelectorAll("span")[0].innerText,
-            parentTime:
-              event.target.parentNode.querySelectorAll("span")[1].innerText,
-            parentBlogURL: event.target.parentNode.parentNode
-              .querySelector(".head")
-              .querySelector("a")
-              .getAttribute("href"),
-          };
-
-          console.log(params);
-
-          // 3. API 호출
-          try {
-            const request = fetch(url, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json; charset=utf-8;",
-              },
-              body: JSON.stringify(params),
-            }).then((response) => addReply(response));
-            console.log(params);
-          } catch (error) {
-            console.error("저장 실패 : ", error);
-            console.log(params);
-          }
-
-          event.target.parentNode.lastElementChild.remove();
-        } else {
-          const cloneTextArea = document.querySelector(".form").cloneNode(true);
-
-          cloneTextArea.setAttribute("action", "/reple/reply");
-
-          cloneTextArea
-            .querySelector(".form-group button")
-            .setAttribute("style", "display:none");
-
-          event.target.parentNode.appendChild(cloneTextArea);
-        }
-      }
-
       function modifyPost() {
         location.href = "/write/" + "[[${profile.title}]]";
       }

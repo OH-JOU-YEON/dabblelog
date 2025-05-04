@@ -76,9 +76,8 @@ public class RepleService {
 
         LocalDateTime createdDay = LocalDateTime.parse(replyDTO.getParentDay() + " " + replyDTO.getParentTime());
 
-        Reple parentReple = repleRepository.findByPostIdAndAuthorAndCreatedDayBetween(post,author,createdDay,createdDay.plusSeconds(1));
 
-        return repleRepository.save(new Reple(post,author,parentReple,LocalDateTime.now(),replyDTO.getContent()));
+        return repleRepository.save(new Reple(post,author,LocalDateTime.now(),replyDTO.getContent()));
 
 
     }

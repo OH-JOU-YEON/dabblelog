@@ -19,11 +19,6 @@ public class Reple {
     @ManyToOne
     private Post postId;
 
-    @ManyToOne
-    private Reple parentReple;
-
-    @ManyToOne
-    private Reple rootReple;
 
     @ManyToOne
     private User author;
@@ -45,28 +40,13 @@ public class Reple {
 
         this.createdDay = localDateTime;
 
-        this.rootReple = this;
+
 
         this.content = content;
     }
 
     //답글 생성자
 
-    public Reple(Post postId,User author,Reple parentReple,LocalDateTime localDateTime,String content) {
 
-        this.postId = postId;
-
-        this.author = author;
-
-       this.parentReple = parentReple;
-
-        this.rootReple = parentReple.getRootReple();
-
-        this.createdDay = localDateTime;
-
-        this.content = content;
-
-
-    }
 
 }
