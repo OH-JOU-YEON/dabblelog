@@ -14,11 +14,8 @@ public interface RepleRepository extends JpaRepository<Reple,Long> {
 
     Long countByPostId(Post postId);
 
-    List<Reple> findAllByParentRepleAndPostId(Reple reple,Post post);
+    List<Reple> findAllByPostId(Post post);
 
-    List<Reple> findAllByRootRepleAndPostId(Reple reple,Post post);
-
-    Reple findByPostIdAndAuthorAndCreatedDayBetween(Post post, User user, LocalDateTime start,LocalDateTime end);
 
 
 }

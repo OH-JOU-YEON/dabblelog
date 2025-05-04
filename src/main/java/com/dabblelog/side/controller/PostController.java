@@ -59,7 +59,7 @@ public class PostController {
 
 
     //개별 페이지 관련 로직들
-    @GetMapping("/dabblelog/{blogName}/{title}")
+    @GetMapping("/dabblelog/{blogName}/{UUID}")
     public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String title) {
 
         HttpSession session = request.getSession(false);
@@ -101,7 +101,7 @@ public class PostController {
 
         log.info("tagsTitle :" + tagsTitle );
 
-        Post post = postService.getPostByBlogNameAndTitle(blogName,title);
+        Post post = postService.getPostByBlogNameAndUUID(blogName,title);
 
         PostViewDTO postViewDTO = new PostViewDTO(post,postService.getTotalRepleCount(post));
 

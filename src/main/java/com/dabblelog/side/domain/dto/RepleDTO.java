@@ -19,13 +19,12 @@ public class RepleDTO {
 
     private final String content;
 
-    private final List<ReRepleDTO> reRepleDTOS;
 
     private final String authorBlog;
 
 
 
-    public RepleDTO(Reple reple,List<ReRepleDTO> reRepleDTOS,String authorBlog) {
+    public RepleDTO(Reple reple,String authorBlog) {
 
 
 
@@ -39,7 +38,7 @@ public class RepleDTO {
 
         this.content = reple.getContent();
 
-        this.reRepleDTOS = reRepleDTOS;
+
 
         this.authorBlog = authorBlog;
     }

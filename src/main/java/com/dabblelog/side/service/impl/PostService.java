@@ -59,14 +59,14 @@ public class PostService {
 
 
 
-    public Post getPostByBlogNameAndTitle(String blogName,String postTitle) {
+    public Post getPostByBlogNameAndUUID(String blogName,String UUID) {
 
         log.info("getPostByBlogNameAndTitle.blogName : " + blogName);
-        log.info("getPostByBlogNameAndTitle.postTitle : " + postTitle);
+        log.info("getPostByBlogNameAndTitle.postTitle : " + UUID);
 
         Blog blog = blogRepository.findByBlogName(blogName).get();
 
-        return postRepository.findByBlogIdAndTitle(blog,postTitle);
+        return postRepository.findByUuidAndBlogId(UUID,blog);
     }
 
     public Post getPostIdByURL(String url) {
@@ -85,7 +85,7 @@ public class PostService {
 
       url5 = url5.replace("?","a");
 
-        return getPostByBlogNameAndTitle(parseURL[4],url5);
+        return getPostByBlogNameAndUUID(parseURL[4],url5);
 
     }
 

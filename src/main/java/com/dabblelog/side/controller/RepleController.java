@@ -5,7 +5,6 @@ import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Reple;
 import com.dabblelog.side.domain.User;
-import com.dabblelog.side.domain.dto.ReRepleDTO;
 import com.dabblelog.side.domain.dto.RepleCreateDTO;
 import com.dabblelog.side.domain.dto.RepleSendDTO;
 import com.dabblelog.side.domain.dto.ReplyDTO;
@@ -17,8 +16,8 @@ import com.dabblelog.side.service.impl.RepleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,7 +46,7 @@ public class RepleController {
 
     @ResponseBody
     @PostMapping("/reple/create")
-    public ReRepleDTO createReple(HttpServletRequest request, @RequestBody RepleCreateDTO repleCreateDTO) {
+    public ResponseEntity<String> createReple(HttpServletRequest request, @RequestBody RepleCreateDTO repleCreateDTO) {
         HttpSession httpSession = request.getSession(false);
 
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
@@ -58,11 +57,11 @@ public class RepleController {
 
         Reple reple = repleRepository.save(new Reple(post,user, LocalDateTime.now(), repleCreateDTO.getContent()));
 
-        return new ReRepleDTO(reple,"/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
+
+        return new ResponseEntity<>("댓글 생성 완료", HttpStatus.OK);
 
 
 
-        //만들고 답글 dto 던져서
     }
 
     @ResponseBody

@@ -6,8 +6,10 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -37,6 +39,8 @@ public class Post {
     @Column(length = 50000)
     private String content;
 
+    private String uuid;
+
 
 
     private Long likeCount;
@@ -59,7 +63,7 @@ public class Post {
 
         this.createdDay = LocalDateTime.now();
 
-
+        this.uuid =  UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0,8);
 
 
         this.likeCount = 0L;
@@ -79,6 +83,8 @@ public class Post {
         this.title = title;
 
         LocalDate now = LocalDate.now();
+
+        this.uuid =  UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0,8);
 
         this.createdDay = LocalDateTime.now();
 
