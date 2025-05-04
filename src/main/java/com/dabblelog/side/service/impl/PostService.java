@@ -12,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -74,7 +77,15 @@ public class PostService {
         log.info("getPostIdByUrl.parseURL[4] : " + parseURL[4]);
         log.info("getPostIdByURL.parseURL[5] : "+ parseURL[5] );
 
-        return getPostByBlogNameAndTitle(parseURL[4],parseURL[5]);
+
+
+
+
+       String url5 = URLDecoder.decode(parseURL[5], StandardCharsets.UTF_8);
+
+      url5 = url5.replace("?","a");
+
+        return getPostByBlogNameAndTitle(parseURL[4],url5);
 
     }
 

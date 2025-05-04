@@ -238,7 +238,7 @@
                   <span id="count" th:text="${profile.likeCount}">0</span>
                 </h2>
                 <!-- Contact Form -->
-                <form class="form">
+                <form class="form" style="margin-bottom: 5rem">
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group message">
@@ -260,86 +260,40 @@
                     </div>
                   </div>
                 </form>
-                <div class="blog-comments" th:if="${reple != null}">
-                  <div class="comments-body">
-                    <div th:each="reple : ${reples}">
-                      <!-- Single Comments -->
-                      <div class="single-comments">
-                        <div class="main">
-                          <div class="head">
-                            <a th:href="${reple.authorBlog}">
-                              <img th:src="${reple.authorProfile}" />
-                            </a>
-                          </div>
-                          <div class="body">
-                            <h4 th:text="${reple.authorName}">Afsana Mimi</h4>
-                            <div class="comment-meta">
-                              <span class="meta" th:text="${reple.yearAndMonth}"
-                                ><i class="fa fa-calendar"></i>March 05,
-                                2019</span
-                              ><span
-                                class="meta"
-                                th:text="${reple.timeAndMinute}"
-                                ><i class="fa fa-clock-o"></i>03:38 AM</span
-                              >
-                            </div>
-                            <p th:text="${reple.content}">
-                              Lorem Ipsum available, but the majority have
-                              suffered alteration in some form, by injected
-                              humour, or randomised words Mirum est notare quam
-                              littera gothica, quam nunc putamus parum claram,
-                              anteposuerit litterarum formas
-                            </p>
-                            <a onclick="getText()"
-                              ><i class="fa fa-reply"></i>replay</a
-                            >
-                          </div>
-                        </div>
+
+                <div th:each="reple : ${reples}">
+                  <!-- Single Comments -->
+                  <div class="single-comments">
+                    <div class="main">
+                      <div class="head">
+                        <a th:href="${reple.authorBlog}">
+                          <img th:src="${reple.authorProfile}" />
+                        </a>
                       </div>
-                      <!--/ End Single Comments -->
-                      <!-- Single Comments -->
-                      <div
-                        class="single-comments left"
-                        th:each="rereple : ${reple.reRepleDTOS}"
-                      >
-                        <div class="main">
-                          <div class="head">
-                            <a th:href="${reReple.authorBlog}" id="authorURL">
-                              <img th:src="${reReple.authorProfile}" />
-                            </a>
-                          </div>
-                          <div class="body">
-                            <h4>Naimur Rahman</h4>
-                            <div class="comment-meta">
-                              <span
-                                class="meta"
-                                th:text="${rereple.yearAndMonth}"
-                                ><i class="fa fa-calendar"></i>March 05,
-                                2019</span
-                              ><span
-                                class="meta"
-                                th:text="${rereple.timeAndMinute}"
-                                ><i class="fa fa-clock-o"></i>03:38 AM</span
-                              >
-                            </div>
-                            <b id="to">@name</b>
-                            <p th:text="${rereple.content}">
-                              Lorem Ipsum available, but the majority have
-                              suffered alteration in some form, by injected
-                              humour, or randomised words Mirum est notare quam
-                              littera gothica, quam nunc putamus parum claram,
-                              anteposuerit litterarum formas
-                            </p>
-                            <a onclick="getText()"
-                              ><i class="fa fa-reply"></i>replay</a
-                            >
-                          </div>
+                      <div class="body">
+                        <h4 th:text="${reple.authorName}">Afsana Mimi</h4>
+                        <div class="comment-meta">
+                          <span class="meta" th:text="${reple.yearAndMonth}"
+                            ><i class="fa fa-calendar"></i>March 05, 2019</span
+                          ><span class="meta" th:text="${reple.timeAndMinute}"
+                            ><i class="fa fa-clock-o"></i>03:38 AM</span
+                          >
                         </div>
+                        <p th:text="${reple.content}">
+                          Lorem Ipsum available, but the majority have suffered
+                          alteration in some form, by injected humour, or
+                          randomised words Mirum est notare quam littera
+                          gothica, quam nunc putamus parum claram, anteposuerit
+                          litterarum formas
+                        </p>
                       </div>
                     </div>
-                    <!--/ End Single Comments -->
                   </div>
+
+                  <!--/ End Single Comments -->
+                  <!-- Single Comments -->
                 </div>
+                <!--/ End Single Comments -->
               </div>
             </div>
           </div>
@@ -444,9 +398,7 @@
         }
       }
 
-      function addReple(response) {
-        const res = response.json();
-
+      function addReple(params) {
         const format = document.querySelector(".single-comments").cloneNode;
 
         format.querySelector("h4").innerText = res.authorName;
