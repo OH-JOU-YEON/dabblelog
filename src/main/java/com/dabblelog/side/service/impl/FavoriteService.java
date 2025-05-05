@@ -29,10 +29,8 @@ public class FavoriteService {
 
    private final FavoriteRepository favoriteRepository;
 
-   private final PostRepository postRepository;
 
-
-    RepleRepository repleRepository;
+   private final RepleRepository repleRepository;
 
     public Page<PostHomeDTO> getLikedPages(String email, Pageable pageable) {
 
