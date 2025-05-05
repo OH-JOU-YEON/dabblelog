@@ -112,9 +112,7 @@
               <!-- Top Contact -->
               <ul class="top-contact">
                 <i class="fa fa-envelope"></i
-                ><a th:href="${myBlogURL}" th:text="${email}"
-                  >hyperclutter@gmail.com</a
-                >
+                ><a th:href="${myBlogURL}" th:text="${email}">dabblelog.com</a>
               </ul>
               <!-- End Top Contact -->
             </div>
@@ -189,7 +187,7 @@
                 <img
                   class="img-concert"
                   id="preview-image"
-                  src="../../static/img/realLogo.png"
+                  th:src="${profile.picture}"
                   width="128"
                   style="border-radius: 50%"
                 />
@@ -247,8 +245,10 @@
               </div>
             </div>
             <div id="profileText" style="margin-left: 2rem">
-              <h6 contenteditable="false">별명</h6>
-              <p contenteditable="false">한 줄 소개</p>
+              <h6 contenteditable="false" th:text="${profile.name}">별명</h6>
+              <p contenteditable="false" th:text="${profile.readme}">
+                한 줄 소개
+              </p>
               <button
                 style="
                   margin-top: 0.5rem;
@@ -301,6 +301,7 @@
                 justify-content: center;
                 margin-right: 1rem;
               "
+              th:text="${profile.blogName}"
               contenteditable="false"
             >
               내 블로그 제목

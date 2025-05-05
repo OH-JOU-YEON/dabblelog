@@ -6,6 +6,7 @@ import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Reple;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.RepleCreateDTO;
+import com.dabblelog.side.domain.dto.RepleProfileDTO;
 import com.dabblelog.side.domain.dto.RepleSendDTO;
 import com.dabblelog.side.domain.dto.ReplyDTO;
 import com.dabblelog.side.repository.RepleRepository;
@@ -33,10 +34,10 @@ public class RepleController {
     private final RepleService repleService;
 
 
-   private final BlogService blogService;
 
 
    private final UserRepository userRepository;
+
 
 
    private final PostService postService;
@@ -46,38 +47,25 @@ public class RepleController {
 
     @ResponseBody
     @PostMapping("/reple/create")
-    public ResponseEntity<String> createReple(HttpServletRequest request, @RequestBody RepleCreateDTO repleCreateDTO) {
+    public RepleProfileDTO createReple(HttpServletRequest request, @RequestBody RepleCreateDTO repleCreateDTO) {
         HttpSession httpSession = request.getSession(false);
 
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
 
-        User user = userRepository.findByEmail(sessionUser.getEmail()).get();
+        String email = sessionUser.getEmail();
 
-        Post post = postService.getPostIdByURL(repleCreateDTO.getUrl());
+        User user = userRepository.findByEmail(email).get();
+
+        Post post = postService.getPostIdByURL(repleCreateDTO.getUrl(),repleCreateDTO.getUuid());
 
         Reple reple = repleRepository.save(new Reple(post,user, LocalDateTime.now(), repleCreateDTO.getContent()));
 
 
-        return new ResponseEntity<>("댓글 생성 완료", HttpStatus.OK);
+        return repleService.getRepleAuthor(email,reple);
 
 
 
     }
 
-    @ResponseBody
-    @PostMapping("/reple/reply")
-    public RepleSendDTO createReReple(HttpServletRequest request, @RequestBody ReplyDTO replyDTO) {
 
-        HttpSession httpSession = request.getSession(false);
-
-        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-
-        Reple reple = repleService.createReple(replyDTO);
-
-        String authorBlog = "/dabblelog/" + blogService.getBlogName(sessionUser.getEmail());
-
-
-        return new RepleSendDTO(reple,authorBlog);
-
-    }
 }

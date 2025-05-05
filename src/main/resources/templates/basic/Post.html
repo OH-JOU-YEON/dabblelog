@@ -365,57 +365,58 @@
       }
     </script>
     <script th:inline="javascript">
-      function createReple() {
-        if (document.querySelector("#mymail").innerText == "dabblelog.com") {
-          alert("댓글을 달려면 로그인 해주세요.");
-        }
+      async function createReple() {
+         if (document.querySelector("#mymail").innerText == "dabblelog.com") {
+           alert("댓글을 달려면 로그인 해주세요.");
+         }
 
-        const params = {
-          content:
-            event.target.parentNode.parentNode.parentNode.querySelector(
-              "textarea"
-            ).value,
+         const params = {
+           content:
+             event.target.parentNode.parentNode.parentNode.querySelector(
+               "textarea"
+             ).value,
 
-          url: window.location.href,
-          uuid : [[${profile.uuid}]],
-        };
+           url: window.location.href,
+           uuid : [[${profile.uuid}]],
+         };
 
-        console.log(params);
+         console.log(params);
 
-        const url = "/reple/create";
+         const url = "/reple/create";
 
-        // 3. API 호출
-        try {
-          const request = fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json; charset=utf-8;",
-            },
-            body: JSON.stringify(params),
-          });
-        } catch (error) {
-          console.error("저장 실패 : ", error);
-          console.log(params);
-        }
-      }
+         // 3. API 호출
+         try {
+            const request = await fetch(url, {
+             method: "POST",
+             headers: {
+               "Content-Type": "application/json; charset=utf-8;",
+             },
+             body: JSON.stringify(params),
+           }).then((response) => response.json());
+          addReple(request, params);
+         } catch (error) {
+           console.error("저장 실패 : ", error);
+           console.log(params);
+         }
+       }
 
-      function addReple() {
-        const format = document.querySelector(".single-comments").cloneNode;
+       function addReple(request,params) {
+         const format = document.querySelector(".single-comments").cloneNode;
 
-        format.querySelector("h4").innerText = res.authorName;
+         format.querySelector("h4").innerText = request.name;
 
-        format.querySelector(p).innerText = res.content;
+         format.querySelector(p).innerText = params.content;
 
-        format.querySelectorAll("span")[0].innerText = res.yearAndMonth;
+         format.querySelectorAll("span")[0].innerText = request.monthYear;
 
-        format.querySelectorAll("span")[1].innerText = res.timeAndMinute;
+         format.querySelectorAll("span")[1].innerText = request.time;
 
-        format.querySelector("img").setAttribute("src", res.authorProfile);
+         format.querySelector("img").setAttribute("src", request.picture);
 
-        format.querySelector("#authorURL").setAttribute("href", res.authorBlog);
+         format.querySelector("#authorURL").setAttribute("href", request.blogURL);
 
-        document.querySelector(".blog-comments").appendChild(format);
-      }
+         document.querySelector(".blog-comments").appendChild(format);
+       }
     </script>
     <script th:inline="javascript">
       function turnRed() {

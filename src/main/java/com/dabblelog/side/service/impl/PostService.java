@@ -75,15 +75,11 @@ public class PostService {
         String[] parseURL = url.split("/");
 
         log.info("getPostIdByUrl.parseURL[4] : " + parseURL[4]);
-        log.info("getPostIdByURL.parseURL[5] : "+ parseURL[5] );
 
 
 
 
 
-       String url5 = URLDecoder.decode(parseURL[5], StandardCharsets.UTF_8);
-
-      url5 = url5.replace("?","a");
 
         return getPostByBlogNameAndUUID(parseURL[4],uuid);
 

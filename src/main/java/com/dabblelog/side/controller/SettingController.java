@@ -7,9 +7,11 @@ import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.ModiTitleDTO;
 import com.dabblelog.side.domain.dto.ModifyProfileTextDTO;
 import com.dabblelog.side.domain.dto.ProfileImgDTO;
+import com.dabblelog.side.domain.dto.SettingProfileDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.BlogService;
+import com.dabblelog.side.service.impl.SettingService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +35,8 @@ public class SettingController {
 
    private final BlogRepository blogRepository;
 
+   private final SettingService settingService;
+
     //설정 호출 메서드
     @GetMapping("/setting")
     public String mappingSetting(Model model, HttpServletRequest request) {
@@ -43,6 +47,12 @@ public class SettingController {
 
             return "redirect:/";
         }
+
+        SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
+
+        SettingProfileDTO settingProfileDTO = settingService.getSettingProfile(sessionUser.getEmail());
+
+        model.addAttribute("profile",settingProfileDTO);
 
 
         return "/basic/Setting";

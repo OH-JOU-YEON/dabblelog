@@ -5,8 +5,10 @@ import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Reple;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.RepleDTO;
+import com.dabblelog.side.domain.dto.RepleProfileDTO;
 import com.dabblelog.side.domain.dto.ReplyDTO;
 import com.dabblelog.side.repository.RepleRepository;
+import com.dabblelog.side.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,18 @@ public class RepleService {
    private final BlogService blogService;
 
 
-   private final PostService postService;
+  private final UserRepository userRepository;
+
+
+   public RepleProfileDTO getRepleAuthor(String email,Reple reple) {
+
+       User user = userRepository.findByEmail(email).get();
+
+       String blogName = blogService.getBlogName(email);
+
+       return new RepleProfileDTO(user,blogName,reple);
+
+   }
 
 
 
@@ -58,18 +71,6 @@ public class RepleService {
     }
 
 
-    public Reple createReple( ReplyDTO replyDTO) {
 
-        User author = getUserByURL(replyDTO.getUrl());
-
-        Post post = postService.getPostIdByURL(replyDTO.getParentBlogURL());
-
-        LocalDateTime createdDay = LocalDateTime.parse(replyDTO.getParentDay() + " " + replyDTO.getParentTime());
-
-
-        return repleRepository.save(new Reple(post,author,LocalDateTime.now(),replyDTO.getContent()));
-
-
-    }
 
 }
