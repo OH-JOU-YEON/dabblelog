@@ -22,4 +22,12 @@ public class Favorite {
     @ManyToOne(fetch = FetchType.LAZY)
     private Post postId;
 
+
+    public Favorite(User user,Post post) {
+
+        this.userId = user;
+
+        this.postId = post;
+    }
+
 }

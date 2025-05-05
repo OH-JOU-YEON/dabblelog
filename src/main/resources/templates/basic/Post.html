@@ -200,7 +200,10 @@
                       <span class="comments" th:if="${canFollow == true}"
                         ><a href="#" onclick="modifyPost()">수정</a></span
                       >
-                      <span class="views" th:if="${canFollow == true}"
+                      <span
+                        style="cursor: pointer"
+                        class="views"
+                        th:if="${canFollow == true}"
                         >삭제</span
                       >
                     </div>
@@ -430,17 +433,47 @@
           document.querySelector("#like").setAttribute("fill", "red");
           document.querySelector("#count").innerText =
             parseInt(document.querySelector("#count").innerText) + 1;
+            like();
         } else {
           document.querySelector("#like").setAttribute("fill", "grey");
           document.querySelector("#count").innerText =
             parseInt(document.querySelector("#count").innerText) - 1;
+            unlike();
         }
 
-        like();
+
       }
 
       function like() {
-        const url = "/liked/modiCount";
+        const url = "/liked/like";
+
+        const params = {
+          likeCount: document.querySelector("#count").innerText,
+          url: window.location.href,
+          uuid : [[${profile.uuid}]],
+        };
+
+        console.log(params);
+
+        // 3. API 호출
+        try {
+          const request = fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8;",
+            },
+            body: JSON.stringify(params),
+          });
+          console.log(params);
+        } catch (error) {
+          console.error("저장 실패 : ", error);
+          console.log(params);
+        }
+      }
+    </script>
+    <script th:inline="javascript">
+      function unlike() {
+        const url = "/liked/unlike";
 
         const params = {
           likeCount: document.querySelector("#count").innerText,

@@ -3,9 +3,11 @@ package com.dabblelog.side.controller;
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Post;
+import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.LikedDTO;
 import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.repository.PostRepository;
+import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.BlogService;
 import com.dabblelog.side.service.impl.FavoriteService;
 import com.dabblelog.side.service.impl.PostService;
@@ -39,6 +41,8 @@ public class LikedController {
 
    private final PostRepository postRepository;
 
+   private final UserRepository userRepository;
+
     //내가 좋아요 누른 게시물들을 볼 수 있는 페이지
 
     @GetMapping("/liked")
@@ -71,12 +75,47 @@ public class LikedController {
     }
 
     @ResponseBody
-    @PostMapping("/liked/modiCount")
-    public void modifyLikeCount(@RequestBody LikedDTO likedDTO) {
+    @PostMapping("/liked/unlike")
+    public void unlike(@RequestBody LikedDTO likedDTO, HttpServletRequest request) {
+
+        HttpSession httpSession = request.getSession(false);
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+
+        String email = sessionUser.getEmail();
+
+        User user = userRepository.findByEmail(email).get();
+
 
         //포스트 얻어와서, 저 dto만큼 좋아요 총계 수정하고 재저장하기
 
         Post post = postService.getPostIdByURL(likedDTO.getUrl(), likedDTO.getUuid());
+
+        favoriteService.deleteLikeMapping(user,post);
+
+        postRepository.save(post.modifyLikeCount(likedDTO.getLikeCount()));
+
+    }
+
+    @ResponseBody
+    @PostMapping("/liked/like")
+    public void modifyLikeCount(@RequestBody LikedDTO likedDTO, HttpServletRequest request) {
+
+
+        HttpSession httpSession = request.getSession(false);
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+
+        String email = sessionUser.getEmail();
+
+        User user = userRepository.findByEmail(email).get();
+
+
+        //포스트 얻어와서, 저 dto만큼 좋아요 총계 수정하고 재저장하기
+
+        Post post = postService.getPostIdByURL(likedDTO.getUrl(), likedDTO.getUuid());
+
+        favoriteService.likeMapping(user,post);
 
         postRepository.save(post.modifyLikeCount(likedDTO.getLikeCount()));
 
