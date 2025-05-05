@@ -8,5 +8,7 @@ public class RepleCreateDTO {
 
     private String content;
 
+    private String uuid;
+
     private String url;
 }

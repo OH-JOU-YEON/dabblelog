@@ -11,4 +11,6 @@ public class LikedDTO {
     private Long likeCount;
 
     private String url;
+
+    private String uuid;
 }

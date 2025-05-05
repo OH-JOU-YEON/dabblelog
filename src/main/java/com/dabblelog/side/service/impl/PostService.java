@@ -69,7 +69,7 @@ public class PostService {
         return postRepository.findByUuidAndBlogId(UUID,blog);
     }
 
-    public Post getPostIdByURL(String url) {
+    public Post getPostIdByURL(String url,String uuid) {
 
         log.info("getPostIdByURL.URL : " + url);
         String[] parseURL = url.split("/");
@@ -85,7 +85,7 @@ public class PostService {
 
       url5 = url5.replace("?","a");
 
-        return getPostByBlogNameAndUUID(parseURL[4],url5);
+        return getPostByBlogNameAndUUID(parseURL[4],uuid);
 
     }
 

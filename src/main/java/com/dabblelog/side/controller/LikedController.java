@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -69,12 +70,13 @@ public class LikedController {
         return "basic/Liked";
     }
 
+    @ResponseBody
     @PostMapping("/liked/modiCount")
     public void modifyLikeCount(@RequestBody LikedDTO likedDTO) {
 
         //포스트 얻어와서, 저 dto만큼 좋아요 총계 수정하고 재저장하기
 
-        Post post = postService.getPostIdByURL(likedDTO.getUrl());
+        Post post = postService.getPostIdByURL(likedDTO.getUrl(), likedDTO.getUuid());
 
         postRepository.save(post.modifyLikeCount(likedDTO.getLikeCount()));
 

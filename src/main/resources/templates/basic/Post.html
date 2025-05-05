@@ -377,6 +377,7 @@
             ).value,
 
           url: window.location.href,
+          uuid : [[${profile.uuid}]],
         };
 
         console.log(params);
@@ -398,7 +399,7 @@
         }
       }
 
-      function addReple(params) {
+      function addReple() {
         const format = document.querySelector(".single-comments").cloneNode;
 
         format.querySelector("h4").innerText = res.authorName;
@@ -437,6 +438,7 @@
         const params = {
           likeCount: document.querySelector("#count").innerText,
           url: window.location.href,
+          uuid : [[${profile.uuid}]],
         };
 
         console.log(params);
