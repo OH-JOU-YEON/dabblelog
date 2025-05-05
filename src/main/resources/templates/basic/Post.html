@@ -263,15 +263,18 @@
 
                 <div th:each="reple : ${reples}">
                   <!-- Single Comments -->
-                  <div class="single-comments">
+                  <div class="single-comments" style="margin-bottom: 2rem">
                     <div class="main">
                       <div class="head">
-                        <a th:href="${reple.authorBlog}">
-                          <img th:src="${reple.authorProfile}" />
-                        </a>
+                        <img th:src="${reple.authorProfile}" />
                       </div>
                       <div class="body">
-                        <h4 th:text="${reple.authorName}">Afsana Mimi</h4>
+                        <a
+                          style="background-color: transparent"
+                          th:src="|/dabblelog/${reple.authorBlog}|"
+                        >
+                          <h4 th:text="${reple.authorName}">Afsana Mimi</h4></a
+                        >
                         <div class="comment-meta">
                           <span class="meta" th:text="${reple.yearAndMonth}"
                             ><i class="fa fa-calendar"></i>March 05, 2019</span
@@ -392,31 +395,34 @@
                "Content-Type": "application/json; charset=utf-8;",
              },
              body: JSON.stringify(params),
-           }).then((response) => response.json());
-          addReple(request, params);
+           });
+           location.reload(true);
          } catch (error) {
            console.error("저장 실패 : ", error);
            console.log(params);
          }
        }
+    </script>
+    <script th:inline="javascript">
+      function addReple(request, params) {
+        const format = document.querySelector(".single-comments").cloneNode;
 
-       function addReple(request,params) {
-         const format = document.querySelector(".single-comments").cloneNode;
+        format.querySelector("h4").innerText = request.name;
 
-         format.querySelector("h4").innerText = request.name;
+        format.querySelector(p).innerText = params.content;
 
-         format.querySelector(p).innerText = params.content;
+        format.querySelectorAll("span")[0].innerText = request.monthYear;
 
-         format.querySelectorAll("span")[0].innerText = request.monthYear;
+        format.querySelectorAll("span")[1].innerText = request.time;
 
-         format.querySelectorAll("span")[1].innerText = request.time;
+        format.querySelector("img").setAttribute("src", request.picture);
 
-         format.querySelector("img").setAttribute("src", request.picture);
+        format
+          .querySelector("#authorURL")
+          .setAttribute("href", request.blogURL);
 
-         format.querySelector("#authorURL").setAttribute("href", request.blogURL);
-
-         document.querySelector(".blog-comments").appendChild(format);
-       }
+        document.querySelector(".comments-form").appendChild(format);
+      }
     </script>
     <script th:inline="javascript">
       function turnRed() {
