@@ -19,12 +19,12 @@ public class SettingService {
 
 
 
-    public SettingProfileDTO getSettingProfile(String email, Reple reple) {
+    public SettingProfileDTO getSettingProfile(String email) {
 
         User user = userRepository.findByEmail(email).get();
 
         String blogName = blogService.getBlogName(email);
 
-        return new SettingProfileDTO(user,blogName,reple);
+        return new SettingProfileDTO(user,blogName);
     }
 }
