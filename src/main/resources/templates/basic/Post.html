@@ -292,15 +292,14 @@
                           gothica, quam nunc putamus parum claram, anteposuerit
                           litterarum formas
                         </p>
-                        <br />
                         <div
-                          th:if="${imRepleWriter}|${imPostWriter} == true"
+                          th:if="${reple.imRepleWriter} == true or ${reple.imPostWriter} == true"
                           class="reple-modify"
                           style="display: flex"
                         >
                           <div style="margin-left: auto">
                             <span
-                              th:if="${imRepleWriter} == true"
+                              th:if="${reple.imRepleWriter} == true"
                               style="
                                 margin-right: 0.5rem;
                                 cursor: pointer;
@@ -309,7 +308,7 @@
                               >수정하기</span
                             >
                             <span
-                              th:if="${imPostWriter} == true"
+                              th:if="${reple.imPostWriter} == true"
                               style="
                                 margin-right: 2rem;
                                 cursor: pointer;
