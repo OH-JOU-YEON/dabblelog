@@ -63,40 +63,33 @@ public class PostController {
     public String getPost(Model model, HttpServletRequest request, @PathVariable String blogName, @PathVariable String UUID) {
 
         HttpSession session = request.getSession(false);
+        SessionUser sessionUser = (SessionUser) session.getAttribute("user");
 
-        if(session == null) {
-
-            model.addAttribute("email","dabblelog.com");
-            model.addAttribute("myBlogURL","/");
-
-        } else {
-
-            //세션이 null이 아니고 로그인 돼 있을 때
-
-            SessionUser sessionUser = (SessionUser) session.getAttribute("user");
-            String userBlog = blogService.getBlogName(sessionUser.getEmail());
-            model.addAttribute("email",sessionUser.getEmail());
-            model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
-
-            //세션 유저가 이 블로그 유저를 팔로우하고 있는지 알아보는 로직 추가
-
-            model.addAttribute("followOrNot",followerService.followingOrNot(sessionUser,blogName));
-
-            if(blogService.getBlogName(sessionUser.getEmail()).equals(blogName)) {
-                model.addAttribute("canFollow", false);
+        //세션이 null이 아니고 로그인 돼 있을 때
 
 
-            }else {
+        String userBlog = blogService.getBlogName(sessionUser.getEmail());
+        model.addAttribute("email",sessionUser.getEmail());
+        model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
 
-                model.addAttribute("canFollow",true);
+        //세션 유저가 이 블로그 유저를 팔로우하고 있는지 알아보는 로직 추가
+
+        model.addAttribute("followOrNot",followerService.followingOrNot(sessionUser,blogName));
+
+        if(blogService.getBlogName(sessionUser.getEmail()).equals(blogName)) {
+            model.addAttribute("canFollow", false);
 
 
-            }
-            log.info("myblogName :" + blogService.getBlogName(sessionUser.getEmail()) );
-            log.info("blogName :" + blogName );
+        }else {
+
+            model.addAttribute("canFollow",true);
+
 
         }
+        log.info("myblogName :" + blogService.getBlogName(sessionUser.getEmail()) );
+        log.info("blogName :" + blogName );
 
+        User user = userRepository.findByEmail(sessionUser.getEmail()).get();
 
 
         Post post = postService.getPostByBlogNameAndUUID(blogName,UUID);
@@ -107,7 +100,7 @@ public class PostController {
 
         PostViewDTO postViewDTO = new PostViewDTO(post,postService.getTotalRepleCount(post));
 
-        List<RepleDTO> repleDTOS = repleService.getReples(post);
+        List<RepleDTO> repleDTOS = repleService.getReples(post,user);
 
         model.addAttribute("profile",postViewDTO);
 

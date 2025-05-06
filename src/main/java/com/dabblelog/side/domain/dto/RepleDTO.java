@@ -1,6 +1,8 @@
 package com.dabblelog.side.domain.dto;
 
+import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Reple;
+import com.dabblelog.side.domain.User;
 import lombok.Getter;
 
 import java.time.format.DateTimeFormatter;
@@ -19,12 +21,16 @@ public class RepleDTO {
 
     private final String content;
 
+    private final boolean imRepleWriter;
+
+    private final boolean imPostWriter;
+
 
     private final String authorBlog;
 
 
 
-    public RepleDTO(Reple reple,String authorBlog) {
+    public RepleDTO(Reple reple, String authorBlog, Post post , User user) {
 
 
 
@@ -38,7 +44,9 @@ public class RepleDTO {
 
         this.content = reple.getContent();
 
+        this.imRepleWriter = reple.getAuthor() == user;
 
+        this.imPostWriter = post.getBlogId().getUser() == user;
 
         this.authorBlog = authorBlog;
     }

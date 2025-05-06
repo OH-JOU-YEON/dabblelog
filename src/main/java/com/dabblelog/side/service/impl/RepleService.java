@@ -45,12 +45,13 @@ public class RepleService {
 
 
 
-   public List<RepleDTO> getReples(Post post){
+   public List<RepleDTO> getReples(Post post,User user){
 
         List<Reple> repleList = repleRepository.findAllByPostId(post);
 
 
-       return repleList.stream().map(s -> new RepleDTO(s,blogService.getRepleAuthor(s).getBlogName())).toList();
+       return repleList.stream().map(s -> new RepleDTO(s,blogService.getRepleAuthor(s).getBlogName(),
+               post,user)).toList();
     }
 
 
