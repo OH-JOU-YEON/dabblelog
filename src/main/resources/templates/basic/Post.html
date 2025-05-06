@@ -293,9 +293,14 @@
                           litterarum formas
                         </p>
                         <br />
-                        <div class="reple-modify" style="display: flex">
+                        <div
+                          th:if="${imRepleWriter}|${imPostWriter} == true"
+                          class="reple-modify"
+                          style="display: flex"
+                        >
                           <div style="margin-left: auto">
                             <span
+                              th:if="${imRepleWriter} == true"
                               style="
                                 margin-right: 0.5rem;
                                 cursor: pointer;
@@ -304,6 +309,7 @@
                               >수정하기</span
                             >
                             <span
+                              th:if="${imPostWriter} == true"
                               style="
                                 margin-right: 2rem;
                                 cursor: pointer;
