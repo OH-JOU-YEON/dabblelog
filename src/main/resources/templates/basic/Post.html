@@ -285,7 +285,7 @@
                             ><i class="fa fa-clock-o"></i>03:38 AM</span
                           >
                         </div>
-                        <p th:text="${reple.content}">
+                        <p contenteditable="false" th:text="${reple.content}">
                           Lorem Ipsum available, but the majority have suffered
                           alteration in some form, by injected humour, or
                           randomised words Mirum est notare quam littera
@@ -305,6 +305,7 @@
                                 cursor: pointer;
                                 color: black;
                               "
+                              onclick="repleModiy();"
                               >수정하기</span
                             >
                             <span
@@ -314,6 +315,7 @@
                                 cursor: pointer;
                                 color: black;
                               "
+                              onclick="repleDelete();"
                               >삭제하기</span
                             >
                           </div>
@@ -433,25 +435,10 @@
        }
     </script>
     <script th:inline="javascript">
-      function addReple(request, params) {
-        const format = document.querySelector(".single-comments").cloneNode;
-
-        format.querySelector("h4").innerText = request.name;
-
-        format.querySelector(p).innerText = params.content;
-
-        format.querySelectorAll("span")[0].innerText = request.monthYear;
-
-        format.querySelectorAll("span")[1].innerText = request.time;
-
-        format.querySelector("img").setAttribute("src", request.picture);
-
-        format
-          .querySelector("#authorURL")
-          .setAttribute("href", request.blogURL);
-
-        document.querySelector(".comments-form").appendChild(format);
-      }
+      function repleModiy() {}
+    </script>
+    <script th:inline="javascript">
+      function repleDelete() {}
     </script>
     <script th:inline="javascript">
       function turnRed() {
