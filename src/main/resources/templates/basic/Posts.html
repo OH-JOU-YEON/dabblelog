@@ -238,6 +238,7 @@
           <div
             class="wrapper"
             style="width: 20rem; height: 13rem; margin-right: 2rem"
+            th:if="${post.postImg != ''}"
           >
             <a th:href="|${thisBlog}/${post.uuid}|"
               ><img th:src="${post.postImg}"
@@ -245,7 +246,7 @@
           </div>
           <div class="texts">
             <div style="margin-bottom: 2rem">
-              <a th:href="|${thisBlog}/${post.title}|"
+              <a th:href="|${thisBlog}/${post.uuid}|"
                 ><h4 style="font-weight: 550" th:text="${post.title}">
                   작성한 글 제목
                 </h4></a
@@ -262,8 +263,8 @@
                 justify-content: space-between;
               "
             >
-              <p th:text="${post.createdDay}">작성한 날</p>
-              <p th:text="${post.likeCount}">
+              <p th:text="|작성한 날 ${post.createdDay}|">작성한 날</p>
+              <p th:text="|좋아요 개수 ${post.likeCount}|">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="13"

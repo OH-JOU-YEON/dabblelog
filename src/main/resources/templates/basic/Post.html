@@ -197,13 +197,13 @@
                       </span>
                     </div>
                     <div class="meta-right">
-                      <span class="comments" th:if="${canFollow == true}"
+                      <span class="comments" th:if="${canFollow != true}"
                         ><a href="#" onclick="modifyPost()">수정</a></span
                       >
                       <span
                         style="cursor: pointer"
                         class="views"
-                        th:if="${canFollow == true}"
+                        th:if="${canFollow != true}"
                         >삭제</span
                       >
                     </div>
