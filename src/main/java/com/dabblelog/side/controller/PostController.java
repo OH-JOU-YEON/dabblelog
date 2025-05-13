@@ -70,7 +70,7 @@ public class PostController {
 
         String userBlog = blogService.getBlogName(sessionUser.getEmail());
         model.addAttribute("email",sessionUser.getEmail());
-        model.addAttribute("myBlogURL","/dabblelog/" +userBlog );
+        model.addAttribute("myBlog", userBlog );
 
         //세션 유저가 이 블로그 유저를 팔로우하고 있는지 알아보는 로직 추가
 

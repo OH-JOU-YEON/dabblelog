@@ -114,7 +114,10 @@
                 <li></li>
                 <li>
                   <i class="fa fa-envelope"></i
-                  ><a id="mymail" th:herf="${myBlogURL}" th:text="${email}"
+                  ><a
+                    id="mymail"
+                    th:herf="|/dabblelog/${myBlog}|"
+                    th:text="${email}"
                     >dabblelog.com</a
                   >
                 </li>
@@ -515,7 +518,7 @@
     </script>
     <script th:inline="javascript">
       function modifyPost() {
-        location.href = "/write/"+ "${myBlogURL}/"+ [[${profile.uuid}]];
+        location.href = "/write/"+ [[${myBlog}]]+"/" +  [[${profile.uuid}]];
       }
 
       function deletePost() {

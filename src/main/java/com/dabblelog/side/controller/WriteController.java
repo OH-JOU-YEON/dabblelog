@@ -82,7 +82,21 @@ public class WriteController {
 
         SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
 
+        Blog blog = blogService.getBlogByName(blogName);
 
+        List<Series> seriesList = seriesRepository.findAllByBlogId(blog);
+
+        //시리즈 검사하는 로직
+
+        seriesListCheck(seriesList,model);
+
+        SavesDetailsDTO savesDetailsDTO = saveService.getSavesDetails(uuid,blog);
+
+        model.addAttribute("save",savesDetailsDTO);
+
+        model.addAttribute("myblogURL","/dabblelog/" + blog.getBlogName());
+
+        model.addAttribute("seriesList", seriesList);
 
 
 
