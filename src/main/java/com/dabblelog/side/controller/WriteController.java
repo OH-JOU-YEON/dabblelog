@@ -69,7 +69,7 @@ public class WriteController {
         return "basic/write";
     }
 
-    @GetMapping("/write/blogName/uuid}")
+    @GetMapping("/write/{blogName}/{uuid}")
     public String writeTempMapping(Model model, HttpServletRequest request, @PathVariable String blogName,
                                    @PathVariable String uuid) {
 
