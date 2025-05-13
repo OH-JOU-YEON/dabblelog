@@ -1,6 +1,7 @@
 package com.dabblelog.side.service.impl;
 
 import com.dabblelog.side.domain.Blog;
+import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.SavesDTO;
 import com.dabblelog.side.domain.dto.SavesDetailsDTO;
@@ -42,8 +43,10 @@ public class SaveService {
 
     }
 
-    public SavesDetailsDTO getSavesDetails(String saveTitle,Blog blog) {
+    public SavesDetailsDTO getSavesDetails(String uuid,Blog blog) {
 
-      return new SavesDetailsDTO(postRepository.findByBlogIdAndTitle(blog,saveTitle), postTagService.getTags(postRepository.findByTitle(saveTitle)));
+        Post post = postRepository.findByUuidAndBlogId(uuid,blog);
+
+      return new SavesDetailsDTO(post, postTagService.getTags(post));
     }
 }

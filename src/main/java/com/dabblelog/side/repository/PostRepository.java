@@ -22,7 +22,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Page<Post> findAllByBlogIdIn(List<Blog> blogs, Pageable pageable);
 
-    Page<Post> findAllByBlogId(Blog blog,Pageable pageable);
+    Page<Post> findAllByBlogIdAndTemp(Blog blog,Pageable pageable,boolean temp);
 
     Long countByBlogIdAndSeriesId(Blog blogId,Series series);
 

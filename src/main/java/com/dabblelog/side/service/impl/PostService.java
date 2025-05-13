@@ -59,6 +59,9 @@ public class PostService {
 
 
 
+
+
+
     public Post getPostByBlogNameAndUUID(String blogName,String UUID) {
 
         log.info("getPostByBlogNameAndTitle.blogName : " + blogName);
@@ -124,13 +127,13 @@ public class PostService {
     }
 
 
-    public void deletePost(String blogName, String postTitle) {
+    public void deletePost(String blogName, String uuid) {
 
         Blog blog = blogRepository.findByBlogName(blogName).get();
 
 
 
-        Post post = postRepository.findByBlogIdAndTitle(blog,postTitle);
+        Post post = postRepository.findByUuidAndBlogId(uuid,blog);
 
         postRepository.delete(post);
     }

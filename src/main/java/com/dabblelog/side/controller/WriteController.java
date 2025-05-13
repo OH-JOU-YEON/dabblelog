@@ -69,8 +69,9 @@ public class WriteController {
         return "basic/write";
     }
 
-    @GetMapping("/write/{saveTitle}")
-    public String writeTempMapping(Model model, HttpServletRequest request, @PathVariable String saveTitle) {
+    @GetMapping("/write/blogName/uuid}")
+    public String writeTempMapping(Model model, HttpServletRequest request, @PathVariable String blogName,
+                                   @PathVariable String uuid) {
 
         HttpSession httpSession = request.getSession(false);
 
@@ -82,12 +83,11 @@ public class WriteController {
         SessionUser sessionUser = (SessionUser)httpSession.getAttribute("user");
 
 
-        SavesDetailsDTO savesDetailsDTO = saveService.getSavesDetails(saveTitle,blogService.ifBlogIsNotExistCreateBlog(sessionUser.getEmail()));
-
-        model.addAttribute("saveDetails",savesDetailsDTO);
 
 
-        return "basic/WriteTemp";
+
+
+        return "basic/Modify";
     }
 
 

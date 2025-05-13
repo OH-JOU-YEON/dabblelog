@@ -75,7 +75,7 @@ public class BlogService {
     public Page<BlogPostDTO> getBlogPostDTOS(String blogName, Pageable pageable){
 
         Blog blog = blogRepository.findByBlogName(blogName).get();
-        return postRepository.findAllByBlogId(blog,pageable).map(BlogPostDTO::new);
+        return postRepository.findAllByBlogIdAndTemp(blog,pageable,false).map(BlogPostDTO::new);
     }
 
     public BlogProfileDTO getBlogProfileDTO(String blogName) {

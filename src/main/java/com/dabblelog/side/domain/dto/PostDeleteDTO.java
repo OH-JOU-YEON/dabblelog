@@ -5,5 +5,5 @@ import lombok.Getter;
 @Getter
 public class PostDeleteDTO {
 
-    private String url;
+    private String uuid;
 }

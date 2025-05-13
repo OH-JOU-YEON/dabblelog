@@ -204,6 +204,7 @@
                         style="cursor: pointer"
                         class="views"
                         th:if="${canFollow != true}"
+                        onclick="deletePost()"
                         >삭제</span
                       >
                     </div>
@@ -514,14 +515,14 @@
     </script>
     <script th:inline="javascript">
       function modifyPost() {
-        location.href = "/write/" + "[[${profile.title}]]";
+        location.href = "/write/"+ "${myBlogURL}/"+ [[${profile.uuid}]];
       }
 
       function deletePost() {
         const url = "/post/delete";
 
         const params = {
-          url: window.location.href,
+          uuid : [[${profile.uuid}]],
         };
 
         console.log(params);
@@ -534,8 +535,9 @@
               "Content-Type": "application/json; charset=utf-8;",
             },
             body: JSON.stringify(params),
-          }).then((response) => history.back);
+          });
           console.log(params);
+          history.back();
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);

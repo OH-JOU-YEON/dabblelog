@@ -119,13 +119,11 @@ public class PostController {
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
 
-        String[] paresURL = postDeleteDTO.getUrl().split("/");
+        String blogName = blogService.getBlogName(sessionuser.getEmail());
 
-        String blogName = paresURL[2];
+        String uuid = postDeleteDTO.getUuid();
 
-        String postTitle = paresURL[3];
-
-        postService.deletePost(blogName,postTitle);
+        postService.deletePost(blogName,uuid);
 
 
     }
