@@ -129,9 +129,9 @@ public class SeriesController {
     }
 
 
-    @GetMapping("/dabblelog/{blogName}/series/{seriesTitle}")
+    @GetMapping("/dabblelog/{blogName}/series/{uuid}")
     public String getSeriesDetails(Model model, HttpServletRequest request, @PageableDefault( size=6) Pageable pageable,
-                                   @PathVariable String blogName, @PathVariable String seriesTitle){
+                                   @PathVariable String blogName, @PathVariable String uuid){
 
         return "basic/SeriesDetails";
 

@@ -3,9 +3,11 @@ package com.dabblelog.side.service.impl;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Post;
 import com.dabblelog.side.domain.Series;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.domain.dto.SeriesDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.PostRepository;
+import com.dabblelog.side.repository.RepleRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -33,6 +36,8 @@ public class SeriesService {
 
 
    private final BlogRepository blogRepository;
+
+   private final RepleRepository repleRepository;
 
     //새 시리즈 생성 로직
 
@@ -57,6 +62,19 @@ public class SeriesService {
         series.update(color,title);
 
       return seriesRepository.save(series);
+
+    }
+
+
+    public Page<PostHomeDTO> getSeriesDetails(String uuid, String blogName){
+
+        Blog blog = blogService.getBlogByName(blogName);
+
+        Optional<Series> series = seriesRepository.findByBlogIdAndUuid(blog,uuid);
+
+        return  postRepository.findAllByBlogIdAndSeriesId(blog,series.get()).map(s -> new PostHomeDTO(s, repleRepository.countByPostId(s)));
+
+
 
     }
 
@@ -87,7 +105,7 @@ public class SeriesService {
 
     public String getThumbnails(Series series, Blog blog) {
 
-        List<Post> postList = postRepository.findAllByBlogIdAndSeriesId(blog,series);
+        List<Post> postList = postRepository.findAllByBlogIdAndSeriesId(blog,series).stream().toList();
 
         if(postList.isEmpty()) {
             return "";

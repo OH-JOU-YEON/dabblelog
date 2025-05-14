@@ -2,7 +2,9 @@ package com.dabblelog.side.service.impl;
 
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Post;
+import com.dabblelog.side.domain.Series;
 import com.dabblelog.side.domain.User;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.domain.dto.SavesDTO;
 import com.dabblelog.side.domain.dto.SavesDetailsDTO;
 import com.dabblelog.side.repository.BlogRepository;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -53,4 +56,8 @@ public class SaveService {
 
       return new SavesDetailsDTO(post, tags);
     }
+
+
+    //시리즈
+
 }

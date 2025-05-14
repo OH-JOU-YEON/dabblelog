@@ -17,6 +17,8 @@ public class SeriesDTO {
 
     private final Long seriesPostCount;
 
+    private final String uuid;
+
 
 
 
@@ -37,6 +39,7 @@ public class SeriesDTO {
 
         this.seriesPostCount = seriesPostCount;
 
+        this.uuid = series.getUuid();
 
 
 

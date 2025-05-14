@@ -204,6 +204,8 @@ public class PostController {
     @PostMapping("post/modify")
     public Post modifyPost(HttpServletRequest request, @RequestBody PostModifyDTO postModifyDTO) {
 
+        log.info("수정된 포스트 내용 :"+ postModifyDTO.getContent());
+
         HttpSession session = request.getSession(false);
 
         SessionUser sessionuser = (SessionUser) session.getAttribute("user");
@@ -216,7 +218,9 @@ public class PostController {
 
         Optional<Series> series = seriesRepository.findByBlogIdAndTitle(blog,postModifyDTO.getTitle());
 
-       return postRepository.save(post.updatePost(postModifyDTO,series.get()));
+        Series thisSeries;
+        thisSeries = series.orElse(null);
+       return postRepository.save(post.updatePost(postModifyDTO,thisSeries));
 
 
 
