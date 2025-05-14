@@ -47,6 +47,10 @@ public class SaveService {
 
         Post post = postRepository.findByUuidAndBlogId(uuid,blog);
 
-      return new SavesDetailsDTO(post, postTagService.getTags(post));
+        String tags = postTagService.getTags(post);
+
+        postTagService.deletePostTags(post);
+
+      return new SavesDetailsDTO(post, tags);
     }
 }

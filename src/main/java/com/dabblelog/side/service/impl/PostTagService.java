@@ -46,14 +46,24 @@ public class PostTagService {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        for(int i = 0; i<tagMappings.size(); i++) {
-            stringBuilder.append(" ").append(tagMappings.indexOf(i));
+        for (TagMapping tagMapping : tagMappings) {
+            stringBuilder.append(" ").append(tagMapping.getTagId().getTitle());
         }
 
         return stringBuilder.toString();
     }
 
+    //글 수정할 때 태그 매핑 삭제하는 메서드(태그는 오버헤드가 있더라도 다른 사람들도 사용 가능하니 둔다)
 
+    public void deletePostTags(Post post) {
+
+        List<TagMapping> tagMappings = tagMappingRepository.findAllByPostId(post);
+
+        for(TagMapping tagMapping : tagMappings) {
+
+            tagMappingRepository.delete(tagMapping);
+        }
+    }
 
 
 }

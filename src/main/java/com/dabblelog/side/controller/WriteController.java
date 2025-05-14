@@ -5,8 +5,10 @@ import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
 import com.dabblelog.side.domain.Series;
 import com.dabblelog.side.domain.dto.SavesDetailsDTO;
+import com.dabblelog.side.repository.PostTagRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.service.impl.BlogService;
+import com.dabblelog.side.service.impl.PostTagService;
 import com.dabblelog.side.service.impl.SaveService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +33,8 @@ public class WriteController {
 
 
    private final BlogService blogService;
+
+   private final PostTagService postTagService;
 
 
 
@@ -97,6 +101,8 @@ public class WriteController {
         model.addAttribute("myblogURL","/dabblelog/" + blog.getBlogName());
 
         model.addAttribute("seriesList", seriesList);
+
+
 
 
 
