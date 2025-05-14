@@ -97,6 +97,15 @@ public class SeriesService {
 
 
     }
+    // 한 시리즈 디테일 내의 시리즈 정보
+    public SeriesDTO getSeriesInSeriesDetails(String blogName, String uuid) {
+
+        Blog blog = blogService.getBlogByName(blogName);
+
+        Series series = seriesRepository.findByBlogIdAndUuid(blog,uuid).get();
+
+        return new SeriesDTO(series, postRepository.countByBlogIdAndSeriesId(blog,series),getThumbnails(series,blog) );
+    }
 
 
 

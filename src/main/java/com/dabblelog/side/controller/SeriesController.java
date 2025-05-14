@@ -3,8 +3,11 @@ package com.dabblelog.side.controller;
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.Blog;
+import com.dabblelog.side.domain.Post;
+import com.dabblelog.side.domain.Series;
 import com.dabblelog.side.domain.User;
 import com.dabblelog.side.domain.dto.BlogProfileDTO;
+import com.dabblelog.side.domain.dto.PostHomeDTO;
 import com.dabblelog.side.domain.dto.SeriesDTO;
 import com.dabblelog.side.repository.BlogRepository;
 import com.dabblelog.side.repository.UserRepository;
@@ -132,6 +135,23 @@ public class SeriesController {
     @GetMapping("/dabblelog/{blogName}/series/{uuid}")
     public String getSeriesDetails(Model model, HttpServletRequest request, @PageableDefault( size=6) Pageable pageable,
                                    @PathVariable String blogName, @PathVariable String uuid){
+
+        HttpSession session = request.getSession(false);
+
+        SessionUser sessionUser = (SessionUser)session.getAttribute("user");
+
+        model.addAttribute("email",sessionUser.getEmail());
+        model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
+
+        Page<PostHomeDTO> list  = seriesService.getSeriesDetails(uuid,blogName);
+
+        SeriesDTO seriesDTO = seriesService.getSeriesInSeriesDetails(blogName, uuid);
+
+        model.addAttribute("series",seriesDTO);
+
+        model.addAttribute("thisBlog","/dabblelog/"+blogName);
+
+        model.addAttribute("list",list);
 
         return "basic/SeriesDetails";
 
