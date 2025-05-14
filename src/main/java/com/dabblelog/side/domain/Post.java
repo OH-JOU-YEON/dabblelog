@@ -1,6 +1,7 @@
 package com.dabblelog.side.domain;
 
 
+import com.dabblelog.side.domain.dto.PostModifyDTO;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -91,6 +92,17 @@ public class Post {
         this.likeCount = 0L;
 
         this.temp = temp;
+    }
+
+    public Post updatePost(PostModifyDTO postModifyDTO,Series series) {
+
+        this.title = postModifyDTO.getTitle();
+
+        this.content = postModifyDTO.getContent();
+
+        this.seriesId = series;
+
+        return this;
     }
 
     //임시 저장 포스트 저장으로 돌릴 때 사용. 시리즈 업데이트 하고 임시저장에서 저장으로 돌림

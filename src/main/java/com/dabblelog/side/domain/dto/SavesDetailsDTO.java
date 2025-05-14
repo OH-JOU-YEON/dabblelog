@@ -12,6 +12,8 @@ public class SavesDetailsDTO {
 
     private final String content;
 
+    private final String uuid;
+
 
     public SavesDetailsDTO(Post post,String tags) {
         this.title = post.getTitle();
@@ -19,5 +21,7 @@ public class SavesDetailsDTO {
         this.tags = tags;
 
         this.content = post.getContent();
+
+        this.uuid = post.getUuid();
     }
 }

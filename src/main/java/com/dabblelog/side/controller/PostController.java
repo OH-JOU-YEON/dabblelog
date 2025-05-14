@@ -3,11 +3,9 @@ package com.dabblelog.side.controller;
 
 import com.dabblelog.side.config.auth.dto.SessionUser;
 import com.dabblelog.side.domain.*;
-import com.dabblelog.side.domain.dto.PostDTO;
-import com.dabblelog.side.domain.dto.PostDeleteDTO;
-import com.dabblelog.side.domain.dto.PostViewDTO;
-import com.dabblelog.side.domain.dto.RepleDTO;
+import com.dabblelog.side.domain.dto.*;
 import com.dabblelog.side.repository.BlogRepository;
+import com.dabblelog.side.repository.PostRepository;
 import com.dabblelog.side.repository.SeriesRepository;
 import com.dabblelog.side.repository.UserRepository;
 import com.dabblelog.side.service.impl.*;
@@ -19,12 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -42,6 +38,8 @@ public class PostController {
 
 
    private final SeriesRepository seriesRepository;
+
+   private final PostRepository postRepository;
 
 
    private final PostTagService postTagService;
@@ -113,7 +111,7 @@ public class PostController {
         return "/basic/Post";
     }
 
-
+    @ResponseBody
     @PostMapping("post/delete")
     public void deletePost(HttpServletRequest request, @RequestBody PostDeleteDTO postDeleteDTO) {
 
@@ -197,6 +195,29 @@ public class PostController {
         }
 
         return "redirect:/dabblelog/" + blog.getBlogName();
+
+
+    }
+
+    @Transactional
+    @ResponseBody
+    @PostMapping("post/modify")
+    public Post modifyPost(HttpServletRequest request, @RequestBody PostModifyDTO postModifyDTO) {
+
+        HttpSession session = request.getSession(false);
+
+        SessionUser sessionuser = (SessionUser) session.getAttribute("user");
+
+        User user = userRepository.findByEmail(sessionuser.getEmail()).get();
+
+        Blog blog = blogRepository.findById(user.getId()).get();
+
+        Post post = postRepository.findByUuidAndBlogId(postModifyDTO.getUuid(),blog);
+
+        Optional<Series> series = seriesRepository.findByBlogIdAndTitle(blog,postModifyDTO.getTitle());
+
+       return postRepository.save(post.updatePost(postModifyDTO,series.get()));
+
 
 
     }
