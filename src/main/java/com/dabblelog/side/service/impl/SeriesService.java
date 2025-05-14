@@ -13,6 +13,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -66,13 +67,13 @@ public class SeriesService {
     }
 
 
-    public Page<PostHomeDTO> getSeriesDetails(String uuid, String blogName){
+    public Page<PostHomeDTO> getSeriesDetails(String uuid, String blogName,Pageable pageable){
 
         Blog blog = blogService.getBlogByName(blogName);
 
         Optional<Series> series = seriesRepository.findByBlogIdAndUuid(blog,uuid);
 
-        return  postRepository.findAllByBlogIdAndSeriesId(blog,series.get()).map(s -> new PostHomeDTO(s, repleRepository.countByPostId(s)));
+        return  postRepository.findAllByBlogIdAndSeriesId(blog,series.get(),pageable).map(s -> new PostHomeDTO(s, repleRepository.countByPostId(s)));
 
 
 
@@ -114,7 +115,10 @@ public class SeriesService {
 
     public String getThumbnails(Series series, Blog blog) {
 
-        List<Post> postList = postRepository.findAllByBlogIdAndSeriesId(blog,series).stream().toList();
+        Pageable pageable = PageRequest.of(8,10);
+
+
+        List<Post> postList = postRepository.findAllByBlogIdAndSeriesId(blog,series,pageable).stream().toList();
 
         if(postList.isEmpty()) {
             return "";

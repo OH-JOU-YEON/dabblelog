@@ -134,7 +134,8 @@ public class SeriesController {
 
     @GetMapping("/dabblelog/{blogName}/series/{uuid}")
     public String getSeriesDetails(Model model, HttpServletRequest request, @PageableDefault( size=6) Pageable pageable,
-                                   @PathVariable String blogName, @PathVariable String uuid){
+                                   @PathVariable String blogName, @PathVariable String uuid
+                                   ){
 
         HttpSession session = request.getSession(false);
 
@@ -143,7 +144,7 @@ public class SeriesController {
         model.addAttribute("email",sessionUser.getEmail());
         model.addAttribute("myBlogURL","/dabblelog/" + blogService.getBlogName(sessionUser.getEmail()));
 
-        Page<PostHomeDTO> list  = seriesService.getSeriesDetails(uuid,blogName);
+        Page<PostHomeDTO> list  = seriesService.getSeriesDetails(uuid,blogName,pageable);
 
         SeriesDTO seriesDTO = seriesService.getSeriesInSeriesDetails(blogName, uuid);
 

@@ -16,7 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 
 
-    Page<Post> findAllByBlogIdAndSeriesId(Blog blogId, Series seriesId);
+    Page<Post> findAllByBlogIdAndSeriesId(Blog blogId, Series seriesId,Pageable pageable);
 
     Post findByUuidAndBlogId(String uuid, Blog blogId);
 
