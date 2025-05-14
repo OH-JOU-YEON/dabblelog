@@ -108,6 +108,8 @@ public class PostController {
 
         model.addAttribute("tags",tagsTitle);
 
+        model.addAttribute("blogName",blogName);
+
         return "/basic/Post";
     }
 

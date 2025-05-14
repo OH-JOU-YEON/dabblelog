@@ -72,6 +72,12 @@ public class RepleService {
     }
 
 
+    public Reple modifyReple(Reple reple,String content) {
+
+       return repleRepository.save(reple.updateReple(content));
+    }
+
+
 
 
 }

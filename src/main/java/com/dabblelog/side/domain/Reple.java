@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
@@ -18,6 +19,8 @@ public class Reple {
 
     @ManyToOne
     private Post postId;
+
+    private String uuid;
 
 
     @ManyToOne
@@ -40,13 +43,19 @@ public class Reple {
 
         this.createdDay = localDateTime;
 
-
+        this.uuid =  UUID.randomUUID().toString().replaceAll("[^0-9]", "").substring(0,8);
 
         this.content = content;
     }
 
     //답글 생성자
 
+    public Reple updateReple(String content) {
+
+        this.content = content;
+
+        return this;
+    }
 
 
 }

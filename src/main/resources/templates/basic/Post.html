@@ -303,6 +303,11 @@
                         >
                           <div style="margin-left: auto">
                             <span
+                              style="display: none"
+                              id="uuid"
+                              th:text="${reple.uuid}"
+                            ></span>
+                            <span
                               th:if="${reple.imRepleWriter} == true"
                               style="
                                 margin-right: 0.5rem;
@@ -439,10 +444,85 @@
        }
     </script>
     <script th:inline="javascript">
-      function repleModiy() {}
+      function repleModiy() {
+        if (
+          event.target.parentNode.parentNode
+            .querySelector("p")
+            .getAttribute("contenteditable") == "false"
+        ) {
+          event.target.parentNode.parentNode
+            .querySelector("p")
+            .setAttribute("contenteditable", "true");
+        } else {
+          event.target.parentNode.parentNode
+            .querySelector("p")
+            .setAttribute("contenteditable", "false");
+
+          const url = "/reple/modify";
+
+          const params = {
+            content:
+              event.target.parentNode.parentNode.querySelector("p").value,
+              uuid:
+             event.target.parentNode.querySelector(
+               "#uuid"
+             ).value,
+
+            blogName :[[${blogName}]] ,
+            postUuid : [[${profile.uuid}]],
+          };
+
+          console.log(params);
+
+          // 3. API 호출
+          try {
+            const request = fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8;",
+              },
+              body: JSON.stringify(params),
+            });
+            console.log(params);
+          } catch (error) {
+            console.error("저장 실패 : ", error);
+            console.log(params);
+          }
+        }
+      }
     </script>
     <script th:inline="javascript">
-      function repleDelete() {}
+      function repleDelete() {
+
+         const params = {
+           uuid:
+             event.target.parentNode.querySelector(
+               "#uuid"
+             ).value,
+
+            blogName :[[${blogName}]] ,
+            postUuid : [[${profile.uuid}]],
+         };
+
+         console.log(params);
+
+         const url = "/reple/delete";
+
+         // 3. API 호출
+         try {
+            const request = await fetch(url, {
+             method: "POST",
+             headers: {
+               "Content-Type": "application/json; charset=utf-8;",
+             },
+             body: JSON.stringify(params),
+           });
+           location.reload(true);
+         } catch (error) {
+           console.error("저장 실패 : ", error);
+           console.log(params);
+         }
+       }
     </script>
     <script th:inline="javascript">
       function turnRed() {

@@ -28,6 +28,8 @@ public class RepleDTO {
 
     private final String authorBlog;
 
+    private final String uuid;
+
 
 
     public RepleDTO(Reple reple, String authorBlog, Post post , User user) {
@@ -49,7 +51,12 @@ public class RepleDTO {
         this.imPostWriter = post.getBlogId().getUser() == user;
 
         this.authorBlog = authorBlog;
+
+        this.uuid = reple.getUuid();
     }
+
+
+
 
 
 }

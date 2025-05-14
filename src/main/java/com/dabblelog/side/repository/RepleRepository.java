@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RepleRepository extends JpaRepository<Reple,Long> {
@@ -15,6 +16,8 @@ public interface RepleRepository extends JpaRepository<Reple,Long> {
     Long countByPostId(Post postId);
 
     List<Reple> findAllByPostId(Post post);
+
+    Optional<Reple> findByPostIdAndUuid(Post postId,String uuid);
 
 
 
