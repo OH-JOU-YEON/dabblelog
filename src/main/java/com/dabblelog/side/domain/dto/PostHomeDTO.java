@@ -92,7 +92,7 @@ public class PostHomeDTO {
                 for(String splitWithBlankContent : splitContentWithBlank) {
                     if(splitWithBlankContent.contains("src")) {
                         String[] splitContentWithSrc = splitWithBlankContent.split("src=");
-                        return splitContentWithSrc[1].replace("\"","");
+                        return splitContentWithSrc[1].replace("\"","").replace("<br>","");
                     }
                     else {
                         continue;
