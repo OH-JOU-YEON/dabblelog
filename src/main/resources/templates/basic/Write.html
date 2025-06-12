@@ -232,13 +232,13 @@
               "Content-Type": "application/json; charset=utf-8;",
             },
             body: JSON.stringify(params),
-          });
+          }).then(response => setTimeout(location.href = [[${myblogURL}]],2000));
           console.log(params);
         } catch (error) {
           console.error("저장 실패 : ", error);
           console.log(params);
         }
-        location.href = [[${myblogURL}]];
+
       }
 
       function saveTemp() {
@@ -268,7 +268,8 @@
           console.error("저장 실패 : ", error);
           console.log(params);
         }
-        location.href = [[${myblogURL}]];
+
+
       }
     </script>
   </body>
