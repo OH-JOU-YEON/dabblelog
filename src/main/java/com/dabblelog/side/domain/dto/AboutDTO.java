@@ -6,7 +6,10 @@ import lombok.Getter;
 @Getter
 public class AboutDTO {
 
-    private final String content;
+    private String content;
+
+
+    public AboutDTO() {}
 
 
     public AboutDTO(About about) {

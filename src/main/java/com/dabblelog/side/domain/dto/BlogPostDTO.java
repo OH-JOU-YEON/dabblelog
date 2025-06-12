@@ -47,7 +47,7 @@ public class BlogPostDTO {
 
 
         for(String splitContent : splitPostContentWithTagStart) {
-            if(splitContent.contains("<img")) {
+            if(splitContent.contains("<img") || splitContent.contains("<br>")) {
                 continue;
             }
             else {
