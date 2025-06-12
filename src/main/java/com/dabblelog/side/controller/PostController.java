@@ -131,17 +131,15 @@ public class PostController {
 
 
     @Transactional
+    @ResponseBody
     @PostMapping("post/create")
-    public String createPost(Model model, HttpServletRequest request, @RequestBody PostDTO postDTO) {
+    public void createPost(Model model, HttpServletRequest request, @RequestBody PostDTO postDTO) {
 
 
         //세션 얻어서 검사
 
         HttpSession session = request.getSession(false);
 
-        if(session == null ) {
-            return "redirect:/";
-        }
 
 
 
@@ -194,7 +192,7 @@ public class PostController {
             tagMapper(tags,post);
         }
 
-        return "redirect:/dabblelog/" + blog.getBlogName();
+
 
 
     }
