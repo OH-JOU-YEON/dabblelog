@@ -63,7 +63,7 @@ public class PostHomeDTO {
 
 
        for(String splitContent : splitPostContentWithTagStart) {
-           if(splitContent.contains("<img")) {
+           if(splitContent.contains("<img") || splitContent.contains("<br>")) {
                continue;
            }
            else {
@@ -92,7 +92,7 @@ public class PostHomeDTO {
                 for(String splitWithBlankContent : splitContentWithBlank) {
                     if(splitWithBlankContent.contains("src")) {
                         String[] splitContentWithSrc = splitWithBlankContent.split("src=");
-                        return splitContentWithSrc[1].replace("\"","").replace("<br>","");
+                        return splitContentWithSrc[1].replace("\"","");
                     }
                     else {
                         continue;
